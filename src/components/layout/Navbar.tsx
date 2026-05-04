@@ -28,7 +28,7 @@ export default function Navbar() {
             const PADDING = 40; // px-10 = 40px
             const LOGO_TOP = 32; // where logo rests in hero state (near top)
 
-            // ── Initial states ─────────────────────────────────────────────
+            // Initial states
 
             // Logo: positioned near top, but starts further DOWN (slides up into place)
             gsap.set(logo, {
@@ -45,6 +45,16 @@ export default function Navbar() {
             requestAnimationFrame(() => {
                 const logoHeight = logo.offsetHeight || 220;
                 const navTop = LOGO_TOP + logoHeight + 20;
+                const NATURAL_HEIGHT = LOGO_TOP + logoHeight + 20 + 40 + 20;
+
+            document.documentElement.style.setProperty(
+                "--navbar-height",
+                `${NATURAL_HEIGHT}px`
+            );
+
+                gsap.set(header, {
+                    height: `${NATURAL_HEIGHT}px`,
+                });
 
                 gsap.set(navRow, {
                     position: "absolute",
@@ -76,8 +86,9 @@ export default function Navbar() {
                         "-=0.55"
                     );
 
-                // ── Scroll collapse ────────────────────────────────────────
+                // Scroll collapse 
                 const COMPACT_HEIGHT = 78;
+                document.documentElement.style.setProperty("--navbar-compact-height", `${COMPACT_HEIGHT}px`);
                 const COMPACT_LOGO_WIDTH = 160;
                 const logoNaturalWidth = header.offsetWidth - PADDING * 2;
                 const scaleFactor = COMPACT_LOGO_WIDTH / logoNaturalWidth;
@@ -122,7 +133,8 @@ export default function Navbar() {
     return (
         <header
             ref={headerRef}
-            className="fixed top-0 left-0 right-0 z-999 h-screen bg-black overflow-hidden"
+            className="fixed top-0 left-0 right-0 z-999 bg-transparent overflow-hidden"
+            // style={{ height: "100vh" }} 
         >
             {/* Logo */}
             <div ref={logoRef} className="will-change-transform">
