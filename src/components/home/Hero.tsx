@@ -70,20 +70,19 @@ export default function Hero() {
     }, [current])
 
     return (
-        <section className="min-h-screen bg-black flex flex-col">
+        <section className="min-h-screen bg-black flex flex-col pt-40 lg:pt-52 pb-5">
             {/* Top row */}
             <div className="flex justify-between items-start pb-8">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center">
                     <ScrollIndicator />
                     <span className="text-white text-xs uppercase tracking-widest">Scroll down</span>
                 </div>
 
-                <p className="text-white text-2xl font-bold max-w-lg text-left">
+                <p className="text-white text-sm md:text-2xl font-medium lg:font-bold w-50 lg:w-full max-w-lg text-left">
                     We're Stuuudio — a Lagos-born creative agency building brands and digital
                     presence for businesses that refuse to be average. Design, motion, film,
                     web, and everything in between.
                 </p>
-                <p></p>
             </div>
 
             {/* Slideshow */}
@@ -112,11 +111,10 @@ export default function Hero() {
                     })}
 
                 </div>
-
-                {/* Space between image and border, then border, then space before next section */}
-                <div style={{ paddingTop: '48px', paddingBottom: '48px' }}>
-                    <div style={{ borderBottom: '1px solid white' }} />
+                <div className="pt-12 pb-1 lg:pb-12">
+                    <div className="border-b border-white" />
                 </div>
+
             </div>
         </section>
     )

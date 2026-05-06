@@ -8,17 +8,19 @@ export default function ScrollIndicator() {
             </defs>
 
             {/* Pill outline */}
-            <rect x="6" y="6" width="48" height="78" rx="24" fill="none" stroke="white" strokeWidth="3.5"/>
+            <rect x="6" y="6" width="48" height="78"
+                rx="24" fill="none" stroke="white" strokeWidth="3.5"/>
 
             {/* Sliding line — faster, completes in 55% of cycle then hides */}
-            <rect x="26" y="16" width="8" height="22" rx="4" fill="white" clipPath="url(#pill-clip)">
+            <rect x="26" y="16" width="8" height="22" rx="4"
+                fill="white" clipPath="url(#pill-clip)">
                 <animate
                     attributeName="y"
                     values="16;46;46;16;16"
                     keyTimes="0;0.35;0.351;0.352;1"
                     calcMode="spline"
                     keySplines="0.4 0 0.6 1; 0 0 1 1; 0 0 1 1; 0.4 0 0.6 1"
-                    dur="2s"
+                    dur="1s"
                     repeatCount="indefinite"
                 />
                 <animate

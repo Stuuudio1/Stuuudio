@@ -50,20 +50,41 @@
   font-display: swap;
 }
 
-/* Design Tokens */
+@font-face {
+  font-family: "DrukTextWide";
+  src: url("/fonts/DrukTextWide-Heavy-Trial.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
+@font-face {
+  font-family: "DrukCond";
+  src: url("/fonts/DrukXCond-Super-Trial.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* Design Tokens */
 :root {
   --background: #000000;
   --foreground: #ffffff;
-  --muted: rgba(255,255,255,0.08);
-  --border: rgba(255,255,255,0.12);
+  --muted: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.12);
   --accent: #ffffff;
   --page-padding-x: 2.5rem;
 
   --font-display: "Druk", sans-serif;
   --font-heading: "DrukWide", sans-serif;
   --font-body: var(--font-inter), sans-serif;
+
+  /* Fallbacks before GSAP writes the real values */
+  --navbar-height: 280px;
+  --navbar-compact-height: 48px;
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -79,7 +100,9 @@
   padding: 0;
 } */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -91,7 +114,16 @@ body {
   color: #fff;
 }
 
-body, h1, h2, h3, h4, p, ul, ol, figure, blockquote {
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote {
   margin: 0;
   padding: 0;
 }
@@ -121,4 +153,21 @@ header * {
 .font-heading {
   font-family: var(--font-heading);
   font-weight: 900;
+}
+
+/* Mobile first: use compact height */
+.navbar-offset {
+  padding-top: var(--navbar-compact-height, 48px);
+}
+
+/* Desktop lg+: offset by full expanded height */
+@media (min-width: 1024px) {
+  .navbar-offset {
+    padding-top: var(--navbar-height, 280px);
+  }
+}
+
+/* Horizontal page padding via utility class instead of inline style */
+.page-x {
+  padding-inline: var(--page-padding-x);
 }
