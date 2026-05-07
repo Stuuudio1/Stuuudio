@@ -1,6 +1,6 @@
 'use client'
 
-import ScrollIndicator from '../ScrollIndicator'
+import ScrollIndicator from '../ui/ScrollIndicator'
 import { useEffect, useRef, useState } from 'react'
 
 const slides = [

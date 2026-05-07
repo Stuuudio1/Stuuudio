@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const WIDE = "DrukTextWide, sans-serif";
 const COND = "DrukCond, sans-serif";
@@ -33,7 +34,7 @@ function Letter({
 
 export default function AboutSection() {
     return (
-        <section className="bg-black text-white w-full pb-20">
+        <section id="about" className="bg-black text-white w-full pb-20">
 
             {/* ABOUT heading */}
             <div className="pb-10 md:pb-24 xs:-mt-16 md:mt-0">
@@ -126,14 +127,16 @@ export default function AboutSection() {
                         </div>
 
                         <div className="pt-5 md:pt-10">
-                            <button
-                                className="px-8 py-4 rounded-full text-base uppercase bg-gray-900/50
-                                            tracking-widest text-white hover:bg-white hover:text-black transition-colors 
-                                            duration-300 cursor-pointer"
-                                style={{ fontWeight: 400 }}
-                            >
-                                LEARN MORE
-                            </button>
+                            <Link href="/about">
+                                <button
+                                    className="px-8 py-4 rounded-full text-base uppercase bg-gray-900/50
+                                                tracking-widest text-white hover:bg-white hover:text-black transition-colors 
+                                                duration-300 cursor-pointer"
+                                    style={{ fontWeight: 400 }}
+                                >
+                                    LEARN MORE
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

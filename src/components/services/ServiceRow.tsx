@@ -3,14 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { COND, WIDE } from "../ui/Letter";
 import { CursorFollower } from "../ui/CursorFollower";
-
-export interface Service {
-    id: string;
-    number: string;
-    title: string;
-    cursorImage: string;
-    description: string;
-}
+import { Service } from "@/lib/data/services";
 
 export function ServiceRow({
     service,
@@ -111,7 +104,7 @@ export function ServiceRow({
                         style={{ height: isFinePointer ? "2.6em" : "2em" }}
                     >
                         {/* Layer A — visible at rest, slides up on hover (desktop only) */}
-                        <span className="absolute inset-0 flex items-center text-xs" aria-hidden="true">
+                        <span className="absolute inset-0 flex items-center text-xs text-gray-500" aria-hidden="true">
                             {service.title.split("").map((char, i) => (
                                 <span key={`a-${i}`} style={charStyle(0, i)}>
                                     {char}
@@ -168,13 +161,14 @@ export function ServiceRow({
                                 {service.description}
                             </p>
 
-                            <button
+                            <a
+                                href="mailto:Createwithstuuudio@gmail.com"
                                 className="mt-6 md:mt-8 px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs uppercase tracking-widest border border-white/30
-                                    text-white/60 hover:border-white hover:text-white transition-all duration-300 cursor-pointer"
+                                    text-white/60 hover:border-white hover:text-white transition-all duration-300 inline-block"
                                 style={{ fontWeight: 400 }}
                             >
                                 Start a project →
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

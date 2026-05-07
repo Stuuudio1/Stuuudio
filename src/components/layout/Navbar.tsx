@@ -229,18 +229,18 @@ export default function Navbar() {
                     <nav className="flex items-center gap-4 md:gap-7 text-white ml-auto md:ml-0"
                         style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
                     >
-                        <Link href="/projects" className="hover:opacity-60 transition-opacity whitespace-nowrap">
+                        <Link href="#work" className="hover:opacity-60 transition-opacity whitespace-nowrap">
                             Projects
                         </Link>
-                        <Link href="/services" className="hover:opacity-60 transition-opacity whitespace-nowrap">
+                        <Link href="#services" className="hover:opacity-60 transition-opacity whitespace-nowrap">
                             Services
                         </Link>
-                        <Link href="/about" className="hover:opacity-60 transition-opacity whitespace-nowrap">
+                        <Link href="#about" className="hover:opacity-60 transition-opacity whitespace-nowrap">
                             About
                         </Link>
-                        <Link href="/contact" className="hover:opacity-60 transition-opacity whitespace-nowrap">
+                        <a href="mailto:Createwithstuuudio@gmail.com" className="hover:opacity-60 transition-opacity whitespace-nowrap">
                             Contact
-                        </Link>
+                        </a>
                     </nav>
                 </div>
             </header>

@@ -2,8 +2,8 @@
 import Image from "next/image";
 
 const SOCIALS = [
-    { label: "Instagram", href: "#" },
-    { label: "Twitter", href: "#" },
+    { label: "Instagram", href: "https://www.instagram.com/createwithstuuudio?igsh=Nmc5NGFuY3h2cGwx" },
+    { label: "Twitter", href: "https://x.com/stuuudioone" },
     { label: "LinkedIn", href: "#" },
 ];
 
@@ -31,12 +31,12 @@ function UnderlineLink({
 
 export default function Footer() {
     return (
-        <footer className="bg-black text-white w-full overflow-hidden">
+        <footer id="contact" className="bg-black text-white w-full overflow-hidden">
 
             {/* ── Desktop top bar (hidden on mobile/tablet) ── */}
             <div
                 className="hidden lg:flex items-center justify-between
-                   px-6 md:px-10 py-5 text-white"
+                    px-6 md:px-10 py-5 text-white"
                 style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
             >
                 <span className="shrink-0 text-base">
