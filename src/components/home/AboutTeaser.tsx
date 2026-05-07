@@ -41,7 +41,7 @@ export default function AboutSection() {
                 <h2
                     aria-label="About"
                     style={{
-                        fontSize: "clamp(5rem, 10vw, 9rem)",
+                        fontSize: "clamp(5rem, 10vw, 5rem)",
                         lineHeight: 1,
                         display: "flex",
                         alignItems: "baseline",

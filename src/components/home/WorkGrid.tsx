@@ -52,7 +52,7 @@ export default function WorkSection() {
                 <h2
                     aria-label="Work"
                     style={{
-                        fontSize: "clamp(3.5rem, 10vw, 9rem)",
+                        fontSize: "clamp(3.5rem, 10vw, 5rem)",
                         lineHeight: 1,
                         display: "flex",
                         alignItems: "baseline",
