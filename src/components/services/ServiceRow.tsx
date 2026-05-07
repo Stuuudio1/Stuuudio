@@ -9,12 +9,16 @@ export function ServiceRow({
     service,
     isOpen,
     onToggle,
+    isFirst = false,
     isLast = false,
+    variant,
 }: {
     service: Service;
     isOpen: boolean;
     onToggle: () => void;
+    isFirst?: boolean;
     isLast?: boolean;
+    variant?: "about";
 }) {
     const [hovered, setHovered] = useState(false);
     const [cursorVisible, setCursorVisible] = useState(false);
@@ -37,6 +41,10 @@ export function ServiceRow({
         }
     }, []);
 
+    const titleColor = variant === "about" ? "#6b7280" : "rgba(255,255,255,0.85)";
+    const numberClass = `text-sm md:text-lg shrink-0 w-10 md:w-16 tabular-nums ${variant === "about" ? "text-gray-500" : "text-white/30"}`;
+    const descriptionClass = `${variant === "about" ? "text-gray-500" : "text-white/60"} leading-relaxed text-sm md:text-base max-w-2xl`;
+
     const charStyle = (layerIndex: 0 | 1, i: number): React.CSSProperties => {
         const isTop = layerIndex === 1;
 
@@ -45,7 +53,7 @@ export function ServiceRow({
             return {
                 display: "inline-block",
                 transform: isTop ? "translateY(150%)" : "translateY(0%)",
-                color: "rgba(255,255,255,0.85)",
+                color: titleColor,
                 fontSize: "clamp(1rem, 4vw, 1.75rem)",
                 fontFamily: "var(--font-body, sans-serif)",
                 fontWeight: 300,
@@ -62,7 +70,7 @@ export function ServiceRow({
             transform: isTop
                 ? hovered ? "translateY(0%)" : "translateY(150%)"
                 : hovered ? "translateY(-150%)" : "translateY(0%)",
-            color: "rgba(255,255,255,0.85)",
+            color: titleColor,
             fontSize: "clamp(1.2rem, 2.2vw, 1.75rem)",
             fontFamily: "var(--font-body, sans-serif)",
             fontWeight: 300,
@@ -71,13 +79,20 @@ export function ServiceRow({
         };
     };
 
+    const borderClasses = [
+        variant === "about" && isFirst ? "border-t border-white/20" : "",
+        (!isLast || (variant === "about" && isLast)) ? "border-b border-white/20" : "",
+    ]
+        .filter(Boolean)
+        .join(" ");
+
     return (
         <>
             {/* Cursor follower — renders null on touch devices internally */}
             <CursorFollower src={service.cursorImage} visible={cursorVisible} />
 
             <div
-                className={!isLast ? "border-b border-white/20" : ""}
+                className={borderClasses}
                 onMouseEnter={isFinePointer ? () => { setHovered(true); setCursorVisible(true); } : undefined}
                 onMouseLeave={isFinePointer ? () => { setHovered(false); setCursorVisible(false); } : undefined}
             >
@@ -89,7 +104,7 @@ export function ServiceRow({
                 >
                     {/* Number */}
                     <span
-                        className="text-white/30 shrink-0 w-10 md:w-16 tabular-nums text-sm md:text-lg"
+                        className={numberClass}
                         style={{
                             fontFamily: WIDE,
                             fontWeight: 100,
@@ -155,7 +170,7 @@ export function ServiceRow({
                     <div ref={contentRef} className="pb-8 md:pb-10">
                         <div className="pl-14 md:pl-22 pr-2 md:pr-0">
                             <p
-                                className="text-white/60 leading-relaxed text-sm md:text-base max-w-2xl"
+                                className={descriptionClass}
                                 style={{ fontFamily: "var(--font-body)", fontWeight: 300 }}
                             >
                                 {service.description}

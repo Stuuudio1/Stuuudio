@@ -8,6 +8,8 @@ import Image from "next/image";
 import { Letter, WIDE, COND } from "../../components/ui/Letter";
 import { ServiceRow } from "@/components/services/ServiceRow";
 import { SERVICES } from "@/lib/data/services";
+import BeliefsCarousel from "@/components/about/BeliefCarousel";
+import Team from "@/components/about/Team"
 
 
 export default function AboutPage() {
@@ -28,9 +30,7 @@ export default function AboutPage() {
                     </div>
 
                     <p className="text-white text-sm md:text-2xl font-medium w-50 lg:w-full max-w-lg text-left">
-                        We're Stuuudio — a Lagos-born creative agency building brands and digital
-                        presence for businesses that refuse to be average. Design, motion, film,
-                        web, and everything in between.
+                        We are a small crew with a big obsession, building brands and digital presence that punch way above their weight.
                     </p>
                 </div>
 
@@ -76,17 +76,24 @@ export default function AboutPage() {
                     content, and motion, we help brands move from idea to impact with clarity at every step.
                 </p>
 
-                <div className="mt-6 text-gray-500">
+                <div className="mt-6 lg:mt-20 text-gray-100">
                     {SERVICES.map((service, i) => (
                         <ServiceRow
                             key={service.id}
                             service={service}
                             isOpen={openId === service.id}
                             onToggle={() => handleToggle(service.id)}
+                            isFirst={i === 0}
                             isLast={i === SERVICES.length - 1}
+                            variant="about"
                         />
                     ))}
                 </div>
+
+                {/* <BeliefsCarousel /> */}
+                <Team />
+
+            <div className="w-full border-t border-white mt-28" />
 
             </main>
             <Footer />

@@ -50,8 +50,11 @@ export default function Hero() {
     const [current, setCurrent] = useState(0)
     const [prev, setPrev] = useState<number | null>(null)
     const [transitioning, setTransitioning] = useState(false)
+    const [scale, setScale] = useState(1)
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+    const slideshowRef = useRef<HTMLDivElement>(null)
 
+    // Slideshow auto-advance
     useEffect(() => {
         timeoutRef.current = setTimeout(() => {
             setPrev(current)
@@ -68,6 +71,33 @@ export default function Hero() {
             if (timeoutRef.current) clearTimeout(timeoutRef.current)
         }
     }, [current])
+
+    // Scroll-driven scale — desktop only
+    useEffect(() => {
+        const isDesktop = () => window.innerWidth >= 1024
+
+        const handleScroll = () => {
+            if (!isDesktop() || !slideshowRef.current) return
+
+            const rect = slideshowRef.current.getBoundingClientRect()
+            const windowHeight = window.innerHeight
+
+            // How far the slideshow has entered the viewport (0 = just entered, 1 = fully scrolled past top)
+            const progress = Math.min(
+                Math.max(1 - rect.top / windowHeight, 0),
+                1
+            )
+
+            // Scale from 0.75 → 1 as progress goes 0 → 1
+            const newScale = 0.75 + progress * 0.25
+            setScale(newScale)
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        handleScroll() // run once on mount
+
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     return (
         <section className="min-h-screen bg-black flex flex-col pt-72 lg:pt-52 pb-5">
@@ -87,7 +117,17 @@ export default function Hero() {
 
             {/* Slideshow */}
             <div className="flex-1 flex flex-col" style={{ paddingTop: '60px' }}>
-                <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                <div
+                    ref={slideshowRef}
+                    className="relative w-full overflow-hidden origin-center"
+                    style={{
+                        aspectRatio: '16/9',
+                        // Only apply scale on desktop via inline style;
+                        // on mobile/tablet scale stays at 1 (no JS runs for it)
+                        transform: `scale(${scale})`,
+                        transition: 'transform 0.1s linear',
+                    }}
+                >
                     {slides.map((slide, i) => {
                         const isActive = i === current
                         const isPrev = i === prev
@@ -109,12 +149,11 @@ export default function Hero() {
                             </div>
                         )
                     })}
-
                 </div>
+
                 <div className="pt-12 lg:pb-12">
                     <div className="border-b border-white" />
                 </div>
-
             </div>
         </section>
     )
