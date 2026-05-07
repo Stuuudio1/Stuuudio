@@ -52,14 +52,14 @@ export default function ServicesSection() {
     };
 
     return (
-        <section className="bg-black text-white w-full pb-20">
+        <section className="bg-black text-white w-full pb-12 md:pb-20 md:px-0">
 
             {/* SERVICE heading */}
-            <div className="pb-10 md:pb-20">
+            <div className="pb-6 md:pb-20">
                 <h2
                     aria-label="Service"
                     style={{
-                        fontSize: "clamp(5rem, 10vw, 9rem)",
+                        fontSize: "clamp(3rem, 10vw, 9rem)",
                         lineHeight: 1,
                         display: "flex",
                         alignItems: "baseline",

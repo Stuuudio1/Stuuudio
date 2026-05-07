@@ -94,12 +94,6 @@
 
 /* Base Reset */
 
-/* * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-} */
-
 *,
 *::before,
 *::after {
@@ -167,7 +161,17 @@ header * {
   }
 }
 
-/* Horizontal page padding via utility class instead of inline style */
 .page-x {
   padding-inline: var(--page-padding-x);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --page-padding-x: 1rem;
+  }
+}
+
+@theme {
+  --breakpoint-xs: 393px;   
+  --breakpoint-xs-max: 450px; 
 }

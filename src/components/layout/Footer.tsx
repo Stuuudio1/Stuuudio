@@ -67,7 +67,7 @@ export default function Footer() {
             <div className="lg:hidden">
                 {/* Inquiries — sits above the wordmark, full width */}
                 <div
-                    className="px-6 pt-5 pb-3 text-base text-white"
+                    className="px-4 pt-5 pb-3 text-base text-white"
                     style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
                 >
                     Inquiries:{" "}
@@ -80,7 +80,7 @@ export default function Footer() {
                 </div>
 
                 {/* Wordmark */}
-                <div className="w-full px-6 py-4">
+                <div className="w-full px-4 py-4">
                     <Image
                         src="/icons/logo.svg"
                         alt="Stuuudio"
@@ -93,7 +93,7 @@ export default function Footer() {
 
                 {/* Below wordmark: socials left, copyright right */}
                 <div
-                    className="flex items-center justify-between px-6 pb-5 text-sm text-white"
+                    className="flex items-center justify-between px-4 pb-5 text-sm text-white"
                     style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
                 >
                     {/* Socials — bottom left */}

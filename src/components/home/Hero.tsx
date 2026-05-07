@@ -70,7 +70,7 @@ export default function Hero() {
     }, [current])
 
     return (
-        <section className="min-h-screen bg-black flex flex-col pt-40 lg:pt-52 pb-5">
+        <section className="min-h-screen bg-black flex flex-col pt-72 lg:pt-52 pb-5">
             {/* Top row */}
             <div className="flex justify-between items-start pb-8">
                 <div className="flex items-center">
@@ -111,7 +111,7 @@ export default function Hero() {
                     })}
 
                 </div>
-                <div className="pt-12 pb-1 lg:pb-12">
+                <div className="pt-12 lg:pb-12">
                     <div className="border-b border-white" />
                 </div>
 

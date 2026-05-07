@@ -20,7 +20,7 @@ export default function ScrollIndicator() {
                     keyTimes="0;0.35;0.351;0.352;1"
                     calcMode="spline"
                     keySplines="0.4 0 0.6 1; 0 0 1 1; 0 0 1 1; 0.4 0 0.6 1"
-                    dur="1s"
+                    dur="2s"
                     repeatCount="indefinite"
                 />
                 <animate

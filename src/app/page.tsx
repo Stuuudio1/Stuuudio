@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="relative z-10 bg-black navbar-offset page-x pb-72">
+      <main className="relative z-10 bg-black navbar-offset page-x pb-48 md:pb-72">
         <Hero />
         <AboutTeaser />
         <WorkGrid />

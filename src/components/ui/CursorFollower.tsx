@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, useState } from "react";
 
 export function CursorFollower({
     src,
@@ -13,6 +13,11 @@ export function CursorFollower({
     const pos = useRef({ x: 0, y: 0 });
     const raf = useRef<number | null>(null);
     const currentPos = useRef({ x: 0, y: 0 });
+    const [isFinePointer, setIsFinePointer] = useState(false);
+
+    useEffect(() => {
+        setIsFinePointer(window.matchMedia("(pointer: fine) and (min-width: 1024px)").matches);
+    }, []);
 
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
@@ -21,22 +26,28 @@ export function CursorFollower({
     }, []);
 
     useEffect(() => {
+        // Don't attach any listeners or start rAF on touch devices
+        if (!isFinePointer) return;
+
         window.addEventListener("mousemove", onMove);
         const animate = () => {
             currentPos.current.x = lerp(currentPos.current.x, pos.current.x, 0.12);
             currentPos.current.y = lerp(currentPos.current.y, pos.current.y, 0.12);
             if (ref.current) {
-                // 144 = image width (w-36), 12 = gap — places image to the left of the cursor
                 ref.current.style.transform = `translate(${currentPos.current.x - 144 - 12}px, ${currentPos.current.y - 72}px)`;
             }
             raf.current = requestAnimationFrame(animate);
         };
         raf.current = requestAnimationFrame(animate);
+
         return () => {
             window.removeEventListener("mousemove", onMove);
             if (raf.current) cancelAnimationFrame(raf.current);
         };
-    }, [onMove]);
+    }, [onMove, isFinePointer]);
+
+    // Don't render anything on touch/tablet devices
+    if (!isFinePointer) return null;
 
     return (
         <div

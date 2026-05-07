@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { COND } from "../ui/Letter";
+import { COND, WIDE } from "../ui/Letter";
 import { CursorFollower } from "../ui/CursorFollower";
 
 export interface Service {
@@ -25,31 +25,50 @@ export function ServiceRow({
 }) {
     const [hovered, setHovered] = useState(false);
     const [cursorVisible, setCursorVisible] = useState(false);
-    const [isFinePonter, setIsFinePointer] = useState(false);
+    const [isFinePointer, setIsFinePointer] = useState(false);
     const contentRef = useRef<HTMLDivElement>(null);
     const [contentHeight, setContentHeight] = useState(0);
+
+    useEffect(() => {
+        const mq = window.matchMedia("(pointer: fine) and (min-width: 1024px)");
+        setIsFinePointer(mq.matches);
+        // Also listen for changes (e.g. connecting a mouse to a tablet)
+        const handler = (e: MediaQueryListEvent) => setIsFinePointer(e.matches);
+        mq.addEventListener("change", handler);
+        return () => mq.removeEventListener("change", handler);
+    }, []);
 
     useEffect(() => {
         if (contentRef.current) {
             setContentHeight(contentRef.current.scrollHeight);
         }
-        // Detect fine pointer (desktop mouse) once on mount
-        setIsFinePointer(window.matchMedia("(pointer: fine)").matches);
     }, []);
 
     const charStyle = (layerIndex: 0 | 1, i: number): React.CSSProperties => {
         const isTop = layerIndex === 1;
-        // On touch devices, always show layer 0 at rest position, hide layer 1
-        const effectiveHover = isFinePonter && hovered;
+
+        // On touch/coarse devices: layer 0 always visible, layer 1 always hidden — no animation
+        if (!isFinePointer) {
+            return {
+                display: "inline-block",
+                transform: isTop ? "translateY(150%)" : "translateY(0%)",
+                color: "rgba(255,255,255,0.85)",
+                fontSize: "clamp(1rem, 4vw, 1.75rem)",
+                fontFamily: "var(--font-body, sans-serif)",
+                fontWeight: 300,
+                whiteSpace: "pre",
+                lineHeight: 1,
+            };
+        }
+
+        // Desktop: full hover slide animation
         return {
             display: "inline-block",
-            transition: isFinePonter
-                ? `transform 0.45s cubic-bezier(0.23, 1, 0.32, 1)`
-                : "none",
-            transitionDelay: isFinePonter ? `${i * 18}ms` : "0ms",
+            transition: `transform 0.45s cubic-bezier(0.23, 1, 0.32, 1)`,
+            transitionDelay: `${i * 18}ms`,
             transform: isTop
-                ? effectiveHover ? "translateY(0%)" : "translateY(150%)"
-                : effectiveHover ? "translateY(-150%)" : "translateY(0%)",
+                ? hovered ? "translateY(0%)" : "translateY(150%)"
+                : hovered ? "translateY(-150%)" : "translateY(0%)",
             color: "rgba(255,255,255,0.85)",
             fontSize: "clamp(1.2rem, 2.2vw, 1.75rem)",
             fontFamily: "var(--font-body, sans-serif)",
@@ -61,27 +80,26 @@ export function ServiceRow({
 
     return (
         <>
-            {/* Cursor follower — desktop only */}
+            {/* Cursor follower — renders null on touch devices internally */}
             <CursorFollower src={service.cursorImage} visible={cursorVisible} />
 
             <div
                 className={!isLast ? "border-b border-white/20" : ""}
-                onMouseEnter={isFinePonter ? () => { setHovered(true); setCursorVisible(true); } : undefined}
-                onMouseLeave={isFinePonter ? () => { setHovered(false); setCursorVisible(false); } : undefined}
+                onMouseEnter={isFinePointer ? () => { setHovered(true); setCursorVisible(true); } : undefined}
+                onMouseLeave={isFinePointer ? () => { setHovered(false); setCursorVisible(false); } : undefined}
             >
                 {/* Header row */}
                 <button
                     onClick={onToggle}
-                    className="w-full flex items-center gap-6 py-8 text-left cursor-pointer"
+                    className="w-full flex items-center md:gap-6 py-5 md:py-8 text-left cursor-pointer"
                     aria-expanded={isOpen}
                 >
                     {/* Number */}
                     <span
-                        className="text-white/30 shrink-0 w-16 tabular-nums"
+                        className="text-white/30 shrink-0 w-10 md:w-16 tabular-nums text-sm md:text-lg"
                         style={{
-                            fontFamily: COND,
-                            fontWeight: 900,
-                            fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
+                            fontFamily: WIDE,
+                            fontWeight: 100,
                         }}
                     >
                         {service.number}
@@ -90,10 +108,10 @@ export function ServiceRow({
                     {/* Title — slide animation container */}
                     <div
                         className="flex-1 relative overflow-hidden"
-                        style={{ height: "2.6em" }}
+                        style={{ height: isFinePointer ? "2.6em" : "2em" }}
                     >
                         {/* Layer A — visible at rest, slides up on hover (desktop only) */}
-                        <span className="absolute inset-0 flex items-center" aria-hidden="true">
+                        <span className="absolute inset-0 flex items-center text-xs" aria-hidden="true">
                             {service.title.split("").map((char, i) => (
                                 <span key={`a-${i}`} style={charStyle(0, i)}>
                                     {char}
@@ -105,7 +123,7 @@ export function ServiceRow({
                         <span
                             className="absolute inset-0 flex items-center"
                             aria-label={service.title}
-                            aria-hidden={!isFinePonter}
+                            aria-hidden={!isFinePointer}
                         >
                             {service.title.split("").map((char, i) => (
                                 <span key={`b-${i}`} style={charStyle(1, i)}>
@@ -117,7 +135,7 @@ export function ServiceRow({
 
                     {/* Chevron */}
                     <span
-                        className="shrink-0 w-8 h-8 flex items-center justify-center transition-transform duration-500"
+                        className="shrink-0 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center transition-transform duration-500"
                         style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
                         aria-hidden="true"
                     >
@@ -141,17 +159,17 @@ export function ServiceRow({
                         transition: "max-height 0.6s cubic-bezier(0.23, 1, 0.32, 1)",
                     }}
                 >
-                    <div ref={contentRef} className="pb-10">
-                        <div className="pl-[5.5rem]">
+                    <div ref={contentRef} className="pb-8 md:pb-10">
+                        <div className="pl-14 md:pl-22 pr-2 md:pr-0">
                             <p
-                                className="text-white/60 leading-relaxed text-base max-w-2xl"
+                                className="text-white/60 leading-relaxed text-sm md:text-base max-w-2xl"
                                 style={{ fontFamily: "var(--font-body)", fontWeight: 300 }}
                             >
                                 {service.description}
                             </p>
 
                             <button
-                                className="mt-8 px-6 py-3 rounded-full text-xs uppercase tracking-widest border border-white/30
+                                className="mt-6 md:mt-8 px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs uppercase tracking-widest border border-white/30
                                     text-white/60 hover:border-white hover:text-white transition-all duration-300 cursor-pointer"
                                 style={{ fontWeight: 400 }}
                             >
