@@ -64,13 +64,13 @@ export default function AboutSection() {
             <div className="pb-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
                 {/* Left — image */}
-                <div className="relative w-full overflow-hidden h-90 lg:h-162.5">
+                <div className="relative w-full overflow-hidden h-90 lg:h-169.5 lg:w-162.5">
                     <Image
                         src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&q=80"
                         alt="Studio workspace"
                         fill
                         className="object-cover"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        sizes="(max-width: 650px) 100vw, 50vw"
                     />
                 </div>
 
@@ -79,7 +79,7 @@ export default function AboutSection() {
 
                     <div className="pb-2 md:pb-16">
                         <h3
-                            className="text-4xl uppercase"
+                            className="text-lg lg:text-3xl uppercase"
                             style={{ fontFamily: WIDE, fontWeight: 900 }}
                         >
                             ABOUT US
@@ -89,7 +89,7 @@ export default function AboutSection() {
                     <div className="flex flex-col justify-between flex-1">
 
                         <div
-                            className="pt-4 pb-8 text-sm md:text-lg"
+                            className="pt-4 pb-8 text-sm md:text-base"
                             style={{
                                 fontFamily: "var(--font-body)",
                                 fontWeight: 100,
@@ -126,10 +126,10 @@ export default function AboutSection() {
                             </p>
                         </div>
 
-                        <div className="pt-5 md:pt-10">
+                        <div className="pt-5 md:pt-24">
                             <Link href="/about">
                                 <button
-                                    className="px-8 py-4 rounded-full text-base uppercase bg-gray-900/50
+                                    className="px-8 py-4 rounded-full text-base uppercase bg-[#121212]
                                                 tracking-widest text-white hover:bg-white hover:text-black transition-colors 
                                                 duration-300 cursor-pointer"
                                     style={{ fontWeight: 400 }}

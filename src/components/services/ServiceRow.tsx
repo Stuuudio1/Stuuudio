@@ -119,7 +119,7 @@ export function ServiceRow({
                         style={{ height: isFinePointer ? "2.6em" : "2em" }}
                     >
                         {/* Layer A — visible at rest, slides up on hover (desktop only) */}
-                        <span className="absolute inset-0 flex items-center text-xs text-gray-500" aria-hidden="true">
+                        <span className="absolute inset-0 flex items-center text-xs text-[#767676]" aria-hidden="true">
                             {service.title.split("").map((char, i) => (
                                 <span key={`a-${i}`} style={charStyle(0, i)}>
                                     {char}
@@ -129,12 +129,12 @@ export function ServiceRow({
 
                         {/* Layer B — hidden below at rest, slides in on hover (desktop only) */}
                         <span
-                            className="absolute inset-0 flex items-center"
+                            className="absolute inset-0 flex items-center text-[#767676]"
                             aria-label={service.title}
                             aria-hidden={!isFinePointer}
                         >
                             {service.title.split("").map((char, i) => (
-                                <span key={`b-${i}`} style={charStyle(1, i)}>
+                                <span key={`b-${i}`} style={charStyle(1, i)} className="text-[#767676]">
                                     {char}
                                 </span>
                             ))}
