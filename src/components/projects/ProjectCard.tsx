@@ -3,11 +3,19 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Project } from "@/lib/data/projects";
 
-function ProjectCard({ project, isFinePointer }: { project: Project; isFinePointer: boolean }) {
+function ProjectCard({ project, isFinePointer, forceEqual = false }: { project: Project; isFinePointer: boolean, forceEqual?: boolean; }) {
     const [hovered, setHovered] = useState(false);
     const [currentImage, setCurrentImage] = useState<'primary' | 'hover'>('primary');
-    const isWide = project.layout === "wide";
+    const isWide = !forceEqual && project.layout === "wide";
     const showHover = isFinePointer && hovered;
+    
+    const primarySrc = (forceEqual && project.imagePrimaryTall) 
+    ? project.imagePrimaryTall 
+    : project.imagePrimary;
+
+    const hoverSrc = (forceEqual && project.imageHoverTall) 
+    ? project.imageHoverTall 
+    : project.imageHover;
 
     useEffect(() => {
         if (!isFinePointer) {
@@ -22,7 +30,6 @@ function ProjectCard({ project, isFinePointer }: { project: Project; isFinePoint
         <Link
             href={`/projects/${project.slug}`}
             className={`relative block overflow-hidden group ${isWide ? "col-span-2" : "col-span-1"}`}
-            // style={{ aspectRatio: isWide ? "2.4 / 1" : "3 / 4" }}
             style={{ aspectRatio: isWide ? "16 / 9" : "3 / 4" }} 
             onMouseEnter={isFinePointer ? () => setHovered(true) : undefined}
             onMouseLeave={isFinePointer ? () => setHovered(false) : undefined}
@@ -30,7 +37,7 @@ function ProjectCard({ project, isFinePointer }: { project: Project; isFinePoint
         >
             {/* Primary image */}
             <Image
-                src={project.imagePrimary}
+                src={primarySrc}
                 alt={project.name}
                 fill
                 sizes={isWide ? "100vw" : "(max-width: 768px) 50vw, 33vw"}
@@ -40,7 +47,7 @@ function ProjectCard({ project, isFinePointer }: { project: Project; isFinePoint
 
             {/* Hover image — desktop hover or mobile slideshow */}
             <Image
-                src={project.imageHover}
+                src={hoverSrc}
                 alt={`${project.name} — detail`}
                 fill
                 sizes={isWide ? "100vw" : "(max-width: 768px) 50vw, 33vw"}

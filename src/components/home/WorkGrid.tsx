@@ -39,9 +39,11 @@ export default function WorkSection() {
         setIsFinePointer(window.matchMedia("(pointer: fine) and (min-width: 1024px)").matches);
     }, []);
 
-    const topRow = PROJECTS.filter((p) => ["1", "2"].includes(p.id));
-    const wideRow = PROJECTS.filter((p) => p.layout === "wide");
-    const bottomRow = PROJECTS.filter((p) => ["4", "5"].includes(p.id));
+    const homepageProjects = PROJECTS.slice(0, 5);
+    const topRow = homepageProjects.filter((p) => ["1", "2"].includes(p.id));
+    const wideRow = homepageProjects.filter((p) => p.layout === "wide");
+    const bottomRow = homepageProjects.filter((p) => ["4", "5"].includes(p.id));
+
 
     return (
         <section id="work" className="bg-black text-white w-full pb-8 md:pb-20">

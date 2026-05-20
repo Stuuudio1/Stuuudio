@@ -24,7 +24,12 @@ export default function ProjectPage() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
                     {PROJECTS.map((project) => (
-                        <ProjectCard key={project.id} project={project} isFinePointer={isFinePointer} />
+                        <ProjectCard 
+                        key={project.id} 
+                        project={project} 
+                        isFinePointer={isFinePointer} 
+                        forceEqual={true} 
+                        />
                     ))}
                 </div>
                 
