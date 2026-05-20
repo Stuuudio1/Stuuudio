@@ -22,7 +22,8 @@ function ProjectCard({ project, isFinePointer }: { project: Project; isFinePoint
         <Link
             href={`/projects/${project.slug}`}
             className={`relative block overflow-hidden group ${isWide ? "col-span-2" : "col-span-1"}`}
-            style={{ aspectRatio: isWide ? "2.4 / 1" : "3 / 4" }}
+            // style={{ aspectRatio: isWide ? "2.4 / 1" : "3 / 4" }}
+            style={{ aspectRatio: isWide ? "16 / 9" : "3 / 4" }} 
             onMouseEnter={isFinePointer ? () => setHovered(true) : undefined}
             onMouseLeave={isFinePointer ? () => setHovered(false) : undefined}
             aria-label={`View project: ${project.name}`}

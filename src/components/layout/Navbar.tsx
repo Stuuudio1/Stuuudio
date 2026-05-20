@@ -203,6 +203,7 @@ export default function Navbar() {
                     className="flex items-center justify-between will-change-[top]"
                 >
                     {/* Marquee tagline — hidden on mobile, visible md+ */}
+                    {/* <div></div> */}
                     <div
                         ref={taglineRef}
                         className="hidden md:block overflow-hidden"
