@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { COND, WIDE } from "../ui/Letter";
-import { CursorFollower } from "../ui/CursorFollower";
+// import { CursorFollower } from "../ui/CursorFollower";
 import { Service } from "@/lib/data/services";
 
 export function ServiceRow({
@@ -41,9 +41,11 @@ export function ServiceRow({
         }
     }, []);
 
-    const titleColor = variant === "about" ? "#6b7280" : "rgba(255,255,255,0.85)";
+    const titleColor = "#767676";
+    // const titleColor = variant === "about" ? "#6b7280" : "rgba(255,255,255,0.85)";
     const numberClass = `text-sm md:text-lg shrink-0 w-10 md:w-16 tabular-nums ${variant === "about" ? "text-gray-500" : "text-white/30"}`;
-    const descriptionClass = `${variant === "about" ? "text-gray-500" : "text-white/60"} leading-relaxed text-sm md:text-base max-w-2xl`;
+    // const descriptionClass = `${variant === "about" ? "text-gray-500" : "text-white/60"} leading-relaxed text-sm md:text-base max-w-2xl`;
+const descriptionClass = `text-white leading-relaxed text-sm md:text-base max-w-2xl`;
 
     const charStyle = (layerIndex: 0 | 1, i: number): React.CSSProperties => {
         const isTop = layerIndex === 1;
@@ -89,7 +91,7 @@ export function ServiceRow({
     return (
         <>
             {/* Cursor follower — renders null on touch devices internally */}
-            <CursorFollower src={service.cursorImage} visible={cursorVisible} />
+            {/* <CursorFollower src={service.cursorImage} visible={cursorVisible} /> */}
 
             <div
                 className={borderClasses}
@@ -115,7 +117,7 @@ export function ServiceRow({
 
                     {/* Title — slide animation container */}
                     <div
-                        className="flex-1 relative overflow-hidden"
+                        className="flex-1 relative overflow-hidden text-[#767676]"
                         style={{ height: isFinePointer ? "2.6em" : "2em" }}
                     >
                         {/* Layer A — visible at rest, slides up on hover (desktop only) */}

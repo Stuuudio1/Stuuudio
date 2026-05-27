@@ -5,18 +5,22 @@ import { useEffect, useRef, useState } from 'react'
 
 const slides = [
     { src: '/images/revolt.webp', alt: 'Revolt project' },
-    { src: '/images/solbase-grid-2.png', alt: 'Solbase project' },
-    { src: '/images/toch-feat.png', alt: 'toch project' },
-    { src: '/images/vyrux.webp', alt: 'Vyrux project' },
+    { src: '/images/solbase-grid-2.webp', alt: 'Solbase project' },
+    { src: '/images/toch-feat.webp', alt: 'toch project' },
+    // { src: '/images/vyrux.webp', alt: 'Vyrux project' },
+    { src: '/images/astra-work3.webp', alt: 'Astra project' },
+    { src: '/images/revo-grid.webp', alt: 'Revolt project' },
     { src: '/images/triskelion-work2.webp', alt: 'Triskelion project' },
     { src: '/images/astra.webp', alt: 'Astra project' },
+    { src: '/images/focus-grid1.webp', alt: 'Focus project' },
+    { src: '/images/astra-before.webp', alt: 'Astra project' },
     { src: '/images/solbase-work1.webp', alt: 'Solbase project' },
-    { src: '/images/triskelion3.png', alt: 'Astra project' },
-    { src: '/images/toch.webp', alt: 'Toch project' },
-    { src: '/images/triskelion.webp', alt: 'Triskelion project' },
+    { src: '/images/triskelion3.webp', alt: 'Astra project' },
+    // { src: '/images/toch.webp', alt: 'Toch project' },
+    { src: '/images/triskelion6.webp', alt: 'Triskelion project' },
     { src: '/images/neat.webp', alt: 'Neat project' },
     { src: '/images/focus.webp', alt: 'Focus project' },
-    { src: '/images/solbase.webp', alt: 'Solbase project' },
+    { src: '/images/solbase-feat.webp', alt: 'Solbase project' },
 ]
 
 export default function Hero() {

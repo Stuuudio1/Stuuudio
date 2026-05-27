@@ -6,7 +6,6 @@ import { ServiceRow } from "../services/ServiceRow";
 import { SERVICES, Service } from "@/lib/data/services";
 
 export default function ServicesSection() {
-    // null = none open; string = the open service id
     const [openId, setOpenId] = useState<string | null>(null);
 
     const handleToggle = (id: string) => {
