@@ -65,10 +65,8 @@ export default function Hero() {
                     <ScrollIndicator />
                     <span className="text-white text-xs uppercase tracking-widest">Scroll down</span>
                 </div>
-                <p className="text-white text-sm md:text-2xl font-medium lg:font-bold w-50 lg:w-full max-w-lg text-left">
-                    We're Stuuudio — a Lagos-born creative agency building brands and digital
-                    presence for businesses that refuse to be average. Design, motion, film,
-                    web, and everything in between.
+                <p className="text-white text-sm md:text-2xl font-medium lg:font-medium w-50 lg:w-full max-w-lg text-left">
+                    We're Stuuudio, yup the 3 U's are intentional. They're three U's. We never stop optimizing for: Yo<span className='font-bold'>U</span>, Yo<span className='font-bold'>U</span>r Brand, Yo<span className='font-bold'>U</span>r Audience. Lagos-born. Pixel-perfect. Always shipping.
                 </p>
             </div>
 

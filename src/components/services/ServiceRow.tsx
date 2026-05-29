@@ -178,14 +178,14 @@ const descriptionClass = `text-white leading-relaxed text-sm md:text-base max-w-
                                 {service.description}
                             </p>
 
-                            <a
+                            {/* <a
                                 href="mailto:Createwithstuuudio@gmail.com"
                                 className="mt-6 md:mt-8 px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs uppercase tracking-widest border border-white/30
                                     text-white/60 hover:border-white hover:text-white transition-all duration-300 inline-block"
                                 style={{ fontWeight: 400 }}
                             >
                                 Start a project →
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                 </div>

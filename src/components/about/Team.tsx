@@ -1,28 +1,29 @@
 import { Letter, WIDE, COND } from "../ui/Letter";
+import Image from "next/image";
 
 const teamMembers: { name: string; role: string; img: string; colSpan: string }[] = [
     {
-        name: "Olawoyin Julius",
-        role: "Motion & Graphic Designer",
-        img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80&fit=crop&crop=face",
+        name: "Adeleke Precious Adekunle",
+        role: "Brand Designer",
+        img: "../images/Precious.webp",
         colSpan: "col-span-2",
     },
     {
         name: "Dannon Abayomi David",
         role: "Web & Mobile Developer",
-        img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80&fit=crop&crop=face",
+        img: "../images/Dannon.webp",
         colSpan: "col-span-3",
     },
     {
-        name: "Adeleke Precious Adekunle",
-        role: "Brand & Product Designer",
-        img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80&fit=crop&crop=face",
+        name: "Olawoyin Julius",
+        role: "Motion & Graphic Designer",
+        img: "../images/Julius.webp",
         colSpan: "col-span-3",
     },
     {
-        name: "Praise West",
-        role: "Creative Director",
-        img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop&crop=face",
+        name: "Aladesuyi Praise",
+        role: "Cinematographer",
+        img: "../images/Praise.webp",
         colSpan: "col-span-2",
     },
 ];
@@ -35,10 +36,12 @@ const TeamGrid = () => {
                     key={index}
                     className={`${member.colSpan} relative overflow-hidden`}
                 >
-                    <img
+                    <Image
                         src={member.img}
                         alt={member.name}
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-cover"
+                        width={500}
+                        height={500}
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute bottom-0 left-0 px-6 py-5">
@@ -82,9 +85,7 @@ export default function Team() {
 
                 <div>
                     <p className="text-white font-medium text-xs md:text-2xl max-w-37.5 md:max-w-112.5 lg:max-w-150 xl:max-w-3xl">
-                        Our studio is both small and big. We are a core staff of 4,
-                        with a rotating group of people who support daily operations,
-                        individual projects, and our clients directly.
+                    At our core is a group of creatives who've been in the trenches together. Around us, a wider crew of specialists who join on projects, campaigns, and everything in between.
                     </p>
                 </div>
 

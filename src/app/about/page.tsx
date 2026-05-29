@@ -57,15 +57,16 @@ export default function AboutPage() {
         <>
             <StaticNavbar />
             <main className="pt-24 page-x pb-48 md:pb-72">
-                <div className="flex justify-between items-start pb-8">
+                <div className="flex justify-between items-start pb-8 mt-20 mb-8">
                     <div className="flex items-center">
                         <ScrollIndicator />
                         <span className="text-white text-xs uppercase tracking-widest">Scroll down</span>
                     </div>
 
-                    <p className="text-white text-sm md:text-2xl font-medium w-50 lg:w-full max-w-lg text-left">
-                        We are a small crew with a big obsession, building brands and digital presence that punch way above their weight.
+                    <p className="text-white text-sm md:text-xl font-medium w-50 lg:w-full max-w-lg text-left">
+                        We're not a corporate agency. We're a crew of friends who were already winning in our own lanes, design, dev, film, motion, until we decided to stop doing it separately. Stuuudio is what happens when you combine sharp skills, real friendships, and an obsession with winning. We don't back down. We don't settle. We ship.
                     </p>
+                    <div></div>
                 </div>
 
                 <div className="relative w-full overflow-hidden h-90 lg:h-169.5">
@@ -152,7 +153,8 @@ export default function AboutPage() {
                     <h2
                         aria-label="Service"
                         style={{
-                            fontSize: "clamp(3rem, 10vw, 9rem)",
+                            fontSize: "clamp(5rem, 10vw, 5rem)",
+                            // fontSize: "clamp(3rem, 10vw, 9rem)",
                             lineHeight: 1,
                             display: "flex",
                             alignItems: "baseline",
@@ -174,9 +176,7 @@ export default function AboutPage() {
 
                 </div>
                 <p className="font-medium font-var(--font-body) text-white text-base md:text-xl lg:text-2xl">
-                    We are a design and strategy studio that builds full creative systems,
-                    not isolated deliverables. From identity and messaging to websites,
-                    content, and motion, we help brands move from idea to impact with clarity at every step.
+                    We offer everything a brand needs to go from idea to impact. Identity, web, motion, and film, all under one roof. No handoffs, no gaps, just one crew seeing it through from start to finish.
                 </p>
 
                 <div className="mt-6 lg:mt-20 text-gray-100">

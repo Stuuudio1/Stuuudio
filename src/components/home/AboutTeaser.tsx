@@ -42,12 +42,12 @@ export default function AboutSection() {
         setMuted(v.muted);
     };
 
-const seek = (e: React.MouseEvent<HTMLDivElement>) => {
-    const v = videoRef.current;
-    if (!v || !v.duration || isNaN(v.duration)) return; // ← add this check
-    const rect = e.currentTarget.getBoundingClientRect();
-    v.currentTime = ((e.clientX - rect.left) / rect.width) * v.duration;
-};
+    const seek = (e: React.MouseEvent<HTMLDivElement>) => {
+        const v = videoRef.current;
+        if (!v || !v.duration || isNaN(v.duration)) return; // ← add this check
+        const rect = e.currentTarget.getBoundingClientRect();
+        v.currentTime = ((e.clientX - rect.left) / rect.width) * v.duration;
+    };
 
     return (
         <section id="about" className="bg-black text-white w-full pb-20">
@@ -65,26 +65,26 @@ const seek = (e: React.MouseEvent<HTMLDivElement>) => {
 
                 {/* Left — video with custom controls */}
                 <div className="relative w-full overflow-hidden h-90 lg:h-169.5 lg:w-162.5">
-                    
+
                     {/* Video */}
                     <video
-    ref={videoRef}
-    autoPlay
-    muted
-    loop
-    playsInline
-    disablePictureInPicture
-    style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-    }}
->
-    <source src="/stu.mp4" type="video/mp4" />
-</video>
+                        ref={videoRef}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        disablePictureInPicture
+                        style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                        }}
+                    >
+                        <source src="/stu.mp4" type="video/mp4" />
+                    </video>
 
                     {/* Controls bar — pinned to bottom, visible on hover */}
                     <div
@@ -125,14 +125,14 @@ const seek = (e: React.MouseEvent<HTMLDivElement>) => {
                                 {muted ? (
                                     /* Muted icon */
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
-                                        <polygon points="11,5 6,9 2,9 2,15 6,15 11,19" fill="white" stroke="none"/>
+                                        <polygon points="11,5 6,9 2,9 2,15 6,15 11,19" fill="white" stroke="none" />
                                         <line x1="23" y1="9" x2="17" y2="15" />
                                         <line x1="17" y1="9" x2="23" y2="15" />
                                     </svg>
                                 ) : (
                                     /* Unmuted icon */
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
-                                        <polygon points="11,5 6,9 2,9 2,15 6,15 11,19" fill="white" stroke="none"/>
+                                        <polygon points="11,5 6,9 2,9 2,15 6,15 11,19" fill="white" stroke="none" />
                                         <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
                                         <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
                                     </svg>
@@ -152,17 +152,14 @@ const seek = (e: React.MouseEvent<HTMLDivElement>) => {
 
                     <div className="flex flex-col justify-between flex-1">
                         <div className="pt-4 pb-8 text-sm md:text-base" style={{ fontFamily: "var(--font-body)", fontWeight: 100, lineHeight: 1.5, color: "rgba(255,255,255,0.9)" }}>
-                            <p>WE&apos;RE NOT AN AGENCY.</p>
-                            <p>We&apos;re Your Unfair Advantage.</p>
-                            <p>Stuuudio is a Lagos-based design and development crew with one obsession building digital presence that punches way above its weight.</p>
-                            <p>We started because we were tired of watching great Nigerian businesses get buried under ugly websites, outdated designs, and cookie-cutter templates. The big brands weren&apos;t smarter. They just had better design. So we decided to close that gap right here from Lagos.</p>
-                            <p>We work with founders, operators, and small teams across Nigeria and beyond who are serious about growth. Not people who want a pretty website — people who want a website that works while they sleep.</p>
+                            <p className="mt-10">We're a Lagos-based design and development crew obsessed with one thing: building products that punch way above their weight. We work with founders, operators, and small teams across Nigeria and beyond who are serious about growth. Not people who want a pretty website. People who want a website that works while they sleep.</p>
+                            <p>Curious about who we are and how we work?  Get to know us better the story, the process, and the people behind the work.</p>
                         </div>
 
                         <div className="pt-5 md:pt-24">
                             <Link href="/about">
                                 <button className="px-8 py-4 rounded-full text-base uppercase bg-[#121212] tracking-widest text-white hover:bg-white hover:text-black transition-colors duration-300 cursor-pointer" style={{ fontWeight: 400 }}>
-                                    LEARN MORE
+                                    OUR STORY
                                 </button>
                             </Link>
                         </div>

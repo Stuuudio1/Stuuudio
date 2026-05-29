@@ -178,7 +178,7 @@ export default function Navbar() {
             return () => mm.revert();
         }, []);
 
-        const taglineText = "More New, Less Deja Vu";
+        const taglineText = "Focused on U, U and U.";
 
         return (
             <header
