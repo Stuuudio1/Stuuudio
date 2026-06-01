@@ -10,6 +10,7 @@ import { ServiceRow } from "@/components/services/ServiceRow";
 import { SERVICES } from "@/lib/data/services";
 // import BeliefsCarousel from "@/components/about/BeliefCarousel";
 import Team from "@/components/about/Team"
+import ServiceCards from "@/components/services/ServiceCard";
 
 
 export default function AboutPage() {
@@ -191,6 +192,11 @@ export default function AboutPage() {
                             variant="about"
                         />
                     ))}
+                </div>
+
+                  {/* Service Category Cards */}
+                <div className="mt-16 lg:mt-28">
+                    <ServiceCards />
                 </div>
 
                 <Team />

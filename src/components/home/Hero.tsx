@@ -66,7 +66,7 @@ export default function Hero() {
                     <span className="text-white text-xs uppercase tracking-widest">Scroll down</span>
                 </div>
                 <p className="text-white text-sm md:text-2xl font-medium lg:font-medium w-50 lg:w-full max-w-lg text-left">
-                    We're Stuuudio, yup the 3 U's are intentional. They're three U's. We never stop optimizing for: Yo<span className='font-bold'>U</span>, Yo<span className='font-bold'>U</span>r Brand, Yo<span className='font-bold'>U</span>r Audience. Lagos-born. Pixel-perfect. Always shipping.
+                    We're Stuuudio, yup the 3 U's are intentional. They're three U's because we never stop optimizing for: yo<span className='font-bold'>U</span>, yo<span className='font-bold'>U</span>r brand, yo<span className='font-bold'>U</span>r audience.
                 </p>
             </div>
 

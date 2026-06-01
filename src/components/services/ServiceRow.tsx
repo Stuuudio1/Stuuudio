@@ -42,10 +42,8 @@ export function ServiceRow({
     }, []);
 
     const titleColor = "#767676";
-    // const titleColor = variant === "about" ? "#6b7280" : "rgba(255,255,255,0.85)";
-    const numberClass = `text-sm md:text-lg shrink-0 w-10 md:w-16 tabular-nums ${variant === "about" ? "text-gray-500" : "text-white/30"}`;
-    // const descriptionClass = `${variant === "about" ? "text-gray-500" : "text-white/60"} leading-relaxed text-sm md:text-base max-w-2xl`;
-const descriptionClass = `text-white leading-relaxed text-sm md:text-base max-w-2xl`;
+    const numberClass = `text-sm md:text-lg shrink-0 w-10 md:w-16 tabular-nums ${variant === "about" ? "text-[#767676]" : "text-[#767676]"}`;
+    const descriptionClass = `text-[#767676] leading-relaxed text-sm md:text-base max-w-2xl`;
 
     const charStyle = (layerIndex: 0 | 1, i: number): React.CSSProperties => {
         const isTop = layerIndex === 1;
@@ -170,22 +168,13 @@ const descriptionClass = `text-white leading-relaxed text-sm md:text-base max-w-
                     }}
                 >
                     <div ref={contentRef} className="pb-8 md:pb-10">
-                        <div className="pl-14 md:pl-22 pr-2 md:pr-0">
+                        <div className="pl-14 md:pl-22 pr-2 md:pr-0 text-[#767676]">
                             <p
                                 className={descriptionClass}
                                 style={{ fontFamily: "var(--font-body)", fontWeight: 300 }}
                             >
                                 {service.description}
                             </p>
-
-                            {/* <a
-                                href="mailto:Createwithstuuudio@gmail.com"
-                                className="mt-6 md:mt-8 px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs uppercase tracking-widest border border-white/30
-                                    text-white/60 hover:border-white hover:text-white transition-all duration-300 inline-block"
-                                style={{ fontWeight: 400 }}
-                            >
-                                Start a project →
-                            </a> */}
                         </div>
                     </div>
                 </div>

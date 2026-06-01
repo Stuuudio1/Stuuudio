@@ -5,32 +5,32 @@ const teamMembers: { name: string; role: string; img: string; colSpan: string }[
     {
         name: "Adeleke Precious Adekunle",
         role: "Brand Designer",
-        img: "../images/Precious.webp",
+        img: "/images/Precious.webp",
         colSpan: "col-span-2",
     },
     {
         name: "Dannon Abayomi David",
         role: "Web & Mobile Developer",
-        img: "../images/Dannon.webp",
+        img: "/images/Dannon.webp",
         colSpan: "col-span-3",
     },
     {
         name: "Olawoyin Julius",
         role: "Motion & Graphic Designer",
-        img: "../images/Julius.webp",
+        img: "/images/Julius.webp",
         colSpan: "col-span-3",
     },
     {
         name: "Aladesuyi Praise",
         role: "Cinematographer",
-        img: "../images/Praise.webp",
+        img: "/images/Praise.webp",
         colSpan: "col-span-2",
     },
 ];
 
 const TeamGrid = () => {
     return (
-        <div className="grid grid-cols-5 gap-1" style={{ gridTemplateRows: "500px 500px" }}>
+        <div className="grid grid-cols-5 gap-1" style={{ gridTemplateRows: "800px 800px" }}>
             {teamMembers.map((member, index) => (
                 <div
                     key={index}
@@ -41,7 +41,7 @@ const TeamGrid = () => {
                         alt={member.name}
                         className="w-full h-full object-cover"
                         width={500}
-                        height={500}
+                        height={700}
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute bottom-0 left-0 px-6 py-5">
