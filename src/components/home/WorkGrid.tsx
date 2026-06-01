@@ -39,7 +39,7 @@ export default function WorkSection() {
         setIsFinePointer(window.matchMedia("(pointer: fine) and (min-width: 1024px)").matches);
     }, []);
 
-    const homepageProjects = PROJECTS.slice(0, 5);
+    const homepageProjects = PROJECTS.slice(0, 3);
     const topRow = homepageProjects.filter((p) => ["1", "2"].includes(p.id));
     const wideRow = homepageProjects.filter((p) => p.layout === "wide");
     const bottomRow = homepageProjects.filter((p) => ["4", "5"].includes(p.id));
