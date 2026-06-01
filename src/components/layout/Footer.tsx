@@ -82,7 +82,7 @@ export default function Footer() {
                 {/* Wordmark */}
                 <div className="w-full px-4 py-4">
                     <Image
-                        src="/icons/logo.svg"
+                        src="/Icons/logo.svg"
                         alt="Stuuudio"
                         width={1200}
                         height={220}
@@ -116,7 +116,7 @@ export default function Footer() {
             {/* ── Desktop wordmark ── */}
             <div className="hidden lg:block w-full px-6 md:px-10 py-8">
                 <Image
-                    src="public/icons/logo.svg"
+                    src="/Icons/logo.svg"
                     alt="Stuuudio"
                     width={1200}
                     height={220}

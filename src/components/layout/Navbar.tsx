@@ -188,7 +188,7 @@ export default function Navbar() {
                 {/* Logo */}
                 <div ref={logoRef} className="will-change-[width,top]">
                     <Image
-                        src="public/icons/logo.svg"
+                        src="/Icons/logo.svg"
                         alt="Stuuudio"
                         width={1200}
                         height={220}
