@@ -7,7 +7,7 @@ export default function StaticNavbar() {
             <div className="mx-auto flex items-center justify-between px-4 md:px-10 py-4 md:py-5">
                 <div className="w-22.5 md:w-40">
                     <Image
-                        src="/icons/logo.svg"
+                        src="/Icons/logo.svg"
                         alt="Stuuudio"
                         width={1200}
                         height={220}

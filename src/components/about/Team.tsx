@@ -9,7 +9,7 @@ const teamMembers: { name: string; role: string; img: string; colSpan: string }[
         colSpan: "col-span-2",
     },
     {
-        name: "Dannon Abayomi David",
+        name: "Dannon Abayomi ",
         role: "Web & Mobile Developer",
         img: "/images/Dannon.webp",
         colSpan: "col-span-3",
