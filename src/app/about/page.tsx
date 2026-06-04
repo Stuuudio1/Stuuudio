@@ -88,7 +88,7 @@ export default function AboutPage() {
                             objectFit: "cover",
                         }}
                     >
-                        <source src="/stu.mp4" type="video/mp4" />
+                        <source src="/videos/stu.mp4" type="video/mp4" />
                     </video>
 
                     {/* Controls bar — pinned to bottom, visible on hover */}

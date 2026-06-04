@@ -11,6 +11,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Stuuudio",
   description: "Creative Agency",
+  icons: {
+    icon: "/Icons/logo.svg",
+  },
 };
 
 export default function RootLayout({
