@@ -315,7 +315,7 @@ export default function Navbar() {
             >
                 {/* Desktop/tablet: static text. Mobile: marquee ticker */}
                 <div ref={taglineRef} className="hidden md:block">
-                    <span className="uppercase tracking-[0.22em] text-white" style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}>
+                    <span className="tracking-widest text-white" style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}>
                         {taglineText}
                     </span>
                 </div>
@@ -334,7 +334,7 @@ export default function Navbar() {
                             <span
                                 key={n}
                                 data-ticker={n === 0 ? "true" : undefined}
-                                className="uppercase tracking-[0.22em] text-white/70 shrink-0"
+                                className="tracking-widest text-white shrink-0"
                                 style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
                             >
                                 {taglineText}&nbsp;&nbsp;·&nbsp;&nbsp;

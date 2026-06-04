@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
         name: "Mavin",
         type: "Cinematography",
         description: "A behind the scene cinematography of the Colorado Music video shoot of Johnny Drille, Ayra Starr and Young Jon",
-        slug: "triskelion",
+        slug: "mavin",
         imagePrimary: "/images/triskelion-work3.webp",
         imageHover: "/images/triskelion-work1.webp",
         layout: "wide",
