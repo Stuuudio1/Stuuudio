@@ -1,46 +1,13 @@
 'use client'
 
 import ScrollIndicator from '../ui/ScrollIndicator'
-import { useEffect, useRef, useState } from 'react'
-
-const slides = [
-    { src: '/images/revolt.webp', alt: 'Revolt project' },
-    { src: '/images/solbase-grid-2.webp', alt: 'Solbase project' },
-    { src: '/images/toch-feat.webp', alt: 'toch project' },
-    // { src: '/images/vyrux.webp', alt: 'Vyrux project' },
-    { src: '/images/astra-work3.webp', alt: 'Astra project' },
-    { src: '/images/revo-grid.webp', alt: 'Revolt project' },
-    { src: '/images/triskelion-work2.webp', alt: 'Triskelion project' },
-    { src: '/images/astra.webp', alt: 'Astra project' },
-    { src: '/images/focus-grid1.webp', alt: 'Focus project' },
-    { src: '/images/astra-before.webp', alt: 'Astra project' },
-    { src: '/images/solbase-work1.webp', alt: 'Solbase project' },
-    { src: '/images/triskelion3.webp', alt: 'Astra project' },
-    // { src: '/images/toch.webp', alt: 'Toch project' },
-    { src: '/images/triskelion6.webp', alt: 'Triskelion project' },
-    { src: '/images/neat.webp', alt: 'Neat project' },
-    { src: '/images/focus.webp', alt: 'Focus project' },
-    { src: '/images/solbase-feat.webp', alt: 'Solbase project' },
-]
+import { useEffect, useRef } from 'react'
 
 export default function Hero() {
-    const [current, setCurrent] = useState(0)
-    const [scale, setScale] = useState(1)
-    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
     const slideshowRef = useRef<HTMLDivElement>(null)
+    const scaleRef = useRef(1)
+    const frameRef = useRef<number | null>(null)
 
-    // Slideshow auto-advance
-    useEffect(() => {
-        timeoutRef.current = setTimeout(() => {
-            setCurrent((prev) => (prev + 1) % slides.length)
-        }, 500)
-
-        return () => {
-            if (timeoutRef.current) clearTimeout(timeoutRef.current)
-        }
-    }, [current])
-
-    // Scroll-driven scale — desktop only
     useEffect(() => {
         const isDesktop = () => window.innerWidth >= 1024
 
@@ -49,12 +16,25 @@ export default function Hero() {
             const rect = slideshowRef.current.getBoundingClientRect()
             const windowHeight = window.innerHeight
             const progress = Math.min(Math.max(1 - rect.top / windowHeight, 0), 1)
-            setScale(0.75 + progress * 0.25)
+            const newScale = 0.75 + progress * 0.25
+
+            if (newScale !== scaleRef.current) {
+                scaleRef.current = newScale
+                if (frameRef.current) cancelAnimationFrame(frameRef.current)
+                frameRef.current = requestAnimationFrame(() => {
+                    if (slideshowRef.current) {
+                        slideshowRef.current.style.transform = `scale(${newScale})`
+                    }
+                })
+            }
         }
 
         window.addEventListener('scroll', handleScroll, { passive: true })
         handleScroll()
-        return () => window.removeEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            if (frameRef.current) cancelAnimationFrame(frameRef.current)
+        }
     }, [])
 
     return (
@@ -70,22 +50,30 @@ export default function Hero() {
                 </p>
             </div>
 
-            {/* Slideshow */}
+            {/* Video */}
             <div className="flex-1 flex flex-col" style={{ paddingTop: '60px' }}>
                 <div
                     ref={slideshowRef}
                     className="relative w-full overflow-hidden origin-center"
                     style={{
                         aspectRatio: '16/9',
-                        transform: `scale(${scale})`,
+                        transform: 'scale(0.75)',
                         transition: 'transform 0.1s linear',
                     }}
                 >
-                    <img
-                        src={slides[current].src}
-                        alt={slides[current].alt}
+                    <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
                         className="w-full h-full object-cover"
-                    />
+                        style={{ pointerEvents: 'none' }}
+                    >
+                        <source
+                            src="https://res.cloudinary.com/dlfh6aguk/video/upload/q_auto,f_auto,vc_auto/v1780578065/mavin_wgujdg.mp4"
+                            type="video/mp4"
+                        />
+                    </video>
                 </div>
 
                 <div className="pt-12 lg:pb-12">
