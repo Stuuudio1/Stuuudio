@@ -35,9 +35,9 @@ export const SERVICES: Service[] = [
             "We bring your brand to life through animation and motion graphics, for social, web, and beyond.",
     },
     {
-        id: "commercial",
+        id: "cinematography",
         number: "04",
-        title: "Product Commercial",
+        title: "Cinematography",
         cursorImage:
             "https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=300&q=80",
         description: "We shoot and produce high-quality visuals and videos that showcase your product at its best.",

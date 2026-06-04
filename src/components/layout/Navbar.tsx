@@ -261,26 +261,26 @@ export default function Navbar() {
                     .to(navRow, { top: compactNavTop, ease: "none" }, 0);
             });
 
+            // ── Marquee ticker — mobile only
+            const track = taglineTrackRef.current;
+            if (track) {
+                const firstItem = track.querySelector("[data-ticker]") as HTMLElement;
+                if (firstItem) {
+                    const width = firstItem.offsetWidth;
+                    gsap.to(track, {
+                        x: `-=${width}`,
+                        duration: 12,
+                        ease: "none",
+                        repeat: -1,
+                        modifiers: {
+                            x: gsap.utils.unitize((x: string) => parseFloat(x) % width),
+                        },
+                    });
+                }
+            }
+
             return () => cleanup?.();
         });
-
-        // ── Marquee ticker
-        const track = taglineTrackRef.current;
-        if (track) {
-            const firstItem = track.querySelector("[data-ticker]") as HTMLElement;
-            if (firstItem) {
-                const width = firstItem.offsetWidth;
-                gsap.to(track, {
-                    x: `-=${width}`,
-                    duration: 12,
-                    ease: "none",
-                    repeat: -1,
-                    modifiers: {
-                        x: gsap.utils.unitize((x: string) => parseFloat(x) % width),
-                    },
-                });
-            }
-        }
 
         return () => mm.revert();
     }, []);
@@ -313,11 +313,18 @@ export default function Navbar() {
                 ref={navRowRef}
                 className="flex items-center justify-between will-change-[top]"
             >
+                {/* Desktop/tablet: static text. Mobile: marquee ticker */}
+                <div ref={taglineRef} className="hidden md:block">
+                    <span className="uppercase tracking-[0.22em] text-white" style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}>
+                        {taglineText}
+                    </span>
+                </div>
+
+                {/* Mobile marquee — hidden on md+ */}
                 <div
-                    ref={taglineRef}
-                    className="hidden md:block overflow-hidden"
+                    className="block md:hidden overflow-hidden"
                     style={{
-                        width: "180px",
+                        width: "140px",
                         maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
                         WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
                     }}
@@ -327,7 +334,8 @@ export default function Navbar() {
                             <span
                                 key={n}
                                 data-ticker={n === 0 ? "true" : undefined}
-                                className="text-[11px] uppercase tracking-[0.22em] text-white/70 shrink-0"
+                                className="uppercase tracking-[0.22em] text-white/70 shrink-0"
+                                style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
                             >
                                 {taglineText}&nbsp;&nbsp;·&nbsp;&nbsp;
                             </span>
