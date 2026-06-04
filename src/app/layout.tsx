@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Stuuudio",
+  title: "Stuuudio | Full Service Creative Agency | Lagos",
   description: "Creative Agency",
   icons: {
     icon: "/Icons/logo.svg",

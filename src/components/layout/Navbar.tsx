@@ -18,6 +18,28 @@ export default function Navbar() {
     useEffect(() => {
         const mm = gsap.matchMedia();
 
+        const applyBlurOnScroll = (compactHeight: number, scrollEnd: number) => {
+            const header = headerRef.current;
+            if (!header) return;
+
+            const onScroll = () => {
+                const scrolled = window.scrollY;
+                const progress = Math.min(scrolled / scrollEnd, 1);
+                if (progress >= 1) {
+                    header.style.background = "rgba(0,0,0,0.6)";
+                    header.style.backdropFilter = "blur(16px)";
+                    header.style.backdropFilter = "blur(16px)";
+                } else {
+                    header.style.background = "transparent";
+                    header.style.backdropFilter = "none";
+                    header.style.backdropFilter = "none";
+                }
+            };
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            return () => window.removeEventListener("scroll", onScroll);
+        };
+
         // ── DESKTOP (1025px+)
         mm.add("(min-width: 1025px)", () => {
             const header = headerRef.current;
@@ -31,6 +53,9 @@ export default function Navbar() {
             const LOGO_TOP = 32;
             const COMPACT_HEIGHT = 72;
             const COMPACT_LOGO_WIDTH = 160;
+            const SCROLL_END = 360;
+
+            const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
 
             gsap.set(logo, {
                 position: "absolute",
@@ -79,7 +104,7 @@ export default function Navbar() {
                     scrollTrigger: {
                         trigger: document.documentElement,
                         start: "top top",
-                        end: "+=360",
+                        end: `+=${SCROLL_END}`,
                         scrub: 1,
                     },
                 });
@@ -90,6 +115,8 @@ export default function Navbar() {
                     .to(navRow, { top: compactNavTop, ease: "none" }, 0)
                     .to(tagline, { opacity: 0, ease: "none" }, 0);
             });
+
+            return () => cleanup?.();
         });
 
         // ── TABLET (768px–1024px)
@@ -105,6 +132,9 @@ export default function Navbar() {
             const LOGO_TOP = 24;
             const COMPACT_HEIGHT = 64;
             const COMPACT_LOGO_WIDTH = 120;
+            const SCROLL_END = 300;
+
+            const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
 
             gsap.set(logo, {
                 position: "absolute",
@@ -153,7 +183,7 @@ export default function Navbar() {
                     scrollTrigger: {
                         trigger: document.documentElement,
                         start: "top top",
-                        end: "+=300",
+                        end: `+=${SCROLL_END}`,
                         scrub: 1,
                     },
                 });
@@ -164,6 +194,8 @@ export default function Navbar() {
                     .to(navRow, { top: compactNavTop, ease: "none" }, 0)
                     .to(tagline, { opacity: 0, ease: "none" }, 0);
             });
+
+            return () => cleanup?.();
         });
 
         // ── MOBILE (below 768px)
@@ -178,6 +210,9 @@ export default function Navbar() {
             const LOGO_TOP = 16;
             const COMPACT_HEIGHT = 48;
             const COMPACT_LOGO_WIDTH = 90;
+            const SCROLL_END = 260;
+
+            const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
 
             gsap.set(logo, {
                 position: "absolute",
@@ -215,7 +250,7 @@ export default function Navbar() {
                     scrollTrigger: {
                         trigger: document.documentElement,
                         start: "top top",
-                        end: "+=260",
+                        end: `+=${SCROLL_END}`,
                         scrub: 1,
                     },
                 });
@@ -225,6 +260,8 @@ export default function Navbar() {
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
                     .to(navRow, { top: compactNavTop, ease: "none" }, 0);
             });
+
+            return () => cleanup?.();
         });
 
         // ── Marquee ticker
@@ -253,7 +290,11 @@ export default function Navbar() {
     return (
         <header
             ref={headerRef}
-            className="fixed top-0 left-0 right-0 z-999 bg-transparent overflow-hidden"
+            className="fixed top-0 left-0 right-0 z-999 overflow-hidden"
+            style={{
+                background: "transparent",
+                transition: "background 0.3s ease, backdrop-filter 0.3s ease",
+            }}
         >
             {/* Logo */}
             <div ref={logoRef} className="will-change-[width,top]">
@@ -295,7 +336,8 @@ export default function Navbar() {
                 </div>
 
                 {/* Nav links */}
-                <nav className="flex items-center gap-4 md:gap-7 text-white ml-auto md:ml-0"
+                <nav
+                    className="flex items-center gap-4 md:gap-7 text-white ml-auto md:ml-0"
                     style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
                 >
                     <Link href="#work" className="hover:opacity-60 transition-opacity whitespace-nowrap">
