@@ -59,7 +59,7 @@ export default function AboutPage() {
             <StaticNavbar />
             <main className="pt-24 page-x pb-48 md:pb-72">
                 <div className="flex justify-between items-start pb-8 mt-20 mb-8">
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-2">
                         <ScrollIndicator />
                         <span className="text-white text-xs uppercase tracking-widest">Scroll down</span>
                     </div>

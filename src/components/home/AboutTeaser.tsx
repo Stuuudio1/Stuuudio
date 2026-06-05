@@ -159,7 +159,7 @@ export default function AboutSection() {
 
                         <div className="pt-5 md:pt-24">
                             <Link href="/about">
-                                <button className="px-8 py-4 rounded-full text-base uppercase bg-[#121212] tracking-widest text-white hover:bg-white hover:text-black transition-colors duration-300 cursor-pointer" style={{ fontWeight: 400 }}>
+                                <button className="p-3 md:px-8 md:py-4 rounded-full text-sm md:text-base uppercase bg-[#121212] tracking-widest text-white md:hover:bg-white md:hover:text-black transition-colors duration-300 cursor-pointer" style={{ fontWeight: 400 }}>
                                     OUR STORY
                                 </button>
                             </Link>
