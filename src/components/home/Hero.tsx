@@ -12,15 +12,31 @@ export default function Hero() {
         const isDesktop = () => window.innerWidth >= 1024
 
         const handleScroll = () => {
-            if (!isDesktop() || !slideshowRef.current) return
+            if (!slideshowRef.current) return
+
+            // Mobile: always full size
+            if (!isDesktop()) {
+                slideshowRef.current.style.transform = 'scale(1)'
+                return
+            }
+
             const rect = slideshowRef.current.getBoundingClientRect()
             const windowHeight = window.innerHeight
-            const progress = Math.min(Math.max(1 - rect.top / windowHeight, 0), 1)
+
+            const progress = Math.min(
+                Math.max(1 - rect.top / windowHeight, 0),
+                1
+            )
+
             const newScale = 0.75 + progress * 0.25
 
             if (newScale !== scaleRef.current) {
                 scaleRef.current = newScale
-                if (frameRef.current) cancelAnimationFrame(frameRef.current)
+
+                if (frameRef.current) {
+                    cancelAnimationFrame(frameRef.current)
+                }
+
                 frameRef.current = requestAnimationFrame(() => {
                     if (slideshowRef.current) {
                         slideshowRef.current.style.transform = `scale(${newScale})`
@@ -30,10 +46,17 @@ export default function Hero() {
         }
 
         window.addEventListener('scroll', handleScroll, { passive: true })
+        window.addEventListener('resize', handleScroll)
+
         handleScroll()
+
         return () => {
             window.removeEventListener('scroll', handleScroll)
-            if (frameRef.current) cancelAnimationFrame(frameRef.current)
+            window.removeEventListener('resize', handleScroll)
+
+            if (frameRef.current) {
+                cancelAnimationFrame(frameRef.current)
+            }
         }
     }, [])
 
@@ -54,10 +77,9 @@ export default function Hero() {
             <div className="flex-1 flex flex-col" style={{ paddingTop: '60px' }}>
                 <div
                     ref={slideshowRef}
-                    className="relative w-full overflow-hidden origin-center"
+                    className="relative w-full overflow-hidden origin-center scale-100 lg:scale-75"
                     style={{
                         aspectRatio: '16/9',
-                        transform: 'scale(0.75)',
                         transition: 'transform 0.1s linear',
                     }}
                 >
