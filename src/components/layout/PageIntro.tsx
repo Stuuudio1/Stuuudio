@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -11,9 +10,13 @@ export default function PageIntro() {
     const [show, setShow] = useState(false);
 
     useEffect(() => {
-        if (hasPlayedIntro) return;
+        if (!hasPlayedIntro) {
+            setShow(true);
+        }
+    }, []);
 
-        setShow(true);
+    useEffect(() => {
+        if (!show || !overlayRef.current) return;
 
         const tl = gsap.timeline({
             onComplete: () => {
@@ -32,14 +35,14 @@ export default function PageIntro() {
         return () => {
             tl.kill();
         };
-    }, []);
+    }, [show]);
 
     if (!show) return null;
 
     return (
         <div
             ref={overlayRef}
-            className="fixed inset-0 z-[9999] bg-black overflow-hidden"
+            className="fixed inset-0 z-9999 bg-black overflow-hidden"
         >
             <Image
                 src="/Icons/logo.svg"
@@ -50,7 +53,7 @@ export default function PageIntro() {
                 className="
                     absolute
                     left-0
-                    bottom-0
+                    bottom-[3%]
                     w-full
                     h-auto
                     select-none
