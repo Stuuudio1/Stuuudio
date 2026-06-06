@@ -62,7 +62,7 @@ export default function AboutPage() {
                         <span className="text-white text-xs uppercase tracking-widest">Scroll down</span>
                     </div>
 
-                    <p className="text-white text-sm md:text-xl font-medium w-50 lg:w-full max-w-lg text-left">
+                    <p className="text-white text-base font-medium w-60 lg:w-full max-w-lg text-left">
                         We're not a corporate agency. We're a crew of friends who were already winning in our own lanes, design, dev, film, motion, until we decided to stop doing it separately. Stuuudio is what happens when you combine sharp skills, real friendships, and an obsession with winning. We don't back down. We don't settle. We ship.
                     </p>
                     <div></div>

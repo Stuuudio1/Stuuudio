@@ -81,7 +81,6 @@ export default function WorkSection() {
             </div>
 
             {/* Project grid */}
-            {/* Project grid */}
             <div className="flex flex-col gap-6 mt-1">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {topRow.map((p) => (

@@ -1,50 +1,48 @@
 import { Letter, WIDE, COND } from "../ui/Letter";
 import Image from "next/image";
 
-const teamMembers: { name: string; role: string; img: string; colSpan: string }[] = [
+const teamMembers = [
     {
         name: "Adeleke Precious Adekunle",
         role: "Brand Designer",
         img: "/images/Precious.webp",
-        colSpan: "col-span-2",
+        colSpan: "md:col-span-2",
     },
     {
-        name: "Dannon Abayomi ",
+        name: "Dannon Abayomi",
         role: "Software Developer",
         img: "/images/Dannon.webp",
-        colSpan: "col-span-3",
+        colSpan: "md:col-span-3",
     },
     {
         name: "Olawoyin Julius",
         role: "Motion & Graphic Designer",
         img: "/images/Julius.webp",
-        colSpan: "col-span-3",
+        colSpan: "md:col-span-3",
     },
     {
         name: "Aladesuyi Praise",
         role: "Cinematographer",
         img: "/images/Praise.webp",
-        colSpan: "col-span-2",
+        colSpan: "md:col-span-2",
     },
 ];
 
 const TeamGrid = () => {
     return (
-        <div className="grid grid-cols-5 gap-1" style={{ gridTemplateRows: "650px 650px" }}>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-1 md:auto-rows-[650px]">
             {teamMembers.map((member, index) => (
                 <div
                     key={index}
-                    className={`${member.colSpan} relative overflow-hidden`}
+                    className={`${member.colSpan} relative overflow-hidden h-[500px] md:h-auto`}
                 >
                     <Image
                         src={member.img}
                         alt={member.name}
-                        className="w-full h-full object-cover"
-                        width={500}
-                        height={700}
+                        fill
+                        className="object-cover"
                     />
 
-                    {/* Deep gradient fade — covers ~70% of the card from the bottom */}
                     <div
                         className="absolute inset-0 pointer-events-none"
                         style={{
@@ -53,7 +51,6 @@ const TeamGrid = () => {
                         }}
                     />
 
-                    {/* Frosted-glass pill behind the text for extra legibility */}
                     <div
                         className="absolute bottom-0 left-0 right-0 px-6 py-7"
                         style={{
@@ -66,6 +63,7 @@ const TeamGrid = () => {
                         <p className="text-white font-black text-lg tracking-tight leading-tight m-0 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
                             {member.name}
                         </p>
+
                         <p className="text-white/80 text-lg font-normal tracking-tight m-0 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
                             {member.role}
                         </p>
@@ -76,10 +74,11 @@ const TeamGrid = () => {
     );
 };
 
+
 export default function Team() {
     return (
         <>
-            <div className="pb-6 md:pb-40 mt-10 md:mt-32 flex items-start justify-between">
+            <div className="pb-25 md:pb-40 mt-32 flex flex-col md:flex-row gap-8 md:gap-0 items-start justify-between">
                 <h2
                     aria-label="Service"
                     style={{
@@ -102,7 +101,7 @@ export default function Team() {
                 </h2>
 
                 <div>
-                    <p className="text-white font-medium text-xs md:text-2xl max-w-37.5 md:max-w-112.5 lg:max-w-150 xl:max-w-3xl">
+                    <p className="text-white font-medium text-base lg:text-2xl md:max-w-112.5 lg:max-w-150 xl:max-w-3xl">
                         At our core is a group of creatives who've been in the trenches together. Around us, a wider crew of specialists who join on projects, campaigns, and everything in between.
                     </p>
                 </div>

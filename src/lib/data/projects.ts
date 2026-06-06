@@ -22,14 +22,14 @@ export const PROJECTS: Project[] = [
         imageHover: "/images/astra-tall3.webp",
         layout: "tall",
     },
-    {
+        {
         id: "2",
-        name: "Toch",
-        type: "Brand Identity, Graphic Design",
-        description: "Mobile application with smooth animations and user-friendly interface for enhanced user engagement.",
-        slug: "toch",
-        imagePrimary: "/images/Group 161.webp",
-        imageHover: "/images/Group 162.webp",
+        name: "Triskelion",
+        type: "Brand Identity, Design System",
+        description: "An expressive brand identity created to move everyday money in chat Services Brand Identity",
+        slug: "triskelion",
+        imagePrimary: "/images/triskelion-work3.webp",
+        imageHover: "/images/triskelion-work1.webp",
         layout: "tall",
     },
     {
@@ -42,14 +42,14 @@ export const PROJECTS: Project[] = [
         imageHover: "/images/triskelion-work1.webp",
         layout: "wide",
     },
-        {
+    {
         id: "4",
-        name: "Triskelion",
-        type: "Brand Identity, Design System",
-        description: "An expressive brand identity created to move everyday money in chat Services Brand Identity",
-        slug: "triskelion",
-        imagePrimary: "/images/triskelion-work3.webp",
-        imageHover: "/images/triskelion-work1.webp",
+        name: "Toch",
+        type: "Brand Identity, Graphic Design",
+        description: "Mobile application with smooth animations and user-friendly interface for enhanced user engagement.",
+        slug: "toch",
+        imagePrimary: "/images/Group 161.webp",
+        imageHover: "/images/Group 162.webp",
         layout: "tall",
     },
     {
