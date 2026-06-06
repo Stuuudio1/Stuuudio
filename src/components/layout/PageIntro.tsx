@@ -50,7 +50,7 @@ export default function PageIntro() {
                 className="
                     absolute
                     left-0
-                    bottom-[-3%]
+                    bottom-[3%]
                     w-full
                     h-auto
                     select-none
