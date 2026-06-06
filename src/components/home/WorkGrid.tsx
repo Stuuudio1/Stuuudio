@@ -81,21 +81,27 @@ export default function WorkSection() {
             </div>
 
             {/* Project grid */}
-            <div className="flex flex-col gap-6 mt-1">
-                <div className="grid grid-cols-2 gap-6">
-                    {topRow.map((p) => <ProjectCard key={p.id} project={p} isFinePointer={isFinePointer} />)}
-                </div>
+{/* Project grid */}
+<div className="flex flex-col gap-6 mt-1">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {topRow.map((p) => (
+            <ProjectCard key={p.id} project={p} isFinePointer={isFinePointer} />
+        ))}
+    </div>
 
-                {wideRow.map((p) => (
-                    <div key={p.id} className="grid grid-cols-2 gap-1">
-                        <ProjectCard project={p} isFinePointer={isFinePointer} />
-                    </div>
-                ))}
+    {wideRow.map((p) => (
+        <div key={p.id} className="grid grid-cols-1 md:grid-cols-2 gap-1">
+            <ProjectCard project={p} isFinePointer={isFinePointer} />
+        </div>
+    ))}
 
-                <div className="grid grid-cols-2 gap-1">
-                    {bottomRow.map((p) => <ProjectCard key={p.id} project={p} isFinePointer={isFinePointer} />)}
-                </div>
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+        {bottomRow.map((p) => (
+            <ProjectCard key={p.id} project={p} isFinePointer={isFinePointer} />
+        ))}
+    </div>
+</div>
+
 
             <div className="w-full border-t border-white mt-20 md:mt-30" />
         </section>
