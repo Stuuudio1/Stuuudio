@@ -42,7 +42,7 @@ export default function PageIntro() {
             className="fixed inset-0 z-[9999] bg-black overflow-hidden"
         >
             <Image
-                src="/logo.svg"
+                src="/Icons/logo.svg"
                 alt="Studio"
                 width={2000}
                 height={400}
