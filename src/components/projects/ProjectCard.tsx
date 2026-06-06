@@ -62,13 +62,13 @@ function ProjectCard({ project, isFinePointer, forceEqual = false }: { project: 
             {/* Caption — always visible below image */}
             <div className="flex justify-between pt-3 pb-1">
                 <p
-                    className="text-white text-sm md:text-lg tracking-widest font-bold"
+                    className="text-white text-xl lg:text-3xl tracking-widest font-bold"
                     style={{ fontFamily: "var(--font-body)", fontWeight: 800 }}
                 >
                     {project.name}
                 </p>
                 <p
-                    className="text-white/90 text-[12px] md:text-base tracking-wider mt-0.5"
+                    className="text-white/90 text-[14px] lg:text-base tracking-wider mt-0.5"
                     style={{ fontFamily: "var(--font-body)", fontWeight: 300 }}
 
                 >

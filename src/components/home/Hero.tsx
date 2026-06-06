@@ -68,7 +68,7 @@ export default function Hero() {
                     <ScrollIndicator />
                     <span className="text-white text-xs uppercase tracking-widest">Scroll down</span>
                 </div>
-                <p className="text-white text-sm md:text-2xl font-medium lg:font-medium w-50 lg:w-full max-w-lg text-left">
+                <p className="text-white text-xl lg:text-2xl font-medium w-50 lg:w-full max-w-lg text-left">
                     We're Stuuudio, yup the 3 U's are intentional. They're three U's because we never stop optimizing for: yo<span className='font-bold'>U</span>, yo<span className='font-bold'>U</span>r brand, yo<span className='font-bold'>U</span>r audience.
                 </p>
             </div>
