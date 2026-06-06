@@ -6,11 +6,20 @@ import gsap from "gsap";
 
 export default function PageIntro() {
     const overlayRef = useRef<HTMLDivElement>(null);
-    const [hidden, setHidden] = useState(false);
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
+        const hasSeenIntro = sessionStorage.getItem("hasSeenIntro");
+
+        if (hasSeenIntro) return;
+
+        setShow(true);
+
         const tl = gsap.timeline({
-            onComplete: () => setHidden(true),
+            onComplete: () => {
+                sessionStorage.setItem("hasSeenIntro", "true");
+                setShow(false);
+            },
         });
 
         tl.to({}, { duration: 1 })
@@ -25,15 +34,15 @@ export default function PageIntro() {
         };
     }, []);
 
-    if (hidden) return null;
+    if (!show) return null;
 
     return (
         <div
             ref={overlayRef}
-            className="fixed inset-0 z-[9999] bg-black overflow-hidden"
+            className="fixed inset-0 z-9999 bg-black overflow-hidden"
         >
             <Image
-                src="/Icons/logo.svg"
+                src="/logo.svg"
                 alt="Studio"
                 width={2000}
                 height={400}
@@ -41,7 +50,7 @@ export default function PageIntro() {
                 className="
                     absolute
                     left-0
-                    bottom-[3%]
+                    bottom-[-3%]
                     w-full
                     h-auto
                     select-none
