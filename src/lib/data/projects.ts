@@ -53,16 +53,6 @@ export const PROJECTS: Project[] = [
         layout: "tall",
     },
     {
-        id: "5",
-        name: "Revo",
-        type: "Brand Identity, Type Design",
-        description: "Mobile application with smooth animations and user-friendly interface for enhanced user engagement.",
-        slug: "revo",
-        imagePrimary: "/images/revolt-1.webp",
-        imageHover: "/images/revolt-2.webp",
-        layout: "tall",
-    },
-    {
         id: "6",
         name: "Focus",
         type: "Brand Identity, Graphic Design",
@@ -72,4 +62,14 @@ export const PROJECTS: Project[] = [
         imageHover: "/images/focus-work2.webp",
         layout: "tall",
     },
+    // {
+    //     id: "5",
+    //     name: "Revo",
+    //     type: "Brand Identity, Type Design",
+    //     description: "Mobile application with smooth animations and user-friendly interface for enhanced user engagement.",
+    //     slug: "revo",
+    //     imagePrimary: "/images/revolt-1.webp",
+    //     imageHover: "/images/revolt-2.webp",
+    //     layout: "tall",
+    // },
 ];
