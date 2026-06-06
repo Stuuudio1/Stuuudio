@@ -6,26 +6,26 @@ import Link from "next/link";
 
 const SERVICE_CARDS = [
     {
-        label: "Brand & Identity",
-        slug: "triskelion",
+        label: "Brand Identity",
+        slug: "brand-identity",
         image: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&q=80",
         gradient: "from-violet-900 via-purple-800 to-indigo-900",
     },
     {
         label: "Web Development",
-        slug: "astra",
+        slug: "web-development",
         image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
         gradient: "from-sky-900 via-blue-800 to-cyan-900",
     },
     {
         label: "Motion Design",
-        slug: "solbase",
+        slug: "motion-design",
         image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80",
         gradient: "from-rose-900 via-pink-800 to-fuchsia-900",
     },
     {
-        label: "Product Commercial",
-        slug: "focus",
+        label: "Cinematography",
+        slug: "cinematography",
         image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80",
         gradient: "from-amber-900 via-orange-800 to-yellow-900",
     },
@@ -40,14 +40,13 @@ const ServiceCard = ({
     const [hovered, setHovered] = useState(false);
 
     return (
-        <Link href={`/work?category=${slug}`} className="block">
+        <Link href={`/projects/category/${slug}`} className="block">
             <div
                 className="relative overflow-hidden rounded-sm cursor-pointer"
                 style={{ aspectRatio: "3/4" }}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
             >
-                {/* Primary image */}
                 <Image
                     src={image}
                     alt={label}
@@ -57,14 +56,12 @@ const ServiceCard = ({
                     }`}
                 />
 
-                {/* Hover gradient */}
                 <div
                     className={`absolute inset-0 bg-gradient-to-br ${gradient} transition-opacity duration-500 ${
                         hovered ? "opacity-100" : "opacity-0"
                     }`}
                 />
 
-                {/* Hover label centered */}
                 <div
                     className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
                         hovered ? "opacity-100" : "opacity-0"
@@ -75,7 +72,6 @@ const ServiceCard = ({
                     </p>
                 </div>
 
-                {/* Always visible bottom blur bar */}
                 <div className="absolute bottom-0 left-0 right-0 px-5 py-4 backdrop-blur-md bg-black/40 border-t border-white/10">
                     <p className="text-white font-black text-base tracking-tight leading-tight m-0">
                         {label}

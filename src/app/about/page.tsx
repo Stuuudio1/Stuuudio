@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import StaticNavbar from "@/components/layout/StaticNavbar";
 import Footer from "@/components/layout/Footer";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
-import Image from "next/image";
 import { Letter, WIDE, COND } from "../../components/ui/Letter";
 import { ServiceRow } from "@/components/services/ServiceRow";
 import { SERVICES } from "@/lib/data/services";
@@ -15,7 +14,6 @@ import ServiceCards from "@/components/services/ServiceCard";
 
 export default function AboutPage() {
     const [openId, setOpenId] = useState<string | null>(null);
-
     const videoRef = useRef<HTMLVideoElement>(null);
     const [playing, setPlaying] = useState(true);
     const [progress, setProgress] = useState(0);
@@ -148,14 +146,13 @@ export default function AboutPage() {
                     {/* </div> */}
                 </div>
 
-                <div className="w-full border-t mt-10 lg:mt-20 border-white" />
+                <div id="services" className="w-full border-t mt-10 lg:mt-20 border-white" />
 
-                <div className="pb-6 md:pb-20 mt-5">
+                <div className="pb-6 md:pb-20 mt-10">
                     <h2
                         aria-label="Service"
                         style={{
                             fontSize: "clamp(5rem, 10vw, 5rem)",
-                            // fontSize: "clamp(3rem, 10vw, 9rem)",
                             lineHeight: 1,
                             display: "flex",
                             alignItems: "baseline",
@@ -195,7 +192,7 @@ export default function AboutPage() {
                 </div>
 
                   {/* Service Category Cards */}
-                <div className="mt-16 lg:mt-28">
+                <div className="mt-16 lg:py-28">
                     <ServiceCards />
                 </div>
 

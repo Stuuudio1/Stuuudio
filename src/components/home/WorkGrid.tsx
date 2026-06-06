@@ -81,8 +81,8 @@ export default function WorkSection() {
             </div>
 
             {/* Project grid */}
-            <div className="flex flex-col gap-1 mt-1">
-                <div className="grid grid-cols-2 gap-1">
+            <div className="flex flex-col gap-6 mt-1">
+                <div className="grid grid-cols-2 gap-6">
                     {topRow.map((p) => <ProjectCard key={p.id} project={p} isFinePointer={isFinePointer} />)}
                 </div>
 

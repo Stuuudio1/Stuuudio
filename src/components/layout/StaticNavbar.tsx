@@ -9,7 +9,7 @@ import gsap from "gsap";
 const navLinks = [
     { label: "Home", href: "/" },
     { label: "Projects", href: "/projects" },
-    { label: "Services", href: "#services" },
+    { label: "Services", href: "#services", onlyOn: "/about" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "mailto:Createwithstuuudio@gmail.com", isExternal: true },
 ];
@@ -31,17 +31,8 @@ export default function StaticNavbar() {
         if (menuOpen) {
             document.body.style.overflow = "hidden";
 
-            // Overlay fade in
             gsap.to(overlay, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
-
-            // Menu slide in
-            gsap.to(menu, {
-                x: "0%",
-                duration: 0.45,
-                ease: "power3.out",
-            });
-
-            // Stagger links — slide from right, same as Navbar
+            gsap.to(menu, { x: "0%", duration: 0.45, ease: "power3.out" });
             gsap.fromTo(
                 links,
                 { x: 30, autoAlpha: 0 },
@@ -49,7 +40,6 @@ export default function StaticNavbar() {
             );
         } else {
             document.body.style.overflow = "";
-
             gsap.to(overlay, { autoAlpha: 0, duration: 0.25 });
             gsap.to(menu, { x: "100%", duration: 0.4, ease: "power3.in" });
             gsap.to(links, { autoAlpha: 0, duration: 0.2 });
@@ -65,6 +55,20 @@ export default function StaticNavbar() {
         if (href.startsWith("mailto") || href.startsWith("#")) return false;
         return pathname === href;
     };
+
+    const handleServicesClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setMenuOpen(false);
+        const el = document.getElementById("services");
+        if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
+    // Filter links: hide ones with onlyOn if we're not on that page
+    const visibleLinks = navLinks.filter(
+        ({ onlyOn }) => !onlyOn || pathname === onlyOn
+    );
 
     return (
         <>
@@ -95,8 +99,22 @@ export default function StaticNavbar() {
                         className="hidden md:flex items-center gap-7 text-white ml-auto"
                         style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
                     >
-                        {navLinks.map(({ label, href, isExternal }) => {
+                        {visibleLinks.map(({ label, href, isExternal }) => {
                             if (isActive(href)) return null;
+
+                            // Services anchor link — smooth scroll
+                            if (href === "#services") {
+                                return (
+                                    <a
+                                        key={label}
+                                        href="#services"
+                                        onClick={handleServicesClick}
+                                        className="hover:opacity-60 transition-opacity whitespace-nowrap cursor-pointer"
+                                    >
+                                        {label}
+                                    </a>
+                                );
+                            }
 
                             if (isExternal) {
                                 return (
@@ -122,7 +140,7 @@ export default function StaticNavbar() {
                         })}
                     </nav>
 
-                    {/* ── Hamburger Button — new style, mobile only ── */}
+                    {/* Hamburger Button — mobile only */}
                     <button
                         className="md:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8 ml-auto z-[60] relative"
                         onClick={() => setMenuOpen((prev) => !prev)}
@@ -162,7 +180,7 @@ export default function StaticNavbar() {
                     transform: "translateX(100%)",
                 }}
             >
-                {/* Close button — ✕ built from two spans, same as Navbar */}
+                {/* Close button */}
                 <button
                     onClick={() => setMenuOpen(false)}
                     aria-label="Close menu"
@@ -178,7 +196,23 @@ export default function StaticNavbar() {
                     />
                 </button>
 
-                {navLinks.map(({ label, href, isExternal }, i) => {
+                {visibleLinks.map(({ label, href, isExternal }, i) => {
+                    // Services anchor — smooth scroll
+                    if (href === "#services") {
+                        return (
+                            <a
+                                key={label}
+                                href="#services"
+                                ref={(el) => { linkRefs.current[i] = el; }}
+                                onClick={handleServicesClick}
+                                className="text-white text-2xl font-light tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
+                                style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
+                            >
+                                {label}
+                            </a>
+                        );
+                    }
+
                     if (isExternal) {
                         return (
                             <a
