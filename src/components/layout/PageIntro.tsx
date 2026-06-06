@@ -1,23 +1,23 @@
+
 "use client";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { hasPlayedIntro, markIntroPlayed } from "@/lib/pageIntro";
 
 export default function PageIntro() {
     const overlayRef = useRef<HTMLDivElement>(null);
     const [show, setShow] = useState(false);
 
     useEffect(() => {
-        const hasSeenIntro = sessionStorage.getItem("hasSeenIntro");
-
-        if (hasSeenIntro) return;
+        if (hasPlayedIntro) return;
 
         setShow(true);
 
         const tl = gsap.timeline({
             onComplete: () => {
-                sessionStorage.setItem("hasSeenIntro", "true");
+                markIntroPlayed();
                 setShow(false);
             },
         });
@@ -39,10 +39,10 @@ export default function PageIntro() {
     return (
         <div
             ref={overlayRef}
-            className="fixed inset-0 z-9999 bg-black overflow-hidden"
+            className="fixed inset-0 z-[9999] bg-black overflow-hidden"
         >
             <Image
-                src="/Icons/logo.svg"
+                src="/logo.svg"
                 alt="Studio"
                 width={2000}
                 height={400}
@@ -50,7 +50,7 @@ export default function PageIntro() {
                 className="
                     absolute
                     left-0
-                    bottom-[3%]
+                    bottom-0
                     w-full
                     h-auto
                     select-none
