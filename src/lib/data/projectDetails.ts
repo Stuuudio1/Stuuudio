@@ -107,16 +107,16 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
         howItStarted: "The Spotify Africa project was born out of a desire to capture the vibrant energy and cultural richness of the African music scene in a way that felt authentic, cinematic, and visually compelling. We wanted to go beyond just documenting the process and instead create a visual narrative that showcased the artistry, collaboration, and behind-the-scenes magic that goes into bringing a music campaign to life. The goal was to create a piece that not only highlighted the talent of the artists but also gave fans an exclusive look at the creative process from start to finish.",
         problem: "Music campaign shoots are often fast-paced, dynamic environments where capturing high-quality behind-the-scenes footage can be challenging. The lighting, movement, and energy of the shoot can make it difficult to get clear, cinematic shots that truly convey the atmosphere and artistry of the production. Additionally, there’s often a lot of important moments happening simultaneously, making it hard to know where to focus the camera to capture the most compelling content.",
         result: "The final cinematography piece for the Spotify Africa project successfully captured the essence of the music campaign shoot, showcasing the artists’ performances, the creative process, and the collaborative energy on set. The footage was edited in a way that felt dynamic and engaging, with a mix of wide shots that captured the scale of the production and close-ups that highlighted the emotions and interactions between the artists and crew. The final product not only provided fans with an exclusive behind-the-scenes look but also served as a standalone piece of content that celebrated the artistry and hard work that goes into creating a music campaign." ,
-        bannerImage: { src: "/images/spotify-banner1.png", alt: "Spotify platform banner" },
-        featureImage: { src: "/images/spotify-feature.png", alt: "Spotify platform feature" },
+        bannerImage: { src: "/images/spotify-banner1.webp", alt: "Spotify platform banner" },
+        featureImage: { src: "/images/spotify-feature.webp", alt: "Spotify platform feature" },
         beforeImages: [ 
-            { src: "/images/spotifywork5.png", alt: " before 1" },
-            { src: "/images/spotify-work4.png", alt: " before 2" },
+            { src: "/images/spotifywork5.webp", alt: " before 1" },
+            { src: "/images/spotify-work4.webp", alt: " before 2" },
         ],
         gridImages: [
-            { src: "/images/spotify-work2.png", alt: " grid image 1" },
-            { src: "/images/spotify-work6.png", alt: " grid image 2" },
-            { src: "/images/spotify-work7.png", alt: " grid image 3" },
+            { src: "/images/spotify-work2.webp", alt: " grid image 1" },
+            { src: "/images/spotify-work6.webp", alt: " grid image 2" },
+            { src: "/images/spotify-work7.webp", alt: " grid image 3" },
         ],
         credits: [],
         nextProject: "focus",
@@ -189,16 +189,16 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
         howItStarted: " The Mavin project was born out of a desire to capture the raw, authentic energy of a music video shoot in a way that felt cinematic, intimate, and visually compelling. We wanted to go beyond just documenting the process and instead create a visual narrative that showcased the artistry, collaboration, and behind-the-scenes magic that goes into bringing a music video to life. The goal was to create a piece that not only highlighted the talent of the artists but also gave fans an exclusive look at the creative process from start to finish.  ",
         problem: " Music video shoots are often fast-paced, chaotic environments where capturing high-quality behind-the-scenes footage can be challenging. The lighting, movement, and energy of the shoot can make it difficult to get clear, cinematic shots that truly convey the atmosphere and artistry of the production. Additionally, there’s often a lot of important moments happening simultaneously, making it hard to know where to focus the camera to capture the most compelling content.",
         result: " The final cinematography piece for the Mavin project successfully captured the essence of the music video shoot, showcasing the artists’ performances, the creative process, and the collaborative energy on set. The footage was edited in a way that felt dynamic and engaging, with a mix of wide shots that captured the scale of the production and close-ups that highlighted the emotions and interactions between the artists and crew. The final product not only provided fans with an exclusive behind-the-scenes look but also served as a standalone piece of content that celebrated the artistry and hard work that goes into creating a music video." ,
-        bannerImage: { src: "/images/mavin-grid1.png", alt: " platform banner" },
-        featureImage: { src: "/images/mavin-feature.png", alt: " platform feature" },
+        bannerImage: { src: "/images/mavin-grid1.webp", alt: " platform banner" },
+        featureImage: { src: "/images/mavin-feature.webp", alt: " platform feature" },
         beforeImages: [ 
-            { src: "/images/mavin-before.png", alt: " before 1" },
-            { src: "/images/mavin-before1.png", alt: " before 2" },
+            { src: "/images/mavin-before.webp", alt: " before 1" },
+            { src: "/images/mavin-before1.webp", alt: " before 2" },
         ],
         gridImages: [
-            { src: "/images/mavin-grid1.png", alt: " grid image 1" },
-            { src: "/images/mavin-work2.png", alt: " grid image 2" },
-            { src: "/images/mavin-grid6.png", alt: " grid image 3" }
+            { src: "/images/mavin-grid1.webp", alt: " grid image 1" },
+            { src: "/images/mavin-work2.webp", alt: " grid image 2" },
+            { src: "/images/mavin-grid6.webp", alt: " grid image 3" }
         ],
         credits: [
             { role: "", name: "" },

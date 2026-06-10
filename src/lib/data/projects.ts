@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
         description: "A behind the scene cinematography of the Colorado Music video shoot of Johnny Drille, Ayra Starr and Young Jon",
         slug: "mavin",
         imagePrimary: "/images/mavin2.webp",
-        imageHover: "/images/mavin-feature.png",
+        imageHover: "/images/mavin-feature.webp",
         layout: "wide",
     },
     {
@@ -48,8 +48,8 @@ export const PROJECTS: Project[] = [
         type: "Cinematography",
         description: "A behind the scene cinematography of a spotify africa ad shoot campaign",
         slug: "spotify",
-        imagePrimary: "/images/spotify-work4.png",
-        imageHover: "/images/spotifywork5.png",
+        imagePrimary: "/images/spotify-work4.webp",
+        imageHover: "/images/spotifywork5.webp",
         layout: "tall",
     },
     {
