@@ -92,7 +92,7 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
             { src: "/images/triskelion-work1.webp", alt: " grid image 3" },
             { src: "/images/triskelion-work2.webp", alt: " grid image 2" },
         ],
-        credits: [],
+        // credits: [],
         nextProject: "mavin",
     },
     {
@@ -118,7 +118,7 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
             { src: "/images/spotify-work6.webp", alt: " grid image 2" },
             { src: "/images/spotify-work7.webp", alt: " grid image 3" },
         ],
-        credits: [],
+        // credits: [],
         nextProject: "focus",
     },
     {
@@ -169,12 +169,12 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
             { src: "/images/toch-before.webp", alt: " grid image 2" },
             { src: "/images/toch-before2.webp", alt: " grid image 3" },
         ],
-        credits: [
-            { role: "", name: "" },
-            { role: "", name: "" },
-            { role: "", name: "" },
-            { role: "", name: "" },
-        ],
+        // credits: [
+        //     { role: "", name: "" },
+        //     { role: "", name: "" },
+        //     { role: "", name: "" },
+        //     { role: "", name: "" },
+        // ],
         nextProject: "astra",
     },
     {
@@ -200,12 +200,12 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
             { src: "/images/mavin-work2.webp", alt: " grid image 2" },
             { src: "/images/mavin-grid6.webp", alt: " grid image 3" }
         ],
-        credits: [
-            { role: "", name: "" },
-            { role: "", name: "" },
-            { role: "", name: "" },
-            { role: "", name: "" },
-        ],
+        // credits: [
+        //     { role: "", name: "" },
+        //     { role: "", name: "" },
+        //     { role: "", name: "" },
+        //     { role: "", name: "" },
+        // ],
         nextProject: "spotify",
     },
 ]
