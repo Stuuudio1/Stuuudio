@@ -102,7 +102,8 @@ export default function Hero() {
                         style={{ pointerEvents: "none" }}
                     >
                         <source
-                            src="https://res.cloudinary.com/dlfh6aguk/video/upload/q_auto,f_auto,vc_auto/v1780578065/mavin_wgujdg.mp4"
+                            src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1781057204/Project_vid_y1etyz.mp4"
+                            // src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1780911169/Bts_Final_Cut_1_2_rfjegj.mp4"
                             type="video/mp4"
                         />
                     </video>
