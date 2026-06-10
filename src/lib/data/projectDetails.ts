@@ -18,7 +18,8 @@ export interface ProjectDetail {
     bannerImage: ProjectImage       
     featureImage: ProjectImage 
     beforeImages: ProjectImage[]       
-    gridImages: ProjectImage[]       
+    gridImages: ProjectImage[]    
+    liveUrl?: string   
     credits?: {
         role: string
         name: string
@@ -30,6 +31,7 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
     {
         id: "1",
         slug: "astra",
+        liveUrl: "https://astra.fashion",
         type: 'Web Development',
         client: "Delz Erinle",
         name: "Astra",
@@ -49,7 +51,8 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
             alt: "Astra platform banner",
         },
         featureImage: {
-            src: "/images/astra-before6.webp",
+            // src: "/images/astra-before6.webp",
+            src: "/images/astra-work3.webp",
             alt: "Astra platform feature",
         },
         beforeImages: [ 
@@ -149,6 +152,7 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
     {
         id: "5",
         slug: "kdnnn",
+        liveUrl: "http://kdnnn.com",
         type: 'Web Development',
         client: "Kdnnn",
         name: "Kdnnn",

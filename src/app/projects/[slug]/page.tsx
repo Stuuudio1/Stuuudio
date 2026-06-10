@@ -104,7 +104,20 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     <p className="text-white/40 uppercase text-[10px] tracking-widest mb-3">Year</p>
                     <p className="text-white text-sm">{project.year}</p>
                 </div>
-                <div className="col-span-2">
+                {project.liveUrl && (
+                    <div>
+                        <p className="text-white/40 uppercase text-[10px] tracking-widest mb-3">Live Site</p>
+                        <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white text-sm underline underline-offset-4 hover:text-white/60 transition-colors duration-200"
+                        >
+                            Visit Site ↗
+                        </a>
+                    </div>
+                )}
+                <div className={project.liveUrl ? "" : "col-span-2"}>
                     <h2 className="text-white text-sm md:text-base font-bold leading-snug">
                         {project.tagline}
                     </h2>
@@ -118,18 +131,20 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             </div>
 
             {/* Feature image or video — full bleed */}
-            {project.type === 'Cinematography' ? (
-                <FeatureVideo src={project.featureImage.src} />
-            ) : (
-                <div className="relative w-full h-[400px] md:h-[600px] lg:h-[720px]">
-                    <Image
-                        src={project.featureImage.src}
-                        alt={project.featureImage.alt}
-                        fill
-                        className="object-cover px-6 md:px-12"
-                    />
-                </div>
-            )}
+            {
+                project.type === 'Cinematography' ? (
+                    <FeatureVideo src={project.featureImage.src} />
+                ) : (
+                    <div className="relative w-full h-[400px] md:h-[600px] lg:h-[720px]">
+                        <Image
+                            src={project.featureImage.src}
+                            alt={project.featureImage.alt}
+                            fill
+                            className="object-cover px-6 md:px-12"
+                        />
+                    </div>
+                )
+            }
 
             {/* How it started */}
             <div className="px-6 md:px-12 py-16 md:py-24 grid md:grid-cols-1 gap-12">
@@ -202,52 +217,56 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             </div>
 
             {/* Credits */}
-            {project.credits && project.credits.length > 0 ? (
-                <div className="px-6 md:px-12 py-16 md:py-24">
-                    <p className="text-white font-bold text-2xl mb-8"
-                        style={{ fontFamily: "DrukTextWide, sans-serif" }}>
-                        Credits
-                    </p>
-                    <div className="flex flex-wrap divide-x mt-6 divide-white/20">
-                        {project.credits.map((c, i) => (
-                            <div key={i} className="pr-8 pl-8 first:pl-0">
-                                <p className="text-white uppercase text-[11px] font-bold tracking-widest mb-1">{c.role}</p>
-                                <p className="text-white text-xs">{c.name}</p>
-                            </div>
-                        ))}
+            {
+                project.credits && project.credits.length > 0 ? (
+                    <div className="px-6 md:px-12 py-16 md:py-24">
+                        <p className="text-white font-bold text-2xl mb-8"
+                            style={{ fontFamily: "DrukTextWide, sans-serif" }}>
+                            Credits
+                        </p>
+                        <div className="flex flex-wrap divide-x mt-6 divide-white/20">
+                            {project.credits.map((c, i) => (
+                                <div key={i} className="pr-8 pl-8 first:pl-0">
+                                    <p className="text-white uppercase text-[11px] font-bold tracking-widest mb-1">{c.role}</p>
+                                    <p className="text-white text-xs">{c.name}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            ) : ''}
+                ) : ''
+            }
 
             {/* Next project */}
-            {next && (
-                <div className="px-6 md:px-12 py-16 md:py-24">
-                    <h3 className="text-white font-bold mb-12 text-2xl md:text-4xl"
-                        style={{ fontFamily: "DrukTextWide, sans-serif" }}>
-                        NEXT
-                    </h3>
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div />
-                        <Link href={`/projects/${next.slug}`} className="group block">
-                            <div className="relative w-full mb-4 h-[360px] md:h-[450px]">
-                                <Image
-                                    src={next.bannerImage.src}
-                                    alt={next.name}
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                                />
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <p className="text-white text-sm uppercase tracking-widest">{next.name}</p>
-                                <p className="text-white/40 text-xs">{next.type}</p>
-                            </div>
-                        </Link>
+            {
+                next && (
+                    <div className="px-6 md:px-12 py-16 md:py-24">
+                        <h3 className="text-white font-bold mb-12 text-2xl md:text-4xl"
+                            style={{ fontFamily: "DrukTextWide, sans-serif" }}>
+                            NEXT
+                        </h3>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div />
+                            <Link href={`/projects/${next.slug}`} className="group block">
+                                <div className="relative w-full mb-4 h-[360px] md:h-[450px]">
+                                    <Image
+                                        src={next.bannerImage.src}
+                                        alt={next.name}
+                                        fill
+                                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                    />
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    <p className="text-white text-sm uppercase tracking-widest">{next.name}</p>
+                                    <p className="text-white/40 text-xs">{next.type}</p>
+                                </div>
+                            </Link>
+                        </div>
                     </div>
-                </div>
-            )}
+                )
+            }
 
             <div className="mt-40" />
             <Footer />
-        </div>
+        </div >
     )
 }
