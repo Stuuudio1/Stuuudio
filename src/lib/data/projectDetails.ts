@@ -175,7 +175,7 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
             { role: "", name: "" },
             { role: "", name: "" },
         ],
-        nextProject: "revo",
+        nextProject: "astra",
     },
     {
         id: "6",
@@ -206,6 +206,6 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
             { role: "", name: "" },
             { role: "", name: "" },
         ],
-        nextProject: "focus",
+        nextProject: "spotify",
     },
 ]
