@@ -37,7 +37,7 @@ function ProjectCard({ project, isFinePointer, forceEqual = false }: { project: 
             {/* Image container */}
             <div
                 className="relative w-full overflow-hidden"
-                style={{ height: "clamp(300px, 50vw, 720px)" }}
+                style={{ height: "clamp(300px, 50vw, 600px)" }}
             >
                 {/* Primary image */}
                 <Image

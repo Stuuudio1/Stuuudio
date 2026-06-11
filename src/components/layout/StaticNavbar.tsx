@@ -7,11 +7,11 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "Projects", href: "/projects" },
-    { label: "Services", href: "#services", onlyOn: "/about" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "mailto:Createwithstuuudio@gmail.com", isExternal: true },
+    { label: "Home", href: "/", sectionId: null },
+    { label: "Projects", href: "/projects", sectionId: null },
+    { label: "Services", href: "#services", sectionId: "services", onlyOn: "/about" },
+    { label: "About", href: "/about", sectionId: null },
+    { label: "Contact", href: "mailto:Createwithstuuudio@gmail.com", isExternal: true, sectionId: null },
 ];
 
 export default function StaticNavbar() {
@@ -22,6 +22,16 @@ export default function StaticNavbar() {
     const overlayRef = useRef<HTMLDivElement>(null);
     const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
+    const handleNavClick = (e: React.MouseEvent, sectionId: string) => {
+        e.preventDefault();
+        setMenuOpen(false);
+        const el = document.getElementById(sectionId);
+        if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+            window.history.replaceState(null, "", window.location.pathname);
+        }
+    };
+
     // Animate menu open/close
     useEffect(() => {
         const menu = menuRef.current;
@@ -30,7 +40,6 @@ export default function StaticNavbar() {
 
         if (menuOpen) {
             document.body.style.overflow = "hidden";
-
             gsap.to(overlay, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
             gsap.to(menu, { x: "0%", duration: 0.45, ease: "power3.out" });
             gsap.fromTo(
@@ -54,15 +63,6 @@ export default function StaticNavbar() {
     const isActive = (href: string) => {
         if (href.startsWith("mailto") || href.startsWith("#")) return false;
         return pathname === href;
-    };
-
-    const handleServicesClick = (e: React.MouseEvent) => {
-        e.preventDefault();
-        setMenuOpen(false);
-        const el = document.getElementById("services");
-        if (el) {
-            el.scrollIntoView({ behavior: "smooth" });
-        }
     };
 
     // Filter links: hide ones with onlyOn if we're not on that page
@@ -99,16 +99,15 @@ export default function StaticNavbar() {
                         className="hidden md:flex items-center gap-7 text-white ml-auto"
                         style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
                     >
-                        {visibleLinks.map(({ label, href, isExternal }) => {
+                        {visibleLinks.map(({ label, href, isExternal, sectionId }) => {
                             if (isActive(href)) return null;
 
-                            // Services anchor link — smooth scroll
-                            if (href === "#services") {
+                            if (sectionId) {
                                 return (
                                     <a
                                         key={label}
-                                        href="#services"
-                                        onClick={handleServicesClick}
+                                        href={href}
+                                        onClick={(e) => handleNavClick(e, sectionId)}
                                         className="hover:opacity-60 transition-opacity whitespace-nowrap cursor-pointer"
                                     >
                                         {label}
@@ -186,25 +185,18 @@ export default function StaticNavbar() {
                     aria-label="Close menu"
                     className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center"
                 >
-                    <span
-                        className="block w-6 h-[1.5px] bg-white rounded-full absolute"
-                        style={{ transform: "rotate(45deg)" }}
-                    />
-                    <span
-                        className="block w-6 h-[1.5px] bg-white rounded-full absolute"
-                        style={{ transform: "rotate(-45deg)" }}
-                    />
+                    <span className="block w-6 h-[1.5px] bg-white rounded-full absolute" style={{ transform: "rotate(45deg)" }} />
+                    <span className="block w-6 h-[1.5px] bg-white rounded-full absolute" style={{ transform: "rotate(-45deg)" }} />
                 </button>
 
-                {visibleLinks.map(({ label, href, isExternal }, i) => {
-                    // Services anchor — smooth scroll
-                    if (href === "#services") {
+                {visibleLinks.map(({ label, href, isExternal, sectionId }, i) => {
+                    if (sectionId) {
                         return (
                             <a
                                 key={label}
-                                href="#services"
+                                href={href}
                                 ref={(el) => { linkRefs.current[i] = el; }}
-                                onClick={handleServicesClick}
+                                onClick={(e) => handleNavClick(e, sectionId)}
                                 className="text-white text-2xl font-light tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
                                 style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
                             >

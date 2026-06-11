@@ -8,6 +8,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const navLinks = [
+    { href: "#work", label: "Projects", sectionId: "work" },
+    { href: "#services", label: "Services", sectionId: "services" },
+    { href: "#about", label: "About", sectionId: "about" },
+    { href: "mailto:Createwithstuuudio@gmail.com", label: "Contact", external: true },
+];
+
 export default function Navbar() {
     const headerRef = useRef<HTMLElement>(null);
     const logoRef = useRef<HTMLDivElement>(null);
@@ -21,6 +28,16 @@ export default function Navbar() {
 
     const [menuOpen, setMenuOpen] = useState(false);
 
+    const handleNavClick = (e: React.MouseEvent, sectionId: string) => {
+        e.preventDefault();
+        setMenuOpen(false);
+        const el = document.getElementById(sectionId);
+        if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+            window.history.replaceState(null, "", window.location.pathname);
+        }
+    };
+
     // GSAP menu open/close animation
     useEffect(() => {
         const menu = menuRef.current;
@@ -29,7 +46,6 @@ export default function Navbar() {
 
         if (menuOpen) {
             document.body.style.overflow = "hidden";
-
             gsap.to(overlay, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
             gsap.to(menu, { x: "0%", duration: 0.45, ease: "power3.out" });
             gsap.fromTo(
@@ -39,7 +55,6 @@ export default function Navbar() {
             );
         } else {
             document.body.style.overflow = "";
-
             gsap.to(overlay, { autoAlpha: 0, duration: 0.25 });
             gsap.to(menu, { x: "100%", duration: 0.4, ease: "power3.in" });
             gsap.to(links, { autoAlpha: 0, duration: 0.2 });
@@ -47,6 +62,13 @@ export default function Navbar() {
     }, [menuOpen]);
 
     useEffect(() => {
+        // ── FIX: Pre-hide header synchronously before mm.add fires.
+        // This ensures the header is invisible from frame 0, before
+        // matchMedia evaluates, so there's no flash of unstyled logo.
+        if (headerRef.current) {
+            gsap.set(headerRef.current, { autoAlpha: 0 });
+        }
+
         const mm = gsap.matchMedia();
 
         const applyBlurOnScroll = (compactHeight: number, scrollEnd: number) => {
@@ -86,14 +108,10 @@ export default function Navbar() {
 
             const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
 
-            gsap.set(logo, {
-                position: "absolute",
-                top: LOGO_TOP,
-                left: PADDING,
-                width: `calc(100% - ${PADDING * 2}px)`,
-                opacity: 1,
-                transformOrigin: "left top",
-            });
+            // ── FIX: Logo position/size is set via inline styles on the element
+            // (see JSX below), so we only need to set transformOrigin here.
+            // This prevents GSAP from overriding the inline style after first paint.
+            gsap.set(logo, { transformOrigin: "left top" });
 
             document.documentElement.style.setProperty("--navbar-compact-height", `${COMPACT_HEIGHT}px`);
             document.documentElement.style.setProperty("--navbar-height", `${COMPACT_HEIGHT}px`);
@@ -143,6 +161,9 @@ export default function Navbar() {
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
                     .to(navRow, { top: compactNavTop, ease: "none" }, 0)
                     .to(tagline, { opacity: 0, ease: "none" }, 0);
+
+                // Reveal header cleanly after all positions are set
+                gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
             });
 
             return () => cleanup?.();
@@ -165,14 +186,8 @@ export default function Navbar() {
 
             const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
 
-            gsap.set(logo, {
-                position: "absolute",
-                top: LOGO_TOP,
-                left: PADDING,
-                width: `calc(100% - ${PADDING * 2}px)`,
-                opacity: 1,
-                transformOrigin: "left top",
-            });
+            // ── FIX: Only set transformOrigin; position/size comes from inline styles
+            gsap.set(logo, { transformOrigin: "left top" });
 
             document.documentElement.style.setProperty("--navbar-compact-height", `${COMPACT_HEIGHT}px`);
             document.documentElement.style.setProperty("--navbar-height", `${COMPACT_HEIGHT}px`);
@@ -222,6 +237,9 @@ export default function Navbar() {
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
                     .to(navRow, { top: compactNavTop, ease: "none" }, 0)
                     .to(tagline, { opacity: 0, ease: "none" }, 0);
+
+                // Reveal header cleanly after all positions are set
+                gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
             });
 
             return () => cleanup?.();
@@ -244,16 +262,9 @@ export default function Navbar() {
 
             const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
 
-            gsap.set(logo, {
-                position: "absolute",
-                top: LOGO_TOP,
-                left: PADDING,
-                width: `calc(100% - ${PADDING * 2}px)`,
-                opacity: 1,
-                transformOrigin: "left top",
-            });
+            // ── FIX: Only set transformOrigin; position/size comes from inline styles
+            gsap.set(logo, { transformOrigin: "left top" });
 
-            // Hamburger starts hidden
             if (hamburger) {
                 gsap.set(hamburger, { opacity: 0, pointerEvents: "none" });
             }
@@ -293,10 +304,8 @@ export default function Navbar() {
                 tl
                     .to(header, { height: COMPACT_HEIGHT, ease: "none" }, 0)
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
-                    // Nav links fade out and move up as header compacts
                     .to(navRow, { top: compactNavTop, opacity: 0, ease: "none" }, 0);
 
-                // Hamburger fades in as nav links fade out
                 if (hamburger) {
                     gsap.timeline({
                         scrollTrigger: {
@@ -305,12 +314,11 @@ export default function Navbar() {
                             end: `+=${SCROLL_END}`,
                             scrub: 1,
                         },
-                    }).to(hamburger, {
-                        opacity: 1,
-                        pointerEvents: "auto",
-                        ease: "none",
-                    }, 0);
+                    }).to(hamburger, { opacity: 1, pointerEvents: "auto", ease: "none" }, 0);
                 }
+
+                // Reveal header cleanly after all positions are set
+                gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
             });
 
             // ── Marquee ticker — mobile only
@@ -339,13 +347,6 @@ export default function Navbar() {
 
     const taglineText = "Focused on U, U and U.";
 
-    const navLinks = [
-        { href: "#work", label: "Projects" },
-        { href: "#services", label: "Services" },
-        { href: "#about", label: "About" },
-        { href: "mailto:Createwithstuuudio@gmail.com", label: "Contact", external: true },
-    ];
-
     return (
         <>
             <header
@@ -354,10 +355,28 @@ export default function Navbar() {
                 style={{
                     background: "transparent",
                     transition: "background 0.3s ease, backdrop-filter 0.3s ease",
+                    // ── FIX: visibility hidden by default; GSAP reveals via autoAlpha
+                    // after rAF measurement settles. Combined with inline logo styles
+                    // below, this eliminates the expand/contract jerk on reload.
+                    visibility: "hidden",
                 }}
             >
                 {/* Logo */}
-                <div ref={logoRef} className="will-change-[width,top]">
+                {/* ── FIX: Inline styles set the correct initial position/size for every
+                    breakpoint's "expanded" state. GSAP previously set these inside mm.add()
+                    which ran after first paint — causing the jerk. Now the element renders
+                    correctly from frame 0 and GSAP only animates the compact scroll state. */}
+                <div
+                    ref={logoRef}
+                    className="will-change-[width,top]"
+                    style={{
+                        position: "absolute",
+                        top: 32,
+                        left: 40,
+                        width: "calc(100% - 80px)",
+                        transformOrigin: "left top",
+                    }}
+                >
                     <Image
                         src="/Icons/logo.svg"
                         alt="Stuuudio"
@@ -369,10 +388,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Nav row */}
-                <div
-                    ref={navRowRef}
-                    className="flex items-center justify-between will-change-[top]"
-                >
+                <div ref={navRowRef} className="flex items-center justify-between will-change-[top]">
                     {/* Desktop/tablet: static tagline */}
                     <div ref={taglineRef} className="hidden md:block">
                         <span className="tracking-widest text-white" style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}>
@@ -403,26 +419,35 @@ export default function Navbar() {
                         </div>
                     </div>
 
-                    {/* Nav links — visible on all breakpoints initially; hidden on mobile after scroll via GSAP */}
+                    {/* Nav links */}
                     <nav
                         className="flex items-center gap-4 md:gap-7 text-white ml-auto md:ml-0"
                         style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
                     >
-                        {navLinks.map(({ href, label, external }) =>
+                        {navLinks.map(({ href, label, sectionId, external }) =>
                             external ? (
-                                <a key={label} href={href} className="hover:opacity-60 transition-opacity whitespace-nowrap">
+                                <a
+                                    key={label}
+                                    href={href}
+                                    className="hover:opacity-60 transition-opacity whitespace-nowrap"
+                                >
                                     {label}
                                 </a>
                             ) : (
-                                <Link key={label} href={href} className="hover:opacity-60 transition-opacity whitespace-nowrap">
+                                <a
+                                    key={label}
+                                    href={href}
+                                    onClick={(e) => handleNavClick(e, sectionId!)}
+                                    className="hover:opacity-60 transition-opacity whitespace-nowrap cursor-pointer"
+                                >
                                     {label}
-                                </Link>
+                                </a>
                             )
                         )}
                     </nav>
                 </div>
 
-                {/* ── Hamburger button — mobile only, fades in after scroll ── */}
+                {/* Hamburger — mobile only, fades in after scroll */}
                 <button
                     ref={hamburgerRef}
                     onClick={() => setMenuOpen(true)}
@@ -475,17 +500,11 @@ export default function Navbar() {
                     aria-label="Close menu"
                     className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center"
                 >
-                    <span
-                        className="block w-6 h-[1.5px] bg-white rounded-full absolute"
-                        style={{ transform: "rotate(45deg)" }}
-                    />
-                    <span
-                        className="block w-6 h-[1.5px] bg-white rounded-full absolute"
-                        style={{ transform: "rotate(-45deg)" }}
-                    />
+                    <span className="block w-6 h-[1.5px] bg-white rounded-full absolute" style={{ transform: "rotate(45deg)" }} />
+                    <span className="block w-6 h-[1.5px] bg-white rounded-full absolute" style={{ transform: "rotate(-45deg)" }} />
                 </button>
 
-                {navLinks.map(({ href, label, external }, i) =>
+                {navLinks.map(({ href, label, sectionId, external }, i) =>
                     external ? (
                         <a
                             key={label}
@@ -498,16 +517,16 @@ export default function Navbar() {
                             {label}
                         </a>
                     ) : (
-                        <Link
+                        <a
                             key={label}
                             href={href}
                             ref={(el) => { linkRefs.current[i] = el; }}
-                            onClick={() => setMenuOpen(false)}
-                            className="text-white text-2xl font-light tracking-widest uppercase hover:opacity-60 transition-opacity"
+                            onClick={(e) => handleNavClick(e, sectionId!)}
+                            className="text-white text-2xl font-light tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
                             style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
                         >
                             {label}
-                        </Link>
+                        </a>
                     )
                 )}
 

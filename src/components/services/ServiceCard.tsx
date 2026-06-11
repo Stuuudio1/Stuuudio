@@ -42,36 +42,40 @@ const ServiceCard = ({
     return (
         <Link href={`/projects/category/${slug}`} className="block">
             <div
-                className="relative overflow-hidden rounded-sm cursor-pointer"
+                className="relative overflow-hidden rounded-sm cursor-pointer group"
                 style={{ aspectRatio: "3/4" }}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
             >
+                {/* Image — fades out on hover, only on fine-pointer (desktop) devices */}
                 <Image
                     src={image}
                     alt={label}
                     fill
-                    className={`object-cover transition-opacity duration-500 ${
+                    className={`object-cover transition-opacity duration-500 [@media(pointer:fine)]:${
                         hovered ? "opacity-0" : "opacity-100"
                     }`}
                 />
 
+                {/* Gradient overlay — fades in on hover, desktop only */}
                 <div
-                    className={`absolute inset-0 bg-gradient-to-br ${gradient} transition-opacity duration-500 ${
+                    className={`absolute inset-0 bg-linear-to-br ${gradient} transition-opacity duration-500 [@media(pointer:fine)]:${
                         hovered ? "opacity-100" : "opacity-0"
-                    }`}
+                    } pointer-coarse:opacity-0`}
                 />
 
+                {/* Centered label — fades in on hover, desktop only */}
                 <div
-                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 [@media(pointer:fine)]:${
                         hovered ? "opacity-100" : "opacity-0"
-                    }`}
+                    } pointer-coarse:opacity-0`}
                 >
                     <p className="text-white font-black text-2xl tracking-tight text-center px-6 leading-tight">
                         {label}
                     </p>
                 </div>
 
+                {/* Bottom bar — always visible */}
                 <div className="absolute bottom-0 left-0 right-0 px-5 py-4 backdrop-blur-md bg-black/40 border-t border-white/10">
                     <p className="text-white font-black text-base tracking-tight leading-tight m-0">
                         {label}
