@@ -79,16 +79,11 @@ export default function Hero() {
             </div>
 
             {/* Video */}
-            <div className="flex-1 flex flex-col pt-[60px]">
+            <div className="flex-1 flex flex-col pt-15">
                 <div
                     ref={slideshowRef}
-                    className="relative overflow-hidden mx-auto"
+                    className="relative overflow-hidden mx-auto w-full lg:w-[75%]"
                     style={{
-                        width:
-                            typeof window !== "undefined" &&
-                            window.innerWidth >= 1024
-                                ? "75%"
-                                : "100%",
                         aspectRatio: "16/9",
                         transition: "width 0.15s ease-out",
                     }}
@@ -98,12 +93,11 @@ export default function Hero() {
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-cover"
+                        className="w-full h-full lg:h-[85%] object-cover"
                         style={{ pointerEvents: "none" }}
                     >
                         <source
                             src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1781057204/Project_vid_y1etyz.mp4"
-                            // src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1780911169/Bts_Final_Cut_1_2_rfjegj.mp4"
                             type="video/mp4"
                         />
                     </video>

@@ -12,7 +12,7 @@ const navLinks = [
     { href: "#work", label: "Projects", sectionId: "work" },
     { href: "#services", label: "Services", sectionId: "services" },
     { href: "#about", label: "About", sectionId: "about" },
-    { href: "mailto:Createwithstuuudio@gmail.com", label: "Contact", external: true },
+    { href: "mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry", label: "Contact", external: true },
 ];
 
 export default function Navbar() {
@@ -355,17 +355,11 @@ export default function Navbar() {
                 style={{
                     background: "transparent",
                     transition: "background 0.3s ease, backdrop-filter 0.3s ease",
-                    // ── FIX: visibility hidden by default; GSAP reveals via autoAlpha
-                    // after rAF measurement settles. Combined with inline logo styles
-                    // below, this eliminates the expand/contract jerk on reload.
+
                     visibility: "hidden",
                 }}
             >
                 {/* Logo */}
-                {/* ── FIX: Inline styles set the correct initial position/size for every
-                    breakpoint's "expanded" state. GSAP previously set these inside mm.add()
-                    which ran after first paint — causing the jerk. Now the element renders
-                    correctly from frame 0 and GSAP only animates the compact scroll state. */}
                 <div
                     ref={logoRef}
                     className="will-change-[width,top]"
@@ -452,7 +446,7 @@ export default function Navbar() {
                     ref={hamburgerRef}
                     onClick={() => setMenuOpen(true)}
                     aria-label="Open menu"
-                    className="md:hidden absolute right-4 flex flex-col justify-center items-center gap-[5px] w-8 h-8"
+                    className="md:hidden absolute right-4 flex flex-col justify-center items-center gap-1.25 w-8 h-8"
                     style={{
                         top: "50%",
                         transform: "translateY(-50%)",
@@ -471,7 +465,7 @@ export default function Navbar() {
             <div
                 ref={overlayRef}
                 onClick={() => setMenuOpen(false)}
-                className="fixed inset-0 z-[1050] md:hidden"
+                className="fixed inset-0 z-1050 md:hidden"
                 style={{
                     background: "rgba(0,0,0,0.5)",
                     backdropFilter: "blur(4px)",
@@ -485,7 +479,7 @@ export default function Navbar() {
             {/* Mobile Menu Panel */}
             <div
                 ref={menuRef}
-                className="fixed top-0 right-0 h-full w-3/4 max-w-xs z-[1100] md:hidden flex flex-col pt-24 px-8 gap-8"
+                className="fixed top-0 right-0 h-full w-3/4 max-w-xs z-1100 md:hidden flex flex-col pt-24 px-8 gap-8"
                 style={{
                     background: "rgba(0,0,0,0.85)",
                     backdropFilter: "blur(24px)",

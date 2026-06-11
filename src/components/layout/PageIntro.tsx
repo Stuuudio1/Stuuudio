@@ -109,7 +109,7 @@ export default function PageIntro() {
     return (
         <div
             ref={overlayRef}
-            className="fixed inset-0 z-[9999] bg-black flex items-end overflow-hidden"
+            className="fixed inset-0 z-9999 bg-black flex items-end overflow-hidden"
             style={{ willChange: "transform, clip-path" }}
         >
             <h1

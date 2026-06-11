@@ -79,7 +79,7 @@ export default function AboutSection() {
                             top: 0,
                             left: 0,
                             width: "100%",
-                            height: "100%",
+                            height: "85%",
                             objectFit: "cover",
                         }}
                     >
@@ -153,7 +153,7 @@ export default function AboutSection() {
                     <div className="flex flex-col justify-between flex-1">
                         <div className="pt-4 pb-8 text-base md:text-[18px] font-regular" style={{ fontFamily: "var(--font-body)" }}>
                             <p >We're a Lagos-based design and development crew obsessed with one thing: building products that punch way above their weight. We work with founders, operators, and small teams across Nigeria and beyond who are serious about growth. Not people who want a pretty website. People who want a website that works while they sleep.</p>
-                            
+                            <div className="pt-6"></div>
                             <p className="mt-10">Curious about who we are and how we work?  Get to know us better the story, the process, and the people behind the work.</p>
                         </div>
 

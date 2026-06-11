@@ -71,11 +71,11 @@ export default function WorkSection() {
 
                 <Link href="/projects">
                     <button
-                        className="px-4 lg:px-7 py-2 lg:py-3 rounded-full text-base lg:text-base uppercase tracking-widest border border-white
+                        className="px-4 lg:px-5 py-2 lg:py-3 rounded-full text-base lg:text-base uppercase tracking-widest border border-white
                                     text-white hover:bg-white hover:text-black transition-colors duration-300 cursor-pointer shrink-0"
                         style={{ fontWeight: 400 }}
                     >
-                        View All
+                        View All work
                     </button>
                 </Link>
             </div>

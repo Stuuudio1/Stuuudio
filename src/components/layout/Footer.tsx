@@ -42,7 +42,7 @@ export default function Footer() {
                 <span className="shrink-0 text-base">
                     Inquiries:{" "}
                     <a
-                        href="mailto:Createwithstuuudio@gmail.com"
+                        href="mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry"
                         className="text-white text-base hover:text-white transition-colors duration-200"
                     >
                         Createwithstuuudio@gmail.com
@@ -72,7 +72,7 @@ export default function Footer() {
                 >
                     Inquiries:{" "}
                     <a
-                        href="mailto:Createwithstuuudio@gmail.com"
+                        href="mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry"
                         className="text-white text-sm hover:text-white transition-colors duration-200"
                     >
                         Createwithstuuudio@gmail.com

@@ -11,7 +11,7 @@ const navLinks = [
     { label: "Projects", href: "/projects", sectionId: null },
     { label: "Services", href: "#services", sectionId: "services", onlyOn: "/about" },
     { label: "About", href: "/about", sectionId: null },
-    { label: "Contact", href: "mailto:Createwithstuuudio@gmail.com", isExternal: true, sectionId: null },
+    { label: "Contact", href: "mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry", isExternal: true, sectionId: null },
 ];
 
 export default function StaticNavbar() {
@@ -141,7 +141,7 @@ export default function StaticNavbar() {
 
                     {/* Hamburger Button — mobile only */}
                     <button
-                        className="md:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8 ml-auto z-[60] relative"
+                        className="md:hidden flex flex-col justify-center items-center gap-1.25 w-8 h-8 ml-auto z-60 relative"
                         onClick={() => setMenuOpen((prev) => !prev)}
                         aria-label={menuOpen ? "Close menu" : "Open menu"}
                     >
@@ -156,7 +156,7 @@ export default function StaticNavbar() {
             <div
                 ref={overlayRef}
                 onClick={() => setMenuOpen(false)}
-                className="fixed inset-0 z-[55] md:hidden"
+                className="fixed inset-0 z-55 md:hidden"
                 style={{
                     background: "rgba(0,0,0,0.5)",
                     backdropFilter: "blur(4px)",
@@ -170,7 +170,7 @@ export default function StaticNavbar() {
             {/* Mobile Menu Panel */}
             <div
                 ref={menuRef}
-                className="fixed top-0 right-0 h-full w-3/4 max-w-xs z-[60] md:hidden flex flex-col pt-24 px-8 gap-8"
+                className="fixed top-0 right-0 h-full w-3/4 max-w-xs z-60 md:hidden flex flex-col pt-24 px-8 gap-8"
                 style={{
                     background: "rgba(0,0,0,0.85)",
                     backdropFilter: "blur(24px)",
