@@ -54,7 +54,7 @@ export const PROJECTS: Project[] = [
     },
     {
         id: "5",
-        name: "Kdnnn",
+        name: "KDNNN",
         type: "Web Development",
         description: "A full news network built to provide users with the latest news and updates from around the world, covering a wide range of topics including politics, entertainment, sports, technology, and more.",
         slug: "kdnnn",

@@ -105,7 +105,7 @@ export default function CategoryPage({
 
             {/* Other categories strip */}
             <div className="page-x pb-20">
-                <p className="text-white/30 text-xs uppercase tracking-widest mb-6">
+                <p className="text-white text-sm uppercase tracking-widest mb-9 font-medium">
                     Explore other services
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
