@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -62,9 +61,6 @@ export default function Navbar() {
     }, [menuOpen]);
 
     useEffect(() => {
-        // ── FIX: Pre-hide header synchronously before mm.add fires.
-        // This ensures the header is invisible from frame 0, before
-        // matchMedia evaluates, so there's no flash of unstyled logo.
         if (headerRef.current) {
             gsap.set(headerRef.current, { autoAlpha: 0 });
         }
@@ -74,10 +70,8 @@ export default function Navbar() {
         const applyBlurOnScroll = (compactHeight: number, scrollEnd: number) => {
             const header = headerRef.current;
             if (!header) return;
-
             const onScroll = () => {
-                const scrolled = window.scrollY;
-                const progress = Math.min(scrolled / scrollEnd, 1);
+                const progress = Math.min(window.scrollY / scrollEnd, 1);
                 if (progress >= 1) {
                     header.style.background = "rgba(0,0,0,0.6)";
                     header.style.backdropFilter = "blur(16px)";
@@ -86,7 +80,6 @@ export default function Navbar() {
                     header.style.backdropFilter = "none";
                 }
             };
-
             window.addEventListener("scroll", onScroll, { passive: true });
             return () => window.removeEventListener("scroll", onScroll);
         };
@@ -97,7 +90,6 @@ export default function Navbar() {
             const logo = logoRef.current;
             const navRow = navRowRef.current;
             const tagline = taglineRef.current;
-
             if (!header || !logo || !navRow || !tagline) return;
 
             const PADDING = 40;
@@ -108,9 +100,7 @@ export default function Navbar() {
 
             const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
 
-            // ── FIX: Logo position/size is set via inline styles on the element
-            // (see JSX below), so we only need to set transformOrigin here.
-            // This prevents GSAP from overriding the inline style after first paint.
+            // Desktop logo uses inline JSX styles — only override transformOrigin
             gsap.set(logo, { transformOrigin: "left top" });
 
             document.documentElement.style.setProperty("--navbar-compact-height", `${COMPACT_HEIGHT}px`);
@@ -134,35 +124,25 @@ export default function Navbar() {
                     opacity: 0,
                     y: -20,
                 });
-
-                gsap.to(navRow, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.5,
-                    ease: "power3.out",
-                    delay: 0.2,
-                });
+                gsap.to(navRow, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", delay: 0.2 });
 
                 const compactLogoHeight = logoHeight * (COMPACT_LOGO_WIDTH / fullLogoWidth);
                 const compactLogoTop = (COMPACT_HEIGHT - compactLogoHeight) / 2;
                 const compactNavTop = (COMPACT_HEIGHT - 32) / 2;
 
-                const tl = gsap.timeline({
+                gsap.timeline({
                     scrollTrigger: {
                         trigger: document.documentElement,
                         start: "top top",
                         end: `+=${SCROLL_END}`,
                         scrub: 1,
                     },
-                });
-
-                tl
+                })
                     .to(header, { height: COMPACT_HEIGHT, ease: "none" }, 0)
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
                     .to(navRow, { top: compactNavTop, ease: "none" }, 0)
                     .to(tagline, { opacity: 0, ease: "none" }, 0);
 
-                // Reveal header cleanly after all positions are set
                 gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
             });
 
@@ -175,7 +155,6 @@ export default function Navbar() {
             const logo = logoRef.current;
             const navRow = navRowRef.current;
             const tagline = taglineRef.current;
-
             if (!header || !logo || !navRow || !tagline) return;
 
             const PADDING = 24;
@@ -185,8 +164,6 @@ export default function Navbar() {
             const SCROLL_END = 300;
 
             const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
-
-            // ── FIX: Only set transformOrigin; position/size comes from inline styles
             gsap.set(logo, { transformOrigin: "left top" });
 
             document.documentElement.style.setProperty("--navbar-compact-height", `${COMPACT_HEIGHT}px`);
@@ -210,35 +187,25 @@ export default function Navbar() {
                     opacity: 0,
                     y: -20,
                 });
-
-                gsap.to(navRow, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.5,
-                    ease: "power3.out",
-                    delay: 0.2,
-                });
+                gsap.to(navRow, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", delay: 0.2 });
 
                 const compactLogoHeight = logoHeight * (COMPACT_LOGO_WIDTH / fullLogoWidth);
                 const compactLogoTop = (COMPACT_HEIGHT - compactLogoHeight) / 2;
                 const compactNavTop = (COMPACT_HEIGHT - 32) / 2;
 
-                const tl = gsap.timeline({
+                gsap.timeline({
                     scrollTrigger: {
                         trigger: document.documentElement,
                         start: "top top",
                         end: `+=${SCROLL_END}`,
                         scrub: 1,
                     },
-                });
-
-                tl
+                })
                     .to(header, { height: COMPACT_HEIGHT, ease: "none" }, 0)
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
                     .to(navRow, { top: compactNavTop, ease: "none" }, 0)
                     .to(tagline, { opacity: 0, ease: "none" }, 0);
 
-                // Reveal header cleanly after all positions are set
                 gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
             });
 
@@ -251,7 +218,6 @@ export default function Navbar() {
             const logo = logoRef.current;
             const navRow = navRowRef.current;
             const hamburger = hamburgerRef.current;
-
             if (!header || !logo || !navRow) return;
 
             const PADDING = 16;
@@ -262,18 +228,28 @@ export default function Navbar() {
 
             const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
 
-            // ── FIX: Only set transformOrigin; position/size comes from inline styles
-            gsap.set(logo, { transformOrigin: "left top" });
+            // ── KEY FIX: Override the desktop inline styles on the logo div
+            // BEFORE the rAF measurement. The JSX has left:40 / width:calc(100%-80px)
+            // which is desktop sizing. On mobile we need left:16 / width:calc(100%-32px)
+            // so that logo.offsetHeight reflects the correct mobile height,
+            // making navTop accurate and giving the nav row proper clearance below the logo.
+            gsap.set(logo, {
+                position: "absolute",
+                left: PADDING,
+                top: LOGO_TOP,
+                width: `calc(100% - ${PADDING * 2}px)`,
+                transformOrigin: "left top",
+            });
 
-            if (hamburger) {
-                gsap.set(hamburger, { opacity: 0, pointerEvents: "none" });
-            }
+            if (hamburger) gsap.set(hamburger, { opacity: 0, pointerEvents: "none" });
 
             requestAnimationFrame(() => {
+                // offsetHeight is now accurate — logo is already at mobile width
                 const logoHeight = logo.offsetHeight || 60;
                 const fullLogoWidth = logo.offsetWidth;
-                const navTop = LOGO_TOP + logoHeight + 10;
-                const NATURAL_HEIGHT = navTop + 28 + 14;
+
+                const navTop = LOGO_TOP + logoHeight + 16;
+                const NATURAL_HEIGHT = navTop + 28 + 16;
 
                 document.documentElement.style.setProperty("--navbar-height", `${NATURAL_HEIGHT}px`);
                 document.documentElement.style.setProperty("--navbar-compact-height", `${COMPACT_HEIGHT}px`);
@@ -292,16 +268,14 @@ export default function Navbar() {
                 const compactLogoTop = (COMPACT_HEIGHT - compactLogoHeight) / 2;
                 const compactNavTop = (COMPACT_HEIGHT - 22) / 2;
 
-                const tl = gsap.timeline({
+                gsap.timeline({
                     scrollTrigger: {
                         trigger: document.documentElement,
                         start: "top top",
                         end: `+=${SCROLL_END}`,
                         scrub: 1,
                     },
-                });
-
-                tl
+                })
                     .to(header, { height: COMPACT_HEIGHT, ease: "none" }, 0)
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
                     .to(navRow, { top: compactNavTop, opacity: 0, ease: "none" }, 0);
@@ -317,7 +291,6 @@ export default function Navbar() {
                     }).to(hamburger, { opacity: 1, pointerEvents: "auto", ease: "none" }, 0);
                 }
 
-                // Reveal header cleanly after all positions are set
                 gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
             });
 
@@ -355,13 +328,17 @@ export default function Navbar() {
                 style={{
                     background: "transparent",
                     transition: "background 0.3s ease, backdrop-filter 0.3s ease",
-
                     visibility: "hidden",
                 }}
             >
-                {/* Logo */}
+                {/* Logo
+                    Desktop/tablet: position & width from these inline styles.
+                    Mobile: gsap.set() above overrides to left:16 / width:calc(100%-32px)
+                    before the rAF fires, so offsetHeight measurement is correct.
+                */}
                 <div
                     ref={logoRef}
+                    data-nav-logo
                     className="will-change-[width,top]"
                     style={{
                         position: "absolute",

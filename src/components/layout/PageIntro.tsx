@@ -16,11 +16,34 @@ const LOGO_LETTERS: { char: string; font: string; weight: number }[] = [
     { char: "o", font: COND, weight: 900 },
 ];
 
+const PADDING_X = 24; // px — matches px-6 on the overlay
+
 export default function PageIntro() {
     const overlayRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLHeadingElement>(null);
     const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
     const [show, setShow] = useState(false);
+
+    // Scale the h1 so it fills the full padded width on every resize
+    useEffect(() => {
+        if (!show || !textRef.current) return;
+
+        const fit = () => {
+            const el = textRef.current;
+            if (!el) return;
+            // Reset scale so we measure natural size
+            el.style.transform = "";
+            const containerW = window.innerWidth - PADDING_X * 2;
+            const textW = el.scrollWidth;
+            const scale = containerW / textW;
+            el.style.transform = `scaleX(${scale})`;
+            el.style.transformOrigin = "left center";
+        };
+
+        fit();
+        window.addEventListener("resize", fit);
+        return () => window.removeEventListener("resize", fit);
+    }, [show]);
 
     useEffect(() => {
         if (!hasPlayedIntro) {
@@ -109,15 +132,15 @@ export default function PageIntro() {
     return (
         <div
             ref={overlayRef}
-            className="fixed inset-0 z-9999 bg-black flex items-end overflow-hidden"
+            className="fixed inset-0 z-9999 bg-black flex items-end overflow-hidden px-4"
             style={{ willChange: "transform, clip-path" }}
         >
             <h1
                 ref={textRef}
-                className="w-full pb-[3%] flex items-baseline select-none leading-none"
+                className="pb-[3%] flex items-baseline select-none leading-none whitespace-nowrap"
                 aria-label="Stuuudio"
                 style={{
-                    fontSize: "clamp(4rem, 50vw, 25rem)",
+                    fontSize: "clamp(4rem, 20vw, 25rem)",
                     gap: 0,
                 }}
             >
@@ -125,7 +148,7 @@ export default function PageIntro() {
                     <span
                         key={i}
                         ref={(el) => { letterRefs.current[i] = el; }}
-                        style={{ display: "inline-block" }}
+                        style={{ display: "inline-block", flexShrink: 0 }}
                     >
                         <Letter char={char} font={font} weight={weight} />
                     </span>
