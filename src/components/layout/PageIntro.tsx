@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { hasPlayedIntro, markIntroPlayed } from "@/lib/pageIntro";
+import { markIntroPlayed } from "@/lib/pageIntro";
 import { Letter, WIDE, COND } from "@/components/ui/Letter";
 
 const LOGO_LETTERS: { char: string; font: string; weight: number }[] = [
@@ -16,22 +16,33 @@ const LOGO_LETTERS: { char: string; font: string; weight: number }[] = [
     { char: "o", font: COND, weight: 900 },
 ];
 
-const PADDING_X = 24; // px — matches px-6 on the overlay
+const PADDING_X = 24;
 
 export default function PageIntro() {
     const overlayRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLHeadingElement>(null);
     const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
-    const [show, setShow] = useState(false);
 
-    // Scale the h1 so it fills the full padded width on every resize
+    // Three states: "pending" (checking), "show" (play intro), "done" (skip)
+    const [state, setState] = useState<"pending" | "show" | "done">("pending");
+
+    // On mount, check sessionStorage — this runs only client-side
     useEffect(() => {
-        if (!show || !textRef.current) return;
+        const played = sessionStorage.getItem("introPlayed") === "true";
+        if (played) {
+            setState("done");
+        } else {
+            setState("show");
+        }
+    }, []);
+
+    // Scale the h1 to fill full padded width
+    useEffect(() => {
+        if (state !== "show" || !textRef.current) return;
 
         const fit = () => {
             const el = textRef.current;
             if (!el) return;
-            // Reset scale so we measure natural size
             el.style.transform = "";
             const containerW = window.innerWidth - PADDING_X * 2;
             const textW = el.scrollWidth;
@@ -43,32 +54,24 @@ export default function PageIntro() {
         fit();
         window.addEventListener("resize", fit);
         return () => window.removeEventListener("resize", fit);
-    }, [show]);
+    }, [state]);
 
+    // Run the GSAP intro
     useEffect(() => {
-        if (!hasPlayedIntro) {
-            setShow(true);
-        }
-    }, []);
-
-    useEffect(() => {
-        if (!show || !overlayRef.current || !textRef.current) return;
+        if (state !== "show" || !overlayRef.current || !textRef.current) return;
 
         const overlay = overlayRef.current;
         const letters = letterRefs.current.filter(Boolean);
-        // Target the whole header so logo + nav row + tagline all reveal together
         const navHeader = document.querySelector<HTMLElement>("header[data-nav-header]");
 
-        // Hide the entire header for the duration of the intro
         if (navHeader) gsap.set(navHeader, { autoAlpha: 0 });
-
         gsap.set(letters, { autoAlpha: 0, y: 20 });
 
         const tl = gsap.timeline({
             onComplete: () => {
+                sessionStorage.setItem("introPlayed", "true");
                 markIntroPlayed();
 
-                // Fade the whole header in at once — logo, tagline, and links together
                 if (navHeader) {
                     gsap.to(navHeader, {
                         autoAlpha: 1,
@@ -77,7 +80,7 @@ export default function PageIntro() {
                     });
                 }
 
-                setShow(false);
+                setState("done");
             },
         });
 
@@ -100,24 +103,15 @@ export default function PageIntro() {
                 "-=0.1"
             )
             .to({}, { duration: 0.5 })
-
-            // Slide the overlay up AND simultaneously open the clip from the bottom.
-            // As y goes from 0 → -130vh, the bottom edge of the clip rises from
-            // 100% → 0%, so the page content is revealed progressively underneath —
-            // like a sticker being peeled off from the top.
             .to(overlay, {
                 y: "-130vh",
                 duration: 2,
                 ease: "expo.inOut",
                 onStart() {
-                    // Start fully unclipped so there's no jump at t=0
                     overlay.style.clipPath = "inset(0 0 0% 0)";
                 },
                 onUpdate() {
-                    // progress 0→1 over this tween
                     const p = (this as unknown as gsap.core.Tween).progress();
-                    // bottom clip edge shrinks from 0% → 100% as overlay lifts,
-                    // exposing the page content beneath from the bottom up
                     const revealed = p * 100;
                     overlay.style.clipPath = `inset(0 0 ${revealed}% 0)`;
                 },
@@ -127,14 +121,23 @@ export default function PageIntro() {
             tl.kill();
             if (navHeader) gsap.set(navHeader, { clearProps: "opacity,visibility" });
         };
-    }, [show]);
+    }, [state]);
 
-    if (!show) return null;
+    // "pending" — render a black overlay that covers everything while we check sessionStorage.
+    // This prevents any flash of page content before we know whether to play the intro.
+    // It's invisible to the user either way since it resolves in the same microtask tick.
+    if (state === "pending") {
+        return (
+            <div className="fixed inset-0 z-[9999] bg-black" />
+        );
+    }
+
+    if (state === "done") return null;
 
     return (
         <div
             ref={overlayRef}
-            className="fixed inset-0 z-9999 bg-black flex items-end overflow-hidden px-6"
+            className="fixed inset-0 z-[9999] bg-black flex items-end overflow-hidden px-6"
             style={{ willChange: "transform, clip-path" }}
         >
             <h1

@@ -86,13 +86,15 @@ export default function Team() {
                         userSelect: "none",
                         alignItems: "baseline",
                     }}
-                    className="text-[clamp(2rem,3vw,4rem)] lg:text-[clamp(2.4rem,6vw,7rem)] uppercase flex items-center gap-0 m-0 p-0"
+                    className="text-[clamp(2rem,3vw,4rem)] lg:text-[clamp(2.4rem,6vw,7rem)] uppercase flex items-center m-0 p-0"
                 >
+                    <div>
                     <Letter char="T" font={WIDE} weight={800} />
                     <Letter char="H" font={COND} weight={900} />
                     <Letter char="E" font={COND} weight={800} />
+                    </div>
 
-                    <div className="lg:ml-5">
+                    <div className="ml-5 lg:ml-10">
                         <Letter char="T" font={WIDE} weight={900} />
                         <Letter char="E" font={COND} weight={800} />
                         <Letter char="A" font={COND} weight={900} />

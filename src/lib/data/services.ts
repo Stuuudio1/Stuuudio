@@ -36,7 +36,7 @@ export const SERVICES: Service[] = [
     // },
     {
         id: "cinematography",
-        number: "04",
+        number: "03",
         title: "Cinematography",
         cursorImage:
             "https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=300&q=80",

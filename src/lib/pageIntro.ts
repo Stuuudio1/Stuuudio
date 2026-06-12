@@ -1,5 +1,5 @@
 export let hasPlayedIntro = false;
 
-export const markIntroPlayed = () => {
+export function markIntroPlayed() {
     hasPlayedIntro = true;
-};
+}

@@ -13,9 +13,10 @@ import Link from "next/link";
 const CATEGORY_MAP: Record<string, { label: string; keyword: string }> = {
     "brand-identity": { label: "Brand Identity", keyword: "Brand Identity" },
     "web-development": { label: "Web Development", keyword: "Web Development" },
-    "motion-design": { label: "Motion Design", keyword: "Motion" },
-    "cinematography": { label: "Cinematography", keyword: "Cinematograph" },
+    "cinematography": { label: "Cinematography", keyword: "Cinematography" },
 };
+
+const CATEGORY_ORDER = ["brand-identity", "web-development", "cinematography"];
 
 export default function CategoryPage({
     params,
@@ -38,6 +39,9 @@ export default function CategoryPage({
             window.matchMedia("(pointer: fine) and (min-width: 1024px)").matches
         );
     }, []);
+
+    const currentIndex = CATEGORY_ORDER.indexOf(slug);
+    const otherCategories = CATEGORY_ORDER.filter((s) => s !== slug);
 
     return (
         <>
@@ -98,6 +102,35 @@ export default function CategoryPage({
                     </div>
                 )}
             </main>
+
+            {/* Other categories strip */}
+            <div className="page-x pb-20">
+                <p className="text-white/30 text-xs uppercase tracking-widest mb-6">
+                    Explore other services
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {otherCategories.map((s) => {
+                        const cat = CATEGORY_MAP[s];
+                        const count = PROJECTS.filter((p) =>
+                            p.type.toLowerCase().includes(cat.keyword.toLowerCase())
+                        ).length;
+                        return (
+                            <Link
+                                key={s}
+                                href={`/projects/category/${s}`}
+                                className="group flex items-center justify-between px-6 py-5 border border-white/10 rounded-sm hover:border-white/40 transition-colors duration-300"
+                            >
+                                <span className="text-white font-black text-sm uppercase tracking-tight">
+                                    {cat.label}
+                                </span>
+                                <span className="text-white/30 text-xs group-hover:text-white/60 transition-colors duration-300">
+                                    {count} project{count !== 1 ? "s" : ""} →
+                                </span>
+                            </Link>
+                        );
+                    })}
+                </div>
+            </div>
 
             <div className="pt-12 lg:pb-72">
                 <div className="border-b border-white" />

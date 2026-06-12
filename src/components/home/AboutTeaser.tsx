@@ -83,7 +83,10 @@ export default function AboutSection() {
                             objectFit: "cover",
                         }}
                     >
-                        <source src="/videos/stu.mp4" type="video/mp4" />
+                        <source 
+                        src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1781281082/Stuuudio_tohhqt.mp4" 
+                        type="video/mp4" 
+                        />
                     </video>
 
                     {/* Controls bar — pinned to bottom, visible on hover */}

@@ -82,11 +82,14 @@ export default function AboutPage() {
                             top: 0,
                             left: 0,
                             width: "100%",
-                            height: "100%",
+                            height: "90%",
                             objectFit: "cover",
                         }}
                     >
-                        <source src="/videos/stu.mp4" type="video/mp4" />
+                        <source 
+                        src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1781281082/Stuuudio_tohhqt.mp4" 
+                        type="video/mp4" 
+                        />
                     </video>
 
                     {/* Controls bar — pinned to bottom, visible on hover */}
