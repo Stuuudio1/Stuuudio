@@ -117,7 +117,7 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
             { src: "/images/spotify-work4.webp", alt: " before 2" },
         ],
         gridImages: [
-            { src: "/images/spotify-work2.webp", alt: " grid image 1" },
+            { src: "/images/spotify-feature.webp", alt: " grid image 1" },
             { src: "/images/spotify-work6.webp", alt: " grid image 2" },
             { src: "/images/spotify-work7.webp", alt: " grid image 3" },
         ],
