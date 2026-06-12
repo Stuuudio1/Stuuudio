@@ -36,7 +36,7 @@ export default function Footer() {
             {/* ── Desktop top bar (hidden on mobile/tablet) ── */}
             <div
                 className="hidden lg:flex items-center justify-between
-                    px-6 md:px-10 py-5 text-white"
+                    px-6 md:px-10 text-white"
                 style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
             >
                 <span className="shrink-0 text-base">
