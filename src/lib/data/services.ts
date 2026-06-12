@@ -25,15 +25,15 @@ export const SERVICES: Service[] = [
         description:
             "We craft the full identity of your brand logo, colour palette, typography, and tone of voice. Everything you need to show up consistently.",
     },
-    {
-        id: "motion",
-        number: "03",
-        title: "Motion Design",
-        cursorImage:
-            "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=300&q=80",
-        description:
-            "We bring your brand to life through animation and motion graphics, for social, web, and beyond.",
-    },
+    // {
+    //     id: "motion",
+    //     number: "03",
+    //     title: "Motion Design",
+    //     cursorImage:
+    //         "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=300&q=80",
+    //     description:
+    //         "We bring your brand to life through animation and motion graphics, for social, web, and beyond.",
+    // },
     {
         id: "cinematography",
         number: "04",

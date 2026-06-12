@@ -1,4 +1,3 @@
-// lib/pageIntro.ts
 export let hasPlayedIntro = false;
 
 export const markIntroPlayed = () => {
