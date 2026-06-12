@@ -67,7 +67,7 @@ export default function Navbar() {
 
         const mm = gsap.matchMedia();
 
-        const applyBlurOnScroll = (compactHeight: number, scrollEnd: number) => {
+        const applyBlurOnScroll = (scrollEnd: number) => {
             const header = headerRef.current;
             if (!header) return;
             const onScroll = () => {
@@ -98,9 +98,7 @@ export default function Navbar() {
             const COMPACT_LOGO_WIDTH = 160;
             const SCROLL_END = 360;
 
-            const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
-
-            // Desktop logo uses inline JSX styles — only override transformOrigin
+            const cleanup = applyBlurOnScroll(SCROLL_END);
             gsap.set(logo, { transformOrigin: "left top" });
 
             document.documentElement.style.setProperty("--navbar-compact-height", `${COMPACT_HEIGHT}px`);
@@ -113,7 +111,6 @@ export default function Navbar() {
                 const NATURAL_HEIGHT = navTop + 40 + 20;
 
                 document.documentElement.style.setProperty("--navbar-height", `${NATURAL_HEIGHT}px`);
-                document.documentElement.style.setProperty("--navbar-compact-height", `${COMPACT_HEIGHT}px`);
 
                 gsap.set(header, { height: NATURAL_HEIGHT });
                 gsap.set(navRow, {
@@ -124,10 +121,12 @@ export default function Navbar() {
                     opacity: 0,
                     y: -20,
                 });
+
                 gsap.to(navRow, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", delay: 0.2 });
 
                 const compactLogoHeight = logoHeight * (COMPACT_LOGO_WIDTH / fullLogoWidth);
                 const compactLogoTop = (COMPACT_HEIGHT - compactLogoHeight) / 2;
+                // Nav row slides UP into the compact bar on desktop — it does NOT disappear
                 const compactNavTop = (COMPACT_HEIGHT - 32) / 2;
 
                 gsap.timeline({
@@ -135,15 +134,26 @@ export default function Navbar() {
                         trigger: document.documentElement,
                         start: "top top",
                         end: `+=${SCROLL_END}`,
-                        scrub: 1,
+                        scrub: 1.2,
+                        // Prevents stuck state on resize/reload
+                        invalidateOnRefresh: true,
+                        onRefresh(self) {
+                            // Force recalculate on every refresh so progress is correct
+                            self.scroll(self.scroll());
+                        },
                     },
                 })
                     .to(header, { height: COMPACT_HEIGHT, ease: "none" }, 0)
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
+                    // Desktop: nav row slides up into position inside compact bar
                     .to(navRow, { top: compactNavTop, ease: "none" }, 0)
+                    // Tagline fades out as nav condenses
                     .to(tagline, { opacity: 0, ease: "none" }, 0);
 
                 gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
+
+                // Refresh after setup so ScrollTrigger has correct page measurements
+                ScrollTrigger.refresh();
             });
 
             return () => cleanup?.();
@@ -163,7 +173,7 @@ export default function Navbar() {
             const COMPACT_LOGO_WIDTH = 120;
             const SCROLL_END = 300;
 
-            const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
+            const cleanup = applyBlurOnScroll(SCROLL_END);
             gsap.set(logo, { transformOrigin: "left top" });
 
             document.documentElement.style.setProperty("--navbar-compact-height", `${COMPACT_HEIGHT}px`);
@@ -176,7 +186,6 @@ export default function Navbar() {
                 const NATURAL_HEIGHT = navTop + 36 + 16;
 
                 document.documentElement.style.setProperty("--navbar-height", `${NATURAL_HEIGHT}px`);
-                document.documentElement.style.setProperty("--navbar-compact-height", `${COMPACT_HEIGHT}px`);
 
                 gsap.set(header, { height: NATURAL_HEIGHT });
                 gsap.set(navRow, {
@@ -187,6 +196,7 @@ export default function Navbar() {
                     opacity: 0,
                     y: -20,
                 });
+
                 gsap.to(navRow, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", delay: 0.2 });
 
                 const compactLogoHeight = logoHeight * (COMPACT_LOGO_WIDTH / fullLogoWidth);
@@ -198,7 +208,11 @@ export default function Navbar() {
                         trigger: document.documentElement,
                         start: "top top",
                         end: `+=${SCROLL_END}`,
-                        scrub: 1,
+                        scrub: 1.2,
+                        invalidateOnRefresh: true,
+                        onRefresh(self) {
+                            self.scroll(self.scroll());
+                        },
                     },
                 })
                     .to(header, { height: COMPACT_HEIGHT, ease: "none" }, 0)
@@ -207,6 +221,7 @@ export default function Navbar() {
                     .to(tagline, { opacity: 0, ease: "none" }, 0);
 
                 gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
+                ScrollTrigger.refresh();
             });
 
             return () => cleanup?.();
@@ -226,13 +241,9 @@ export default function Navbar() {
             const COMPACT_LOGO_WIDTH = 90;
             const SCROLL_END = 260;
 
-            const cleanup = applyBlurOnScroll(COMPACT_HEIGHT, SCROLL_END);
+            const cleanup = applyBlurOnScroll(SCROLL_END);
 
-            // ── KEY FIX: Override the desktop inline styles on the logo div
-            // BEFORE the rAF measurement. The JSX has left:40 / width:calc(100%-80px)
-            // which is desktop sizing. On mobile we need left:16 / width:calc(100%-32px)
-            // so that logo.offsetHeight reflects the correct mobile height,
-            // making navTop accurate and giving the nav row proper clearance below the logo.
+            // Override desktop inline styles BEFORE rAF so offsetHeight is accurate
             gsap.set(logo, {
                 position: "absolute",
                 left: PADDING,
@@ -244,7 +255,6 @@ export default function Navbar() {
             if (hamburger) gsap.set(hamburger, { opacity: 0, pointerEvents: "none" });
 
             requestAnimationFrame(() => {
-                // offsetHeight is now accurate — logo is already at mobile width
                 const logoHeight = logo.offsetHeight || 60;
                 const fullLogoWidth = logo.offsetWidth;
 
@@ -268,30 +278,42 @@ export default function Navbar() {
                 const compactLogoTop = (COMPACT_HEIGHT - compactLogoHeight) / 2;
                 const compactNavTop = (COMPACT_HEIGHT - 22) / 2;
 
+                // Mobile: nav row fades OUT (not slides up) as header compresses
                 gsap.timeline({
                     scrollTrigger: {
                         trigger: document.documentElement,
                         start: "top top",
                         end: `+=${SCROLL_END}`,
-                        scrub: 1,
+                        scrub: 1.2,
+                        invalidateOnRefresh: true,
+                        onRefresh(self) {
+                            self.scroll(self.scroll());
+                        },
                     },
                 })
                     .to(header, { height: COMPACT_HEIGHT, ease: "none" }, 0)
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
+                    // Nav links fade out on mobile, replaced by hamburger
                     .to(navRow, { top: compactNavTop, opacity: 0, ease: "none" }, 0);
 
+                // Hamburger fades IN as nav links fade out — mobile only
                 if (hamburger) {
                     gsap.timeline({
                         scrollTrigger: {
                             trigger: document.documentElement,
                             start: "top top",
                             end: `+=${SCROLL_END}`,
-                            scrub: 1,
+                            scrub: 1.2,
+                            invalidateOnRefresh: true,
+                            onRefresh(self) {
+                                self.scroll(self.scroll());
+                            },
                         },
                     }).to(hamburger, { opacity: 1, pointerEvents: "auto", ease: "none" }, 0);
                 }
 
                 gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
+                ScrollTrigger.refresh();
             });
 
             // ── Marquee ticker — mobile only
@@ -324,6 +346,7 @@ export default function Navbar() {
         <>
             <header
                 ref={headerRef}
+                data-nav-header
                 className="fixed top-0 left-0 right-0 z-999 overflow-hidden"
                 style={{
                     background: "transparent",
@@ -332,9 +355,9 @@ export default function Navbar() {
                 }}
             >
                 {/* Logo
-                    Desktop/tablet: position & width from these inline styles.
-                    Mobile: gsap.set() above overrides to left:16 / width:calc(100%-32px)
-                    before the rAF fires, so offsetHeight measurement is correct.
+                    Desktop/tablet: uses these inline styles (left:40, width:calc(100%-80px)).
+                    Mobile: gsap.set() overrides to left:16 / width:calc(100%-32px) before
+                    the rAF measurement so offsetHeight is correct at mobile viewport width.
                 */}
                 <div
                     ref={logoRef}
@@ -418,7 +441,7 @@ export default function Navbar() {
                     </nav>
                 </div>
 
-                {/* Hamburger — mobile only, fades in after scroll */}
+                {/* Hamburger — mobile only, fades in as nav links fade out */}
                 <button
                     ref={hamburgerRef}
                     onClick={() => setMenuOpen(true)}

@@ -55,11 +55,12 @@ export default function PageIntro() {
         if (!show || !overlayRef.current || !textRef.current) return;
 
         const overlay = overlayRef.current;
-        const text = textRef.current;
         const letters = letterRefs.current.filter(Boolean);
-        const navLogo = document.querySelector<HTMLElement>("[data-nav-logo]");
+        // Target the whole header so logo + nav row + tagline all reveal together
+        const navHeader = document.querySelector<HTMLElement>("header[data-nav-header]");
 
-        if (navLogo) navLogo.style.opacity = "0";
+        // Hide the entire header for the duration of the intro
+        if (navHeader) gsap.set(navHeader, { autoAlpha: 0 });
 
         gsap.set(letters, { autoAlpha: 0, y: 20 });
 
@@ -67,10 +68,11 @@ export default function PageIntro() {
             onComplete: () => {
                 markIntroPlayed();
 
-                if (navLogo) {
-                    gsap.to(navLogo, {
-                        opacity: 1,
-                        duration: 0.4,
+                // Fade the whole header in at once — logo, tagline, and links together
+                if (navHeader) {
+                    gsap.to(navHeader, {
+                        autoAlpha: 1,
+                        duration: 0.5,
                         ease: "power2.out",
                     });
                 }
@@ -123,7 +125,7 @@ export default function PageIntro() {
 
         return () => {
             tl.kill();
-            if (navLogo) navLogo.style.opacity = "";
+            if (navHeader) gsap.set(navHeader, { clearProps: "opacity,visibility" });
         };
     }, [show]);
 
@@ -132,7 +134,7 @@ export default function PageIntro() {
     return (
         <div
             ref={overlayRef}
-            className="fixed inset-0 z-9999 bg-black flex items-end overflow-hidden px-4"
+            className="fixed inset-0 z-9999 bg-black flex items-end overflow-hidden px-6"
             style={{ willChange: "transform, clip-path" }}
         >
             <h1
