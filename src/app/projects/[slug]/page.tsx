@@ -6,27 +6,25 @@ import { PROJECT_DETAILS } from "@/lib/data/projectDetails"
 import Image from "next/image"
 import Link from "next/link"
 import { use, useRef, useState } from "react"
+import { useVideoState } from "@/hooks/useVideoState"
+import VideoStatusOverlay from "@/components/ui/VideoStatusOverlay"
 
 function FeatureVideo({ src }: { src: string }) {
-    const videoRef = useRef<HTMLVideoElement>(null)
-    const [playing, setPlaying] = useState(false)
+    const { videoRef, status } = useVideoState();
+    const [playing, setPlaying] = useState(false);
 
     const toggle = () => {
-        if (!videoRef.current) return
-        if (playing) {
-            videoRef.current.pause()
-            setPlaying(false)
-        } else {
-            videoRef.current.play()
-            setPlaying(true)
-        }
-    }
+        if (!videoRef.current) return;
+        if (playing) { videoRef.current.pause(); setPlaying(false); }
+        else { videoRef.current.play(); setPlaying(true); }
+    };
 
     return (
         <div
             className="relative w-full cursor-pointer px-6 md:px-12 h-[400px] md:h-[600px] lg:h-[680px]"
-            onClick={toggle}
+            onClick={status === "ready" ? toggle : undefined}
         >
+            <VideoStatusOverlay status={status} />
             <video
                 ref={videoRef}
                 src={src}
@@ -36,24 +34,15 @@ function FeatureVideo({ src }: { src: string }) {
                 onPause={() => setPlaying(false)}
                 onPlay={() => setPlaying(true)}
             />
-
-            {/* Play/Pause button overlay */}
-            {!playing && (
+            {status === "ready" && !playing && (
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                     <div className="w-16 h-16 rounded-full border border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 hover:scale-110">
-                        <div
-                            className="w-0 h-0 ml-1"
-                            style={{
-                                borderTop: "10px solid transparent",
-                                borderBottom: "10px solid transparent",
-                                borderLeft: "18px solid white",
-                            }}
-                        />
+                        <div className="w-0 h-0 ml-1" style={{ borderTop: "10px solid transparent", borderBottom: "10px solid transparent", borderLeft: "18px solid white" }} />
                     </div>
                 </div>
             )}
         </div>
-    )
+    );
 }
 
 export default function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {

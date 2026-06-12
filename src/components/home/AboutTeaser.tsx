@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useVideoState } from "@/hooks/useVideoState";
+import VideoStatusOverlay from "../ui/VideoStatusOverlay";
 
 const WIDE = "DrukTextWide, sans-serif";
 const COND = "DrukCond, sans-serif";
@@ -15,10 +17,10 @@ function Letter({ char, font, weight }: { char: string; font: string; weight: nu
 }
 
 export default function AboutSection() {
-    const videoRef = useRef<HTMLVideoElement>(null);
     const [playing, setPlaying] = useState(true);
     const [progress, setProgress] = useState(0);
     const [muted, setMuted] = useState(true);
+    const { videoRef, status } = useVideoState();
 
     useEffect(() => {
         const v = videoRef.current;
@@ -66,6 +68,7 @@ export default function AboutSection() {
                 {/* Left — video with custom controls */}
                 <div className="relative w-full overflow-hidden h-90 lg:h-169.5 lg:w-162.5">
 
+                    <VideoStatusOverlay status={status} />
                     {/* Video */}
                     <video
                         ref={videoRef}

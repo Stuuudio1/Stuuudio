@@ -2,10 +2,14 @@
 
 import ScrollIndicator from "../ui/ScrollIndicator";
 import { useEffect, useRef } from "react";
+import VideoStatusOverlay from "../ui/VideoStatusOverlay";
+import { useVideoState } from "@/hooks/useVideoState";
+
 
 export default function Hero() {
     const slideshowRef = useRef<HTMLDivElement>(null);
     const frameRef = useRef<number | null>(null);
+    const { videoRef, status } = useVideoState();
 
     useEffect(() => {
         const isDesktop = () => window.innerWidth >= 1024;
@@ -88,11 +92,13 @@ export default function Hero() {
                         transition: "width 0.15s ease-out",
                     }}
                 >
+                    <VideoStatusOverlay status={status} />
                     <video
                         autoPlay
                         muted
                         loop
                         playsInline
+                        ref={videoRef}
                         className="w-full h-full lg:h-[85%] object-cover"
                         style={{ pointerEvents: "none" }}
                     >

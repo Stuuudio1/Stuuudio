@@ -1,23 +1,24 @@
 'use client';
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import StaticNavbar from "@/components/layout/StaticNavbar";
 import Footer from "@/components/layout/Footer";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import { Letter, WIDE, COND } from "../../components/ui/Letter";
 import { ServiceRow } from "@/components/services/ServiceRow";
 import { SERVICES } from "@/lib/data/services";
-// import BeliefsCarousel from "@/components/about/BeliefCarousel";
 import Team from "@/components/about/Team"
 import ServiceCards from "@/components/services/ServiceCard";
+import { useVideoState } from "@/hooks/useVideoState";
+import VideoStatusOverlay from "@/components/ui/VideoStatusOverlay";
 
 
 export default function AboutPage() {
     const [openId, setOpenId] = useState<string | null>(null);
-    const videoRef = useRef<HTMLVideoElement>(null);
     const [playing, setPlaying] = useState(true);
     const [progress, setProgress] = useState(0);
     const [muted, setMuted] = useState(true);
+    const { videoRef, status } = useVideoState();
 
     useEffect(() => {
         const v = videoRef.current;
@@ -70,6 +71,7 @@ export default function AboutPage() {
 
                 <div className="relative w-full overflow-hidden h-90 lg:h-169.5">
 
+                <VideoStatusOverlay status={status} />
                     <video
                         ref={videoRef}
                         autoPlay
