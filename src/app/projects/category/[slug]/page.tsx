@@ -68,9 +68,9 @@ export default function CategoryPage({
                                 {category.label}
                             </span>
                         </div>
-                        <h1 className="text-white text-4xl md:text-6xl font-black tracking-tight leading-none uppercase m-0">
+                        {/* <h1 className="text-white text-4xl md:text-6xl font-black tracking-tight leading-none uppercase m-0">
                             {category.label}
-                        </h1>
+                        </h1> */}
                     </div>
                     <p className="text-white/50 text-sm md:text-base font-normal shrink-0">
                         {filtered.length} project{filtered.length !== 1 ? "s" : ""}
