@@ -58,9 +58,9 @@ export function ServiceRow({
                 <div className="flex-1 text-[#767676]">
                     <span
                         style={{
-                            fontSize: "clamp(1rem, 2.2vw, 1.75rem)",
+                            fontSize: "clamp(1rem, 2.5vw, 1.75rem)",
                             fontFamily: "var(--font-body, sans-serif)",
-                            fontWeight: 300,
+                            fontWeight: 500,
                             lineHeight: 1,
                         }}
                     >
@@ -98,7 +98,7 @@ export function ServiceRow({
                     <div className="pl-10 md:pl-22 pr-2 md:pr-0 text-[#767676]">
                         <p
                             className={descriptionClass}
-                            style={{ fontFamily: "var(--font-body)", fontWeight: 300 }}
+                            style={{ fontFamily: "var(--font-body)", fontWeight: 500 }}
                         >
                             {service.description}
                         </p>

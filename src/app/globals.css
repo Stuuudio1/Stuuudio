@@ -78,7 +78,7 @@
 
   --font-display: "Druk", sans-serif;
   --font-heading: "DrukWide", sans-serif;
-  --font-body: 'Inter Display', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
   /* Fallbacks before GSAP writes the real values */
   --navbar-height: 280px;
@@ -122,6 +122,7 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
+  font-variation-settings: "opsz" 32;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
