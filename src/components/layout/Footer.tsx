@@ -17,8 +17,8 @@ function UnderlineLink({
     return (
         <a
             href={href}
-            className="group relative inline-block"
-            style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
+            className="group relative inline-block font-bold"
+            style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 700 }}
         >
             {children}
             <span
@@ -37,9 +37,9 @@ export default function Footer() {
             <div
                 className="hidden lg:flex items-center justify-between
                     px-6 md:px-10 text-white"
-                style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
+                style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}
             >
-                <span className="shrink-0 text-base">
+                <span className="shrink-0 text-base font-semibold">
                     Inquiries:{" "}
                     <a
                         href="mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry"
@@ -49,18 +49,18 @@ export default function Footer() {
                     </a>
                 </span>
 
-                <nav className="flex items-center text-base gap-4" aria-label="Social links">
+                <nav className="flex items-center text-base gap-4 font-bold " aria-label="Social links">
                     {SOCIALS.map((s, i) => (
-                        <span key={s.label} className="flex items-center gap-4">
+                        <span key={s.label} className="flex items-center gap-4 font-bold">
                             <UnderlineLink href={s.href}>{s.label}</UnderlineLink>
                             {i < SOCIALS.length - 1 && (
-                                <span className="text-white/20" aria-hidden="true"> </span>
+                                <span className="text-white/20 " aria-hidden="true"> </span>
                             )}
                         </span>
                     ))}
                 </nav>
 
-                <span className="shrink-0 font-medium text-base">Stuuudio©2026</span>
+                <span className="shrink-0 text-base font-semibold">Stuuudio©2026</span>
             </div>
 
             {/* ── Mobile/Tablet layout ── */}
@@ -100,7 +100,9 @@ export default function Footer() {
                     <nav className="flex items-center" aria-label="Social links">
                         {SOCIALS.map((s, i) => (
                             <span key={s.label} className="flex items-center gap-3">
-                                <UnderlineLink href={s.href}>{s.label}</UnderlineLink>
+                                <UnderlineLink href={s.href}>
+                                    {s.label}
+                                </UnderlineLink>
                                 {i < SOCIALS.length - 1 && (
                                     <span className="text-white/20" aria-hidden="true"> </span>
                                 )}
@@ -109,7 +111,7 @@ export default function Footer() {
                     </nav>
 
                     {/* Copyright — bottom right */}
-                    <span className="shrink-0">Stuuudio © 2026</span>
+                    <span className="shrink-0 text-base font-semibold">Stuuudio © 2026</span>
                 </div>
             </div>
 

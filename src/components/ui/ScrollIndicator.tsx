@@ -4,16 +4,16 @@ export default function ScrollIndicator() {
             <svg viewBox="0 0 60 90" width="36" height="54" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <clipPath id="pill-clip">
-                        <rect x="6" y="6" width="48" height="78" rx="24"/>
+                        <rect x="6" y="6" width="38" height="68" rx="24"/>
                     </clipPath>
                 </defs>
 
                 {/* Pill outline */}
-                <rect x="6" y="6" width="48" height="78"
+                <rect x="6" y="6" width="40" height="68"
                     rx="24" fill="none" stroke="white" strokeWidth="3.5"/>
 
                 {/* Sliding dot */}
-                <rect x="26" y="16" width="8" height="22" rx="4"
+                <rect x="22" y="16" width="6" height="20" rx="4"
                     fill="white" clipPath="url(#pill-clip)">
                     <animate
                         attributeName="y"

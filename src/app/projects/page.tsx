@@ -20,7 +20,6 @@ export default function ProjectPage() {
             <main className="pt-24 pb-32 page-x min-h-[80dvh]">
                 <div className="flex items-center gap-2 mt-20">
                     <ScrollIndicator />
-                    <span className="text-white text-xs uppercase tracking-widest">Scroll down</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
                     {PROJECTS.map((project) => (

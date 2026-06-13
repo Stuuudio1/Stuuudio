@@ -84,6 +84,7 @@ export default function StaticNavbar() {
                 <div className="mx-auto flex items-center justify-between px-4 md:px-10 py-4 md:py-5">
                     {/* Logo */}
                     <div className="w-22.5 md:w-40">
+                    <Link href="/" aria-label="Stuuudio" className="block w-full h-auto">
                         <Image
                             src="/Icons/logo.svg"
                             alt="Stuuudio"
@@ -92,6 +93,7 @@ export default function StaticNavbar() {
                             className="w-full h-auto pointer-events-none select-none"
                             priority
                         />
+                    </Link>    
                     </div>
 
                     {/* Desktop Nav */}
@@ -197,7 +199,7 @@ export default function StaticNavbar() {
                                 href={href}
                                 ref={(el) => { linkRefs.current[i] = el; }}
                                 onClick={(e) => handleNavClick(e, sectionId)}
-                                className="text-white text-2xl font-light tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
+                                className="text-white text-lg font-bold tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
                                 style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
                             >
                                 {label}
@@ -212,7 +214,7 @@ export default function StaticNavbar() {
                                 href={href}
                                 ref={(el) => { linkRefs.current[i] = el; }}
                                 onClick={() => setMenuOpen(false)}
-                                className="text-white text-2xl font-light tracking-widest uppercase hover:opacity-60 transition-opacity"
+                                className="text-white text-lg font-bold tracking-widest uppercase hover:opacity-60 transition-opacity"
                                 style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
                             >
                                 {label}
@@ -226,7 +228,7 @@ export default function StaticNavbar() {
                             href={href}
                             ref={(el) => { linkRefs.current[i] = el; }}
                             onClick={() => setMenuOpen(false)}
-                            className={`text-2xl font-light tracking-widest uppercase transition-opacity ${
+                            className={`text-lg font-bold tracking-widest uppercase transition-opacity ${
                                 isActive(href)
                                     ? "text-white/40 pointer-events-none"
                                     : "text-white hover:opacity-60"

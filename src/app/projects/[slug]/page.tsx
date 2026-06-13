@@ -229,10 +229,12 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             {
                 next && (
                     <div className="px-6 md:px-12 py-16 md:py-24">
-                        <h3 className="text-white font-bold mb-12 text-2xl md:text-4xl"
-                            style={{ fontFamily: "DrukTextWide, sans-serif" }}>
-                            NEXT
-                        </h3>
+                        <Link href={`/projects/${next.slug}`}>
+                            <h3 className="text-white font-bold mb-12 text-2xl md:text-4xl"
+                                style={{ fontFamily: "DrukTextWide, sans-serif" }}>
+                                NEXT
+                            </h3>
+                        </Link>
                         <div className="grid md:grid-cols-2 gap-8">
                             <div />
                             <Link href={`/projects/${next.slug}`} className="group block">

@@ -68,9 +68,6 @@ export default function Hero() {
             <div className="flex justify-between items-start pb-8">
                 <div className="flex items-center gap-2">
                     <ScrollIndicator />
-                    <span className="text-white text-xs uppercase tracking-widest">
-                        Scroll down
-                    </span>
                 </div>
 
                 <p className="text-white text-xl lg:text-2xl font-medium w-50 lg:w-full max-w-lg text-left">
@@ -80,6 +77,7 @@ export default function Hero() {
                     <span className="font-bold">U</span>r brand, yo
                     <span className="font-bold">U</span>r audience.
                 </p>
+                <div></div>
             </div>
 
             {/* Video */}

@@ -95,7 +95,7 @@ export function ServiceRow({
                 }}
             >
                 <div ref={contentRef} className="pb-8 md:pb-10">
-                    <div className="pl-14 md:pl-22 pr-2 md:pr-0 text-[#767676]">
+                    <div className="pl-10 md:pl-22 pr-2 md:pr-0 text-[#767676]">
                         <p
                             className={descriptionClass}
                             style={{ fontFamily: "var(--font-body)", fontWeight: 300 }}

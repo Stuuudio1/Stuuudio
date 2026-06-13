@@ -49,9 +49,6 @@ export default function CategoryPage({
             <main className="pt-24 pb-32 page-x min-h-[80dvh]">
                 <div className="flex items-center gap-2 mt-20">
                     <ScrollIndicator />
-                    <span className="text-white text-xs uppercase tracking-widest">
-                        Scroll down
-                    </span>
                 </div>
 
                 <div className="flex items-end justify-between mt-10 mb-12 gap-4">
@@ -68,9 +65,6 @@ export default function CategoryPage({
                                 {category.label}
                             </span>
                         </div>
-                        {/* <h1 className="text-white text-4xl md:text-6xl font-black tracking-tight leading-none uppercase m-0">
-                            {category.label}
-                        </h1> */}
                     </div>
                     <p className="text-white/50 text-sm md:text-base font-normal shrink-0">
                         {filtered.length} project{filtered.length !== 1 ? "s" : ""}

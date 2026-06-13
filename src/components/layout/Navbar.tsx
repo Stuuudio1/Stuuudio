@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -505,7 +506,7 @@ export default function Navbar() {
                             href={href}
                             ref={(el) => { linkRefs.current[i] = el; }}
                             onClick={() => setMenuOpen(false)}
-                            className="text-white text-2xl font-light tracking-widest uppercase hover:opacity-60 transition-opacity"
+                            className="text-white text-lg font-bold tracking-widest uppercase hover:opacity-60 transition-opacity"
                             style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
                         >
                             {label}
@@ -516,7 +517,7 @@ export default function Navbar() {
                             href={href}
                             ref={(el) => { linkRefs.current[i] = el; }}
                             onClick={(e) => handleNavClick(e, sectionId!)}
-                            className="text-white text-2xl font-light tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
+                            className="text-white text-lg font-bold tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
                             style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
                         >
                             {label}
