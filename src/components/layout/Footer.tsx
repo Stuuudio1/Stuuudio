@@ -43,7 +43,7 @@ export default function Footer() {
                     Inquiries:{" "}
                     <a
                         href="mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry"
-                        className="text-white text-base hover:text-white transition-colors duration-200"
+                        className="text-white font-bold text-base hover:text-white transition-colors duration-200"
                     >
                         Createwithstuuudio@gmail.com
                     </a>
@@ -67,8 +67,8 @@ export default function Footer() {
             <div className="lg:hidden">
                 {/* Inquiries — sits above the wordmark, full width */}
                 <div
-                    className="px-4 pt-5 pb-3 text-base text-white"
-                    style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
+                    className="px-4 pt-5 pb-3 text-base text-white font-bold"
+                    style={{ fontFamily: "var(--font-body, sans-serif)"}}
                 >
                     Inquiries:{" "}
                     <a

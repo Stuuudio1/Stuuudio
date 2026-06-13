@@ -318,22 +318,22 @@ export default function Navbar() {
             });
 
             // ── Marquee ticker — mobile only
-            const track = taglineTrackRef.current;
-            if (track) {
-                const firstItem = track.querySelector("[data-ticker]") as HTMLElement;
-                if (firstItem) {
-                    const width = firstItem.offsetWidth;
-                    gsap.to(track, {
-                        x: `-=${width}`,
-                        duration: 12,
-                        ease: "none",
-                        repeat: -1,
-                        modifiers: {
-                            x: gsap.utils.unitize((x: string) => parseFloat(x) % width),
-                        },
-                    });
-                }
-            }
+            // const track = taglineTrackRef.current;
+            // if (track) {
+            //     const firstItem = track.querySelector("[data-ticker]") as HTMLElement;
+            //     if (firstItem) {
+            //         const width = firstItem.offsetWidth;
+            //         gsap.to(track, {
+            //             x: `-=${width}`,
+            //             duration: 12,
+            //             ease: "none",
+            //             repeat: -1,
+            //             modifiers: {
+            //                 x: gsap.utils.unitize((x: string) => parseFloat(x) % width),
+            //             },
+            //         });
+            //     }
+            // }
 
             return () => cleanup?.();
         });
@@ -355,11 +355,7 @@ export default function Navbar() {
                     visibility: "hidden",
                 }}
             >
-                {/* Logo
-                    Desktop/tablet: uses these inline styles (left:40, width:calc(100%-80px)).
-                    Mobile: gsap.set() overrides to left:16 / width:calc(100%-32px) before
-                    the rAF measurement so offsetHeight is correct at mobile viewport width.
-                */}
+
                 <div
                     ref={logoRef}
                     data-nav-logo
@@ -392,7 +388,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Mobile marquee ticker */}
-                    <div
+                    {/* <div
                         className="block md:hidden overflow-hidden"
                         style={{
                             width: "140px",
@@ -412,7 +408,14 @@ export default function Navbar() {
                                 </span>
                             ))}
                         </div>
-                    </div>
+                    </div> */}
+
+                    {/* Mobile static tagline */}
+<div className="block md:hidden">
+    <span className="tracking-widest text-white" style={{ fontSize: "clamp(0.6rem, 2.5vw, 0.8rem)" }}>
+        {taglineText}
+    </span>
+</div>
 
                     {/* Nav links */}
                     <nav
@@ -527,7 +530,7 @@ export default function Navbar() {
 
                 {/* Bottom tagline */}
                 <div className="absolute bottom-10 left-8">
-                    <span className="text-white/30 tracking-widest text-xs uppercase">{taglineText}</span>
+                    {/* <span className="text-white/70 tracking-widest text-xs uppercase">{taglineText}</span> */}
                 </div>
             </div>
         </>

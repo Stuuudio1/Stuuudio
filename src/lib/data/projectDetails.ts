@@ -51,7 +51,6 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
             alt: "Astra platform banner",
         },
         featureImage: {
-            // src: "/images/astra-before6.webp",
             src: "/images/astra-work3.webp",
             alt: "Astra platform feature",
         },
@@ -60,7 +59,7 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
             { src: "/images/astra-tall3.webp", alt: "Astra before 2" },
         ],
         gridImages: [
-            { src: "/images/astra-before4.webp", alt: "Astra grid image 1" },
+            { src: "/images/astra-work1.webp", alt: "Astra grid image 1" },
             { src: "/images/astra-before2.webp", alt: "Astra grid image 3" },
             { src: "/images/astra-tall.webp", alt: "Astra grid image 2" },
         ],

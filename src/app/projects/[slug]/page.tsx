@@ -69,7 +69,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     src={project.bannerImage.src}
                     alt={project.bannerImage.alt}
                     fill
-                    className="object-cover"
+                    className="object-contain md:object-cover"
                     priority
                 />
                 {/* Navbar sits on top inside the banner */}
@@ -129,7 +129,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                             src={project.featureImage.src}
                             alt={project.featureImage.alt}
                             fill
-                            className="object-cover px-6 md:px-12"
+                            className="object-contain md:object-cover px-6 md:px-12"
                         />
                     </div>
                 )
@@ -181,7 +181,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                         src={project.gridImages[0].src}
                         alt={project.gridImages[0].alt}
                         fill
-                        className="object-cover"
+                        className="object-contain md:object-cover"
                     />
                 </div>
 
@@ -206,24 +206,22 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             </div>
 
             {/* Credits */}
-            {
-                project.credits && project.credits.length > 0 ? (
-                    <div className="px-6 md:px-12 py-16 md:py-24">
-                        <p className="text-white font-bold text-2xl mb-8"
-                            style={{ fontFamily: "DrukTextWide, sans-serif" }}>
-                            Credits
-                        </p>
-                        <div className="flex flex-wrap divide-x mt-6 divide-white/20">
-                            {project.credits.map((c, i) => (
-                                <div key={i} className="pr-8 pl-8 first:pl-0">
-                                    <p className="text-white uppercase text-[11px] font-bold tracking-widest mb-1">{c.role}</p>
-                                    <p className="text-white text-xs">{c.name}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                ) : ''
-            }
+        {project.credits && project.credits.length > 0 && (
+    <div className="px-6 md:px-12 py-16 md:py-24">
+        <p className="text-white font-bold text-2xl mb-8"
+            style={{ fontFamily: "DrukTextWide, sans-serif" }}>
+            Credits
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap mt-6 gap-y-8 md:gap-y-0 md:divide-x md:divide-white/20">
+            {project.credits.map((c, i) => (
+                <div key={i} className="md:pr-8 md:pl-8 md:first:pl-0">
+                    <p className="text-white uppercase text-[11px] font-bold tracking-widest mb-1">{c.role}</p>
+                    <p className="text-white text-xs">{c.name}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+)}
 
             {/* Next project */}
             {
@@ -238,17 +236,17 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                         <div className="grid md:grid-cols-2 gap-8">
                             <div />
                             <Link href={`/projects/${next.slug}`} className="group block">
-                                <div className="relative w-full mb-4 h-[360px] md:h-[450px]">
+                                <div className="relative w-full mb-4 h-[400px] md:h-[450px]">
                                     <Image
                                         src={next.bannerImage.src}
                                         alt={next.name}
                                         fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                        className="object-contain md:object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
                                 </div>
                                 <div className="flex justify-between items-center">
-                                    <p className="text-white text-sm uppercase tracking-widest">{next.name}</p>
-                                    <p className="text-white/40 text-xs">{next.type}</p>
+                                    <p className="text-white text-base font-bold uppercase tracking-widest">{next.name}</p>
+                                    <p className="text-white/80 text-sm font-bold">{next.type}</p>
                                 </div>
                             </Link>
                         </div>
