@@ -8,6 +8,7 @@ import Link from "next/link"
 import { use, useRef, useState } from "react"
 import { useVideoState } from "@/hooks/useVideoState"
 import VideoStatusOverlay from "@/components/ui/VideoStatusOverlay"
+import { COND, Letter, WIDE } from "@/components/ui/Letter"
 
 function FeatureVideo({ src }: { src: string }) {
     const { videoRef, status } = useVideoState();
@@ -86,16 +87,16 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             {/* Project meta — Client | Year | Tagline + Services */}
             <div className="px-6 md:px-12 py-16 md:py-24 grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
-                    <p className="text-white/40 uppercase text-[10px] tracking-widest mb-3">Client</p>
+                    <p className="text-white text-[14px] font-semibold tracking-widest mb-3">Client</p>
                     <p className="text-white text-sm">{project.client}</p>
                 </div>
                 <div>
-                    <p className="text-white/40 uppercase text-[10px] tracking-widest mb-3">Year</p>
+                    <p className="text-white text-[14px] font-semibold tracking-widest mb-3">Year</p>
                     <p className="text-white text-sm">{project.year}</p>
                 </div>
                 {project.liveUrl && (
                     <div>
-                        <p className="text-white/40 uppercase text-[10px] tracking-widest mb-3">Live Site</p>
+                        <p className="text-white text-[14px] font-semibold tracking-widest mb-3">Live Site</p>
                         <a
                             href={project.liveUrl}
                             target="_blank"
@@ -111,9 +112,10 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                         {project.tagline}
                     </h2>
                     <div className="flex flex-col gap-1 mt-4">
-                        <p className="text-white font-bold text-base mt-16">Services</p>
+                        <p className="text-white font-bold text-sm">Services</p>
+                        <div></div>
                         {project.services.map((s) => (
-                            <p key={s} className="text-white text-sm">{s}</p>
+                            <p key={s} className="text-white text-sm font-extralight">{s}</p>
                         ))}
                     </div>
                 </div>
@@ -138,15 +140,15 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             {/* How it started */}
             <div className="px-6 md:px-12 py-16 md:py-24 grid md:grid-cols-1 gap-12">
                 <div>
-                    <h3 className="text-white text-lg font-bold mb-4"
-                        style={{ fontFamily: "DrukTextWide, sans-serif" }}>
+                    <h3 className="text-white mb-4 text-3xl font-extrabold"
+                    >
                         How it started...
                     </h3>
                     <p className="text-white text-base leading-relaxed">{project.howItStarted}</p>
                 </div>
-                <div>
-                    <h3 className="text-white text-lg font-bold mb-4"
-                        style={{ fontFamily: "DrukTextWide, sans-serif" }}>
+                <div className="pt-12 md:pt-0 flex-col">
+                    <h3 className="text-white mb-4 text-3xl font-extrabold"
+                    >
                         The Problem:
                     </h3>
                     <p className="text-white text-base leading-relaxed">{project.problem}</p>
@@ -163,14 +165,25 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             </div>
 
             {/* The Result */}
-            <div className="px-6 md:px-12 py-16 md:py-24 grid md:grid-cols-2 gap-12">
-                <div>
-                    <h3 className="text-white text-lg font-bold"
-                        style={{ fontFamily: "DrukTextWide, sans-serif" }}>
-                        The Result.
-                    </h3>
-                </div>
-                <p className="text-white text-base leading-relaxed">{project.result}</p>
+            <div className="px-6 md:px-12 py-16 md:py-24">
+                <h3 className="text-white text-3xl font-extrabold mb-6">
+                    The Result.
+                </h3>
+                <ul className="flex flex-col gap-4">
+                    {project.result.map((item, i) => (
+                        <li key={i} className={`flex gap-3 items-start ${item.heading ? "ml-4" : ""}`}>
+                            {item.heading && (
+                                <span className="mt-[6px] w-2 h-2 rounded-full bg-white shrink-0" />
+                            )}
+                            <span className={`text-white text-base leading-relaxed ${!item.heading ? "text-white/70" : ""}`}>
+                                {item.heading && (
+                                    <strong className="font-bold">{item.heading}: </strong>
+                                )}
+                                {item.text}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
             </div>
 
             {/* Grid images — pairs, full bleed */}
@@ -206,32 +219,34 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             </div>
 
             {/* Credits */}
-        {project.credits && project.credits.length > 0 && (
-    <div className="px-6 md:px-12 py-16 md:py-24">
-        <p className="text-white font-bold text-2xl mb-8"
-            style={{ fontFamily: "DrukTextWide, sans-serif" }}>
-            Credits
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap mt-6 gap-y-8 md:gap-y-0 md:divide-x md:divide-white/20">
-            {project.credits.map((c, i) => (
-                <div key={i} className="md:pr-8 md:pl-8 md:first:pl-0">
-                    <p className="text-white uppercase text-[11px] font-bold tracking-widest mb-1">{c.role}</p>
-                    <p className="text-white text-xs">{c.name}</p>
+            {project.credits && project.credits.length > 0 && (
+                <div className="px-6 md:px-12 py-16 md:py-24">
+                    <p className="text-white font-bold text-2xl mb-8"
+                        style={{ fontFamily: "DrukTextWide, sans-serif" }}>
+                        Credits
+                    </p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap mt-6 gap-y-8 md:gap-y-0 md:divide-x md:divide-white/20">
+                        {project.credits.map((c, i) => (
+                            <div key={i} className="md:pr-8 md:pl-8 md:first:pl-0">
+                                <p className="text-white uppercase text-[11px] font-bold tracking-widest mb-1">{c.role}</p>
+                                <p className="text-white text-xs">{c.name}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            ))}
-        </div>
-    </div>
-)}
+            )}
 
             {/* Next project */}
             {
                 next && (
                     <div className="px-6 md:px-12 py-16 md:py-24">
                         <Link href={`/projects/${next.slug}`}>
-                            <h3 className="text-white font-bold mb-12 text-2xl md:text-4xl"
-                                style={{ fontFamily: "DrukTextWide, sans-serif" }}>
-                                NEXT
-                            </h3>
+                            <h2 aria-label="About" style={{ fontSize: "clamp(1rem, 4vw, 5rem)", lineHeight: 1, display: "flex", alignItems: "baseline", gap: 0, margin: 0, padding: 0, textTransform: "uppercase", userSelect: "none" }}>
+                                <Letter char="N" font={WIDE} weight={800} />
+                                <Letter char="E" font={COND} weight={800} />
+                                <Letter char="X" font={COND} weight={900} />
+                                <Letter char="T" font={WIDE} weight={800} />
+                            </h2>
                         </Link>
                         <div className="grid md:grid-cols-2 gap-8">
                             <div />
@@ -246,7 +261,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                                 </div>
                                 <div className="flex justify-between items-center">
                                     <p className="text-white text-base font-bold uppercase tracking-widest">{next.name}</p>
-                                    <p className="text-white/80 text-sm font-bold">{next.type}</p>
+                                    <p className="text-white/80 text-sm">{next.type}</p>
                                 </div>
                             </Link>
                         </div>

@@ -17,8 +17,8 @@ function UnderlineLink({
     return (
         <a
             href={href}
-            className="group relative inline-block font-bold"
-            style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 700 }}
+            className="group relative inline-block"
+            style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
         >
             {children}
             <span
@@ -37,13 +37,13 @@ export default function Footer() {
             <div
                 className="hidden lg:flex items-center justify-between
                     px-6 md:px-10 text-white"
-                style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}
+                style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
             >
-                <span className="shrink-0 text-base font-semibold">
+                <span className="shrink-0 text-base">
                     Inquiries:{" "}
                     <a
                         href="mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry"
-                        className="text-white font-bold text-base hover:text-white transition-colors duration-200"
+                        className="text-white text-base hover:text-white transition-colors duration-200"
                     >
                         Createwithstuuudio@gmail.com
                     </a>
@@ -51,7 +51,7 @@ export default function Footer() {
 
                 <nav className="flex items-center text-base gap-4 font-bold " aria-label="Social links">
                     {SOCIALS.map((s, i) => (
-                        <span key={s.label} className="flex items-center gap-4 font-bold">
+                        <span key={s.label} className="flex items-center gap-4">
                             <UnderlineLink href={s.href}>{s.label}</UnderlineLink>
                             {i < SOCIALS.length - 1 && (
                                 <span className="text-white/20 " aria-hidden="true"> </span>
@@ -60,14 +60,14 @@ export default function Footer() {
                     ))}
                 </nav>
 
-                <span className="shrink-0 text-base font-semibold">Stuuudio©2026</span>
+                <span className="shrink-0 text-base">Stuuudio©2026</span>
             </div>
 
             {/* ── Mobile/Tablet layout ── */}
             <div className="lg:hidden">
                 {/* Inquiries — sits above the wordmark, full width */}
                 <div
-                    className="px-4 pt-5 pb-3 text-base text-white font-bold"
+                    className="px-4 pt-5 pb-3 text-base text-white"
                     style={{ fontFamily: "var(--font-body, sans-serif)"}}
                 >
                     Inquiries:{" "}
@@ -111,7 +111,7 @@ export default function Footer() {
                     </nav>
 
                     {/* Copyright — bottom right */}
-                    <span className="shrink-0 text-base font-semibold">Stuuudio © 2026</span>
+                    <span className="shrink-0 text-base">Stuuudio © 2026</span>
                 </div>
             </div>
 
