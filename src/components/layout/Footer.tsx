@@ -18,7 +18,7 @@ function UnderlineLink({
         <a
             href={href}
             className="group relative inline-block"
-            style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
+            style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}
         >
             {children}
             <span
@@ -39,7 +39,7 @@ export default function Footer() {
                     px-6 md:px-10 text-white"
                 style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
             >
-                <span className="shrink-0 text-base">
+                <span className="shrink-0 text-base font-medium">
                     Inquiries:{" "}
                     <a
                         href="mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry"
@@ -60,14 +60,14 @@ export default function Footer() {
                     ))}
                 </nav>
 
-                <span className="shrink-0 text-base">Stuuudio©2026</span>
+                <span className="shrink-0 text-base font-medium">Stuuudio©2026</span>
             </div>
 
             {/* ── Mobile/Tablet layout ── */}
             <div className="lg:hidden">
                 {/* Inquiries — sits above the wordmark, full width */}
                 <div
-                    className="px-4 pt-5 pb-3 text-base text-white"
+                    className="px-4 pt-5 pb-3 text-base font-bold text-white"
                     style={{ fontFamily: "var(--font-body, sans-serif)"}}
                 >
                     Inquiries:{" "}
@@ -94,7 +94,7 @@ export default function Footer() {
                 {/* Below wordmark: socials left, copyright right */}
                 <div
                     className="flex items-center justify-between px-4 pb-5 text-sm text-white"
-                    style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}
+                    style={{ fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}
                 >
                     {/* Socials — bottom left */}
                     <nav className="flex items-center" aria-label="Social links">
