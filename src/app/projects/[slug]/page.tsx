@@ -251,7 +251,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                         <div className="grid md:grid-cols-2 gap-8">
                             <div />
                             <Link href={`/projects/${next.slug}`} className="group block">
-                                <div className="relative w-full mb-4 h-[400px] md:h-[450px]">
+                                <div className="relative w-full h-[400px] md:h-[450px]">
                                     <Image
                                         src={next.bannerImage.src}
                                         alt={next.name}
