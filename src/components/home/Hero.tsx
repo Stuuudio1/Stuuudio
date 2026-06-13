@@ -107,7 +107,7 @@ export default function Hero() {
                     </video>
                 </div>
 
-                <div className="pt-12 lg:pt-0 lg:pb-15">
+                <div className="pt-12 lg:pt-0 lg:pb-12">
                     <div className="border-b border-white" />
                 </div>
             </div>
