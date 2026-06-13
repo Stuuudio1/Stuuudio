@@ -251,7 +251,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                         <div className="grid md:grid-cols-2 gap-8">
                             <div />
                             <Link href={`/projects/${next.slug}`} className="group block">
-                                <div className="relative w-full h-[400px] md:h-[450px]">
+                                <div className="relative w-full h-100 md:h-112.5">
                                     <Image
                                         src={next.bannerImage.src}
                                         alt={next.name}
@@ -259,7 +259,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                                         className="object-contain group-hover:scale-105 transition-transform duration-700"
                                     />
                                 </div>
-                                <div className="flex justify-between items-center -mt-20 lg:-mt-10">
+                                <div className="flex justify-between items-center -mt-10 lg:-mt-10">
                                     <p className="text-white text-base font-bold uppercase tracking-widest">{next.name}</p>
                                     <p className="text-white/80 text-sm">{next.type}</p>
                                 </div>
