@@ -52,7 +52,7 @@ export default function AboutSection() {
     };
 
     return (
-        <section id="about" className="bg-black text-white w-full pb-20">
+        <section id="about" className="bg-black text-white w-full pb-20 pt-10 lg:pt-0">
             <div className="pb-10 md:pb-24 md:mt-0">
                 <h2 aria-label="About" style={{ fontSize: "clamp(1.5rem, 10vw, 5rem)", lineHeight: 1, display: "flex", alignItems: "baseline", gap: 0, margin: 0, padding: 0, textTransform: "uppercase", userSelect: "none" }}>
                     <Letter char="A" font={COND} weight={900} />

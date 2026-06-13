@@ -63,7 +63,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="min-h-screen bg-black flex flex-col pt-72 lg:pt-52 pb-5">
+        <section className="min-h-screen bg-black flex flex-col pt-72 lg:pt-52 pb-5 lg:pb-0">
             {/* Top Row */}
             <div className="flex justify-between items-start pb-8">
                 <div className="flex items-center gap-2">
@@ -107,7 +107,7 @@ export default function Hero() {
                     </video>
                 </div>
 
-                <div className="pt-12 lg:pb-12">
+                <div className="pt-12 lg:pt-0 lg:pb-15">
                     <div className="border-b border-white" />
                 </div>
             </div>

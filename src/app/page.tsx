@@ -5,13 +5,13 @@ import WorkGrid from "@/components/home/WorkGrid";
 import Services from "@/components/home/Services";
 import Footer from "@/components/layout/Footer";
 import PageIntro from "@/components/layout/PageIntro";
-// import IntroOverlay from "@/components/layout/IntroOverlay";
+import DesktopOnly from "@/components/layout/DesktopOnly";
 
 export default function Home() {
   return (
     <>
+    <DesktopOnly />
           <PageIntro />
-          {/* <IntroOverlay /> */}
       <Navbar />
       <main className="relative z-10 bg-black navbar-offset page-x pb-28 lg:pb-50">
         <Hero />
