@@ -199,7 +199,7 @@ export default function StaticNavbar() {
                                 href={href}
                                 ref={(el) => { linkRefs.current[i] = el; }}
                                 onClick={(e) => handleNavClick(e, sectionId)}
-                                className="text-white text-lg font-bold tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
+                                className="text-white text-lg tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
                                 style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
                             >
                                 {label}
@@ -214,7 +214,7 @@ export default function StaticNavbar() {
                                 href={href}
                                 ref={(el) => { linkRefs.current[i] = el; }}
                                 onClick={() => setMenuOpen(false)}
-                                className="text-white text-lg font-bold tracking-widest uppercase hover:opacity-60 transition-opacity"
+                                className="text-white text-lg tracking-widest uppercase hover:opacity-60 transition-opacity"
                                 style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
                             >
                                 {label}
@@ -228,7 +228,7 @@ export default function StaticNavbar() {
                             href={href}
                             ref={(el) => { linkRefs.current[i] = el; }}
                             onClick={() => setMenuOpen(false)}
-                            className={`text-lg font-bold tracking-widest uppercase transition-opacity ${
+                            className={`text-lg tracking-widest uppercase transition-opacity ${
                                 isActive(href)
                                     ? "text-white/40 pointer-events-none"
                                     : "text-white hover:opacity-60"

@@ -9,9 +9,9 @@ import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
+    { href: "#about", label: "About", sectionId: "about" },
     { href: "#work", label: "Projects", sectionId: "work" },
     { href: "#services", label: "Services", sectionId: "services" },
-    { href: "#about", label: "About", sectionId: "about" },
     { href: "mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry", label: "Contact", external: true },
 ];
 
