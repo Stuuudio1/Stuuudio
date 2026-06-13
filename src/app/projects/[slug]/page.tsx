@@ -5,7 +5,7 @@ import StaticNavbar from "@/components/layout/StaticNavbar"
 import { PROJECT_DETAILS } from "@/lib/data/projectDetails"
 import Image from "next/image"
 import Link from "next/link"
-import { use, useRef, useState } from "react"
+import { use, useRef, useState, useEffect } from "react"
 import { useVideoState } from "@/hooks/useVideoState"
 import VideoStatusOverlay from "@/components/ui/VideoStatusOverlay"
 import { COND, Letter, WIDE } from "@/components/ui/Letter"
@@ -13,6 +13,7 @@ import { COND, Letter, WIDE } from "@/components/ui/Letter"
 function FeatureVideo({ src }: { src: string }) {
     const { videoRef, status } = useVideoState();
     const [playing, setPlaying] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const toggle = () => {
         if (!videoRef.current) return;
@@ -20,8 +21,27 @@ function FeatureVideo({ src }: { src: string }) {
         else { videoRef.current.play(); setPlaying(true); }
     };
 
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting && videoRef.current && playing) {
+                    videoRef.current.pause();
+                    setPlaying(false);
+                }
+            },
+            { threshold: 0.2 } // pauses when 80% of the video has scrolled out
+        );
+
+        observer.observe(container);
+        return () => observer.disconnect();
+    }, [playing]);
+
     return (
         <div
+            ref={containerRef}
             className="relative w-full cursor-pointer px-6 md:px-12 h-[400px] md:h-[600px] lg:h-[680px]"
             onClick={status === "ready" ? toggle : undefined}
         >
