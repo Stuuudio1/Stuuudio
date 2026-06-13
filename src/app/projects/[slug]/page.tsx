@@ -241,7 +241,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 next && (
                     <div className="px-6 md:px-12 py-16 md:py-24">
                         <Link href={`/projects/${next.slug}`}>
-                            <h2 aria-label="About" style={{ fontSize: "clamp(1rem, 4vw, 5rem)", lineHeight: 1, display: "flex", alignItems: "baseline", gap: 0, margin: 0, padding: 0, textTransform: "uppercase", userSelect: "none" }}>
+                            <h2 aria-label="About" style={{ fontSize: "clamp(1.5rem, 4vw, 5rem)", lineHeight: 1, display: "flex", alignItems: "baseline", gap: 0, margin: 0, padding: 0, textTransform: "uppercase", userSelect: "none" }}>
                                 <Letter char="N" font={WIDE} weight={800} />
                                 <Letter char="E" font={COND} weight={800} />
                                 <Letter char="X" font={COND} weight={900} />
