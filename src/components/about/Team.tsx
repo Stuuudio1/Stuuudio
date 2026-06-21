@@ -94,7 +94,7 @@ export default function Team() {
                     <Letter char="E" font={COND} weight={800} />
                     </div>
 
-                    <div className="ml-5 lg:ml-10">
+                    <div className="ml-1.5">
                         <Letter char="T" font={WIDE} weight={900} />
                         <Letter char="E" font={COND} weight={800} />
                         <Letter char="A" font={COND} weight={900} />

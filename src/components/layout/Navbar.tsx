@@ -12,7 +12,7 @@ const navLinks = [
     { href: "#about", label: "About", sectionId: "about" },
     { href: "#work", label: "Projects", sectionId: "work" },
     { href: "#services", label: "Services", sectionId: "services" },
-    { href: "mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry", label: "Contact", external: true },
+    // { href: "mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry", label: "Contact", external: true },
 ];
 
 export default function Navbar() {
@@ -422,7 +422,7 @@ export default function Navbar() {
                         className="flex items-center gap-4 md:gap-7 text-white ml-auto md:ml-0"
                         style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
                     >
-                        {navLinks.map(({ href, label, sectionId, external }) =>
+                        {navLinks.map(({ href, label, sectionId, }) =>
                             external ? (
                                 <a
                                     key={label}
@@ -502,7 +502,7 @@ export default function Navbar() {
                     <span className="block w-6 h-[1.5px] bg-white rounded-full absolute" style={{ transform: "rotate(-45deg)" }} />
                 </button>
 
-                {navLinks.map(({ href, label, sectionId, external }, i) =>
+                {navLinks.map(({ href, label, sectionId,}, i) =>
                     external ? (
                         <a
                             key={label}

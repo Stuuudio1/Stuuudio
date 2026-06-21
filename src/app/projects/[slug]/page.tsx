@@ -97,11 +97,6 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 <div className="absolute top-0 left-0 right-0 z-10">
                     <StaticNavbar />
                 </div>
-                {/* Bottom meta overlay */}
-                <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 py-6 flex justify-between items-end z-5">
-                    {/* <p className="text-white text-base tracking-widest">{project.name}</p> */}
-                    {/* <p className="text-white text-sm font-regular">{project.type}</p> */}
-                </div>
             </div>
 
             {/* Project meta — Client | Year | Tagline + Services */}

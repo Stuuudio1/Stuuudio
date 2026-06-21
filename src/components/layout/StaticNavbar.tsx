@@ -7,11 +7,10 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 const navLinks = [
-    { label: "Home", href: "/", sectionId: null },
     { label: "Projects", href: "/projects", sectionId: null },
     { label: "Services", href: "#services", sectionId: "services", onlyOn: "/about" },
     { label: "About", href: "/about", sectionId: null },
-    { label: "Contact", href: "mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry", isExternal: true, sectionId: null },
+    // { label: "Contact", href: "mailto:Createwithstuuudio@gmail.com?subject=Project%20Inquiry", isExternal: true, sectionId: null },
 ];
 
 export default function StaticNavbar() {
@@ -101,7 +100,7 @@ export default function StaticNavbar() {
                         className="hidden md:flex items-center gap-7 text-white ml-auto"
                         style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
                     >
-                        {visibleLinks.map(({ label, href, isExternal, sectionId }) => {
+                        {visibleLinks.map(({ label, href, sectionId }) => {
                             if (isActive(href)) return null;
 
                             if (sectionId) {
@@ -117,17 +116,17 @@ export default function StaticNavbar() {
                                 );
                             }
 
-                            if (isExternal) {
-                                return (
-                                    <a
-                                        key={label}
-                                        href={href}
-                                        className="hover:opacity-60 transition-opacity whitespace-nowrap"
-                                    >
-                                        {label}
-                                    </a>
-                                );
-                            }
+                            // if (isExternal) {
+                            //     return (
+                            //         <a
+                            //             key={label}
+                            //             href={href}
+                            //             className="hover:opacity-60 transition-opacity whitespace-nowrap"
+                            //         >
+                            //             {label}
+                            //         </a>
+                            //     );
+                            // }
 
                             return (
                                 <Link
@@ -191,7 +190,7 @@ export default function StaticNavbar() {
                     <span className="block w-6 h-[1.5px] bg-white rounded-full absolute" style={{ transform: "rotate(-45deg)" }} />
                 </button>
 
-                {visibleLinks.map(({ label, href, isExternal, sectionId }, i) => {
+                {visibleLinks.map(({ label, href, sectionId }, i) => {
                     if (sectionId) {
                         return (
                             <a
@@ -207,20 +206,20 @@ export default function StaticNavbar() {
                         );
                     }
 
-                    if (isExternal) {
-                        return (
-                            <a
-                                key={label}
-                                href={href}
-                                ref={(el) => { linkRefs.current[i] = el; }}
-                                onClick={() => setMenuOpen(false)}
-                                className="text-white text-lg tracking-widest uppercase hover:opacity-60 transition-opacity"
-                                style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
-                            >
-                                {label}
-                            </a>
-                        );
-                    }
+                    // if (isExternal) {
+                    //     return (
+                    //         <a
+                    //             key={label}
+                    //             href={href}
+                    //             ref={(el) => { linkRefs.current[i] = el; }}
+                    //             onClick={() => setMenuOpen(false)}
+                    //             className="text-white text-lg tracking-widest uppercase hover:opacity-60 transition-opacity"
+                    //             style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
+                    //         >
+                    //             {label}
+                    //         </a>
+                    //     );
+                    // }
 
                     return (
                         <Link
