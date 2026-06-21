@@ -411,11 +411,11 @@ export default function Navbar() {
                     </div> */}
 
                     {/* Mobile static tagline */}
-<div className="block md:hidden">
-    <span className="tracking-widest text-white" style={{ fontSize: "clamp(0.6rem, 2.5vw, 0.8rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}>
-        {taglineText}
-    </span>
-</div>
+                    <div className="block md:hidden">
+                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(0.6rem, 2.5vw, 0.8rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}>
+                            {taglineText}
+                        </span>
+                    </div>
 
                     {/* Nav links */}
                     <nav
@@ -423,24 +423,16 @@ export default function Navbar() {
                         style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
                     >
                         {navLinks.map(({ href, label, sectionId, }) =>
-                            external ? (
-                                <a
-                                    key={label}
-                                    href={href}
-                                    className="hover:opacity-60 transition-opacity whitespace-nowrap"
-                                >
-                                    {label}
-                                </a>
-                            ) : (
-                                <a
-                                    key={label}
-                                    href={href}
-                                    onClick={(e) => handleNavClick(e, sectionId!)}
-                                    className="hover:opacity-60 transition-opacity whitespace-nowrap cursor-pointer"
-                                >
-                                    {label}
-                                </a>
-                            )
+
+                            <a
+                                key={label}
+                                href={href}
+                                onClick={(e) => handleNavClick(e, sectionId!)}
+                                className="hover:opacity-60 transition-opacity whitespace-nowrap cursor-pointer"
+                            >
+                                {label}
+                            </a>
+
                         )}
                     </nav>
                 </div>
@@ -502,7 +494,7 @@ export default function Navbar() {
                     <span className="block w-6 h-[1.5px] bg-white rounded-full absolute" style={{ transform: "rotate(-45deg)" }} />
                 </button>
 
-                {navLinks.map(({ href, label, sectionId,}, i) =>
+                {navLinks.map(({ href, label, sectionId, }, i) =>
                     external ? (
                         <a
                             key={label}
