@@ -99,8 +99,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 </div>
                 {/* Bottom meta overlay */}
                 <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 py-6 flex justify-between items-end z-5">
-                    <p className="text-white text-base tracking-widest">{project.name}</p>
-                    <p className="text-white text-sm font-regular">{project.type}</p>
+                    {/* <p className="text-white text-base tracking-widest">{project.name}</p> */}
+                    {/* <p className="text-white text-sm font-regular">{project.type}</p> */}
                 </div>
             </div>
 
@@ -108,20 +108,20 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             <div className="px-6 md:px-12 py-16 md:py-24 grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
                     <p className="text-white text-[14px] font-semibold tracking-widest mb-3">Client</p>
-                    <p className="text-white text-sm">{project.client}</p>
+                    <p className="text-white font-bold text-sm">{project.client}</p>
                 </div>
                 <div>
                     <p className="text-white text-[14px] font-semibold tracking-widest mb-3">Year</p>
-                    <p className="text-white text-sm">{project.year}</p>
+                    <p className="text-white font-bold text-sm">{project.year}</p>
                 </div>
                 {project.liveUrl && (
                     <div>
-                        <p className="text-white text-[14px] font-semibold tracking-widest mb-3">Live Site</p>
+                        <p className="text-white text-[14px] font-bold tracking-widest mb-3">Live Site</p>
                         <a
                             href={project.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-white text-sm underline underline-offset-4 hover:text-white/60 transition-colors duration-200"
+                            className="text-white text-sm underline font-bold underline-offset-4 hover:text-white/60 transition-colors duration-200"
                         >
                             Visit Site ↗
                         </a>
@@ -135,7 +135,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                         <p className="text-white font-bold text-sm">Services</p>
                         <div></div>
                         {project.services.map((s) => (
-                            <p key={s} className="text-white text-sm font-extralight">{s}</p>
+                            <p key={s} className="text-white text-sm font-bold">{s}</p>
                         ))}
                     </div>
                 </div>

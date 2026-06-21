@@ -54,12 +54,12 @@ export const PROJECTS: Project[] = [
     },
     {
         id: "5",
-        name: "KDNNN",
+        name: "Fufu Planet",
         type: "Web Development",
-        description: "A full news network built to provide users with the latest news and updates from around the world, covering a wide range of topics including politics, entertainment, sports, technology, and more.",
-        slug: "kdnnn",
-        imagePrimary: "/images/kdn-work3.webp",
-        imageHover: "/images/kdn-work6.webp",
+        description: "A food ordering and delivery web app ",
+        slug: "fufu-planet",
+        imagePrimary: "/images/bg.webp",
+        imageHover: "/images/fufu.webp",
         layout: "tall",
     },
     {

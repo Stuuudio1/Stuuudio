@@ -68,8 +68,8 @@ function ProjectCard({ project, isFinePointer, forceEqual = false }: { project: 
                     {project.name}
                 </p>
                 <p
-                    className="text-white text-lg lg:text-xl tracking-wider mt-0.5"
-                    style={{ fontFamily: "var(--font-body)", fontWeight: 500 }}
+                    className="text-white text-lg lg:text-xl tracking-wider mt-0.5 font-bold"
+                    style={{ fontFamily: "var(--font-body)"}}
 
                 >
                     {project.type}
