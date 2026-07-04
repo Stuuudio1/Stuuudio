@@ -88,7 +88,7 @@ export default function AboutPage() {
                         }}
                     >
                         <source 
-                        src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1781281082/Stuuudio_tohhqt.mp4" 
+                        src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1783196330/Final-Stuuudio_1_dmjkke.mp4" 
                         type="video/mp4" 
                         />
                     </video>

@@ -495,18 +495,6 @@ export default function Navbar() {
                 </button>
 
                 {navLinks.map(({ href, label, sectionId, }, i) =>
-                    external ? (
-                        <a
-                            key={label}
-                            href={href}
-                            ref={(el) => { linkRefs.current[i] = el; }}
-                            onClick={() => setMenuOpen(false)}
-                            className="text-white text-lg tracking-widest uppercase hover:opacity-60 transition-opacity"
-                            style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
-                        >
-                            {label}
-                        </a>
-                    ) : (
                         <a
                             key={label}
                             href={href}
@@ -517,7 +505,7 @@ export default function Navbar() {
                         >
                             {label}
                         </a>
-                    )
+                    
                 )}
 
                 {/* Bottom tagline */}

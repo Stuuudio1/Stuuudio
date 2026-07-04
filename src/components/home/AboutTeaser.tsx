@@ -66,7 +66,7 @@ export default function AboutSection() {
             <div className="pb-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
                 {/* Left — video with custom controls */}
-                <div className="relative w-full overflow-hidden h-90 lg:h-169.5 lg:w-162.5">
+                <div className="relative w-full overflow-hidden h-90 lg:h-169.5 lg:w-180.5">
 
                     <VideoStatusOverlay status={status} />
                     {/* Video */}
@@ -87,7 +87,7 @@ export default function AboutSection() {
                         }}
                     >
                         <source 
-                        src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1781281082/Stuuudio_tohhqt.mp4" 
+                        src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1783196330/Final-Stuuudio_1_dmjkke.mp4" 
                         type="video/mp4" 
                         />
                     </video>
@@ -157,7 +157,7 @@ export default function AboutSection() {
                     </div>
 
                     <div className="flex flex-col justify-between flex-1">
-                        <div className="pt-4 pb-8 text-base md:text-[18px] font-regular" style={{ fontFamily: "var(--font-body)" }}>
+                        <div className="pt-4 pb-8 text-base md:text-lg font-regular" style={{ fontFamily: "var(--font-body)" }}>
                             <p >We're a Lagos-based design and development crew obsessed with one thing: building products that punch way above their weight. We work with founders, operators, and small teams across Nigeria and beyond who are serious about growth. Not people who want a pretty website. People who want a website that works while they sleep.</p>
                             <div className="pt-6"></div>
                             <p className="mt-10">Curious about who we are and how we work?  Get to know us better the story, the process, and the people behind the work.</p>
