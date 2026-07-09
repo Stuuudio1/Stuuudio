@@ -382,7 +382,7 @@ export default function Navbar() {
                 <div ref={navRowRef} className="flex items-center justify-between will-change-[top]">
                     {/* Desktop/tablet: static tagline */}
                     <div ref={taglineRef} className="hidden md:block">
-                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}>
+                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(1rem, 3vw, 1.2rem)", fontWeight: 600 }}>
                             {taglineText}
                         </span>
                     </div>
@@ -412,7 +412,7 @@ export default function Navbar() {
 
                     {/* Mobile static tagline */}
                     <div className="block md:hidden">
-                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(0.6rem, 2.5vw, 0.8rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 300 }}>
+                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(1rem, 2.5vw, 1.1rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 600 }}>
                             {taglineText}
                         </span>
                     </div>
@@ -420,7 +420,7 @@ export default function Navbar() {
                     {/* Nav links */}
                     <nav
                         className="flex items-center gap-4 md:gap-7 text-white ml-auto md:ml-0"
-                        style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
+                        style={{ fontSize: "clamp(1rem, 3vw, 1.1rem)", fontWeight: 600 }}
                     >
                         {navLinks.map(({ href, label, sectionId, }) =>
 
@@ -501,7 +501,7 @@ export default function Navbar() {
                             ref={(el) => { linkRefs.current[i] = el; }}
                             onClick={(e) => handleNavClick(e, sectionId!)}
                             className="text-white text-lg tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
-                            style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
+                            style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em", fontWeight: 600 }}
                         >
                             {label}
                         </a>

@@ -4,7 +4,7 @@ import Image from "next/image";
 const SOCIALS = [
     { label: "Instagram", href: "https://www.instagram.com/createwithstuuudio?igsh=Nmc5NGFuY3h2cGwx" },
     { label: "Twitter", href: "https://x.com/stuuudioone" },
-    { label: "LinkedIn", href: "#" },
+    // { label: "LinkedIn", href: "#" },
 ];
 
 function UnderlineLink({

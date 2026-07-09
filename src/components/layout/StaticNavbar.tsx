@@ -83,26 +83,24 @@ export default function StaticNavbar() {
                 <div className="mx-auto flex items-center justify-between px-4 md:px-10 py-4 md:py-5">
                     {/* Logo */}
                     <div className="w-22.5 md:w-40">
-                    <Link href="/" aria-label="Stuuudio" className="block w-full h-auto">
-                        <Image
-                            src="/Icons/logo.svg"
-                            alt="Stuuudio"
-                            width={1200}
-                            height={220}
-                            className="w-full h-auto pointer-events-none select-none"
-                            priority
-                        />
-                    </Link>    
+                        <Link href="/" aria-label="Stuuudio" className="block w-full h-auto">
+                            <Image
+                                src="/Icons/logo.svg"
+                                alt="Stuuudio"
+                                width={1200}
+                                height={220}
+                                className="w-full h-auto pointer-events-none select-none"
+                                priority
+                            />
+                        </Link>
                     </div>
 
                     {/* Desktop Nav */}
                     <nav
                         className="hidden md:flex items-center gap-7 text-white ml-auto"
-                        style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
+                        style={{ fontSize: "clamp(1rem, 3vw, 1.1rem)", fontWeight: 600 }}
                     >
                         {visibleLinks.map(({ label, href, sectionId }) => {
-                            if (isActive(href)) return null;
-
                             if (sectionId) {
                                 return (
                                     <a
@@ -116,23 +114,14 @@ export default function StaticNavbar() {
                                 );
                             }
 
-                            // if (isExternal) {
-                            //     return (
-                            //         <a
-                            //             key={label}
-                            //             href={href}
-                            //             className="hover:opacity-60 transition-opacity whitespace-nowrap"
-                            //         >
-                            //             {label}
-                            //         </a>
-                            //     );
-                            // }
-
                             return (
                                 <Link
                                     key={label}
                                     href={href}
-                                    className="hover:opacity-60 transition-opacity whitespace-nowrap"
+                                    className={`transition-opacity whitespace-nowrap ${isActive(href)
+                                        ? "text-white/40 pointer-events-none"
+                                        : "hover:opacity-60"
+                                        }`}
                                 >
                                     {label}
                                 </Link>
@@ -151,12 +140,13 @@ export default function StaticNavbar() {
                         <span className="block w-4 h-[1.5px] bg-white rounded-full self-start" />
                     </button>
                 </div>
-            </header>
+            </header >
 
             {/* Overlay */}
-            <div
+            < div
                 ref={overlayRef}
-                onClick={() => setMenuOpen(false)}
+                onClick={() => setMenuOpen(false)
+                }
                 className="fixed inset-0 z-55 md:hidden"
                 style={{
                     background: "rgba(0,0,0,0.5)",
@@ -199,27 +189,12 @@ export default function StaticNavbar() {
                                 ref={(el) => { linkRefs.current[i] = el; }}
                                 onClick={(e) => handleNavClick(e, sectionId)}
                                 className="text-white text-lg tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
-                                style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
+                                style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em", fontWeight: 600 }}
                             >
                                 {label}
                             </a>
                         );
                     }
-
-                    // if (isExternal) {
-                    //     return (
-                    //         <a
-                    //             key={label}
-                    //             href={href}
-                    //             ref={(el) => { linkRefs.current[i] = el; }}
-                    //             onClick={() => setMenuOpen(false)}
-                    //             className="text-white text-lg tracking-widest uppercase hover:opacity-60 transition-opacity"
-                    //             style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
-                    //         >
-                    //             {label}
-                    //         </a>
-                    //     );
-                    // }
 
                     return (
                         <Link
@@ -227,11 +202,10 @@ export default function StaticNavbar() {
                             href={href}
                             ref={(el) => { linkRefs.current[i] = el; }}
                             onClick={() => setMenuOpen(false)}
-                            className={`text-lg tracking-widest uppercase transition-opacity ${
-                                isActive(href)
-                                    ? "text-white/40 pointer-events-none"
-                                    : "text-white hover:opacity-60"
-                            }`}
+                            className={`text-lg tracking-widest uppercase transition-opacity ${isActive(href)
+                                ? "text-white/40 pointer-events-none"
+                                : "text-white hover:opacity-60"
+                                }`}
                             style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em" }}
                         >
                             {label}
