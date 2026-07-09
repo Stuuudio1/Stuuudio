@@ -412,7 +412,7 @@ export default function Navbar() {
 
                     {/* Mobile static tagline */}
                     <div className="block md:hidden">
-                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(1rem, 2.5vw, 0.875rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}>
+                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(1rem, 2.35vw, 0.875rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}>
                             {taglineText}
                         </span>
                     </div>
