@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { markIntroPlayed } from "@/lib/pageIntro";
 import { Letter, WIDE, COND } from "@/components/ui/Letter";
@@ -17,7 +17,7 @@ const LOGO_LETTERS: { char: string; font: string; weight: number }[] = [
 ];
 
 const PADDING_X = 24;
-const DESKTOP_QUERY = "(min-width: 768px)"; // md and up — covers tablet + desktop
+const DESKTOP_QUERY = "(min-width: 768px)";
 
 export default function PageIntro() {
     const overlayRef = useRef<HTMLDivElement>(null);
@@ -25,6 +25,7 @@ export default function PageIntro() {
     const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
     const [state, setState] = useState<"pending" | "show" | "done">("pending");
+    const [ready, setReady] = useState(false); // NEW: controls overlay visibility
 
     useEffect(() => {
         const played = sessionStorage.getItem("introPlayed") === "true";
@@ -37,7 +38,8 @@ export default function PageIntro() {
         }
     }, []);
 
-    useEffect(() => {
+    // Runs BEFORE paint — fixes the scaleX jump
+    useLayoutEffect(() => {
         if (state !== "show" || !textRef.current) return;
 
         const fit = () => {
@@ -52,12 +54,13 @@ export default function PageIntro() {
         };
 
         fit();
+        setReady(true); // reveal overlay only once sizing is correct
         window.addEventListener("resize", fit);
         return () => window.removeEventListener("resize", fit);
     }, [state]);
 
     useEffect(() => {
-        if (state !== "show" || !overlayRef.current || !textRef.current) return;
+        if (state !== "show" || !ready || !overlayRef.current || !textRef.current) return;
 
         const overlay = overlayRef.current;
         const letters = letterRefs.current.filter(Boolean);
@@ -120,12 +123,10 @@ export default function PageIntro() {
             tl.kill();
             if (navHeader) gsap.set(navHeader, { clearProps: "opacity,visibility" });
         };
-    }, [state]);
+    }, [state, ready]);
 
     if (state === "pending") {
-        return (
-            <div className="fixed inset-0 z-[9999] bg-black" />
-        );
+        return <div className="fixed inset-0 z-[9999] bg-black" />;
     }
 
     if (state === "done") return null;
@@ -134,7 +135,10 @@ export default function PageIntro() {
         <div
             ref={overlayRef}
             className="fixed inset-0 z-[9999] bg-black flex items-end overflow-hidden px-6"
-            style={{ willChange: "transform, clip-path" }}
+            style={{
+                willChange: "transform, clip-path",
+                opacity: ready ? 1 : 0, // NEW: don't paint until sized correctly
+            }}
         >
             <h1
                 ref={textRef}
@@ -149,7 +153,11 @@ export default function PageIntro() {
                     <span
                         key={i}
                         ref={(el) => { letterRefs.current[i] = el; }}
-                        style={{ display: "inline-block", flexShrink: 0 }}
+                        style={{
+                            display: "inline-block",
+                            flexShrink: 0,
+                            opacity: 0, // NEW: hidden from first paint, not after
+                        }}
                     >
                         <Letter char={char} font={font} weight={weight} />
                     </span>
