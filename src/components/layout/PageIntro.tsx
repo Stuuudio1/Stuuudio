@@ -17,26 +17,26 @@ const LOGO_LETTERS: { char: string; font: string; weight: number }[] = [
 ];
 
 const PADDING_X = 24;
+const DESKTOP_QUERY = "(min-width: 768px)"; // md and up — covers tablet + desktop
 
 export default function PageIntro() {
     const overlayRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLHeadingElement>(null);
     const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
-    // Three states: "pending" (checking), "show" (play intro), "done" (skip)
     const [state, setState] = useState<"pending" | "show" | "done">("pending");
 
-    // On mount, check sessionStorage — this runs only client-side
     useEffect(() => {
         const played = sessionStorage.getItem("introPlayed") === "true";
-        if (played) {
+        const isDesktopOrTablet = window.matchMedia(DESKTOP_QUERY).matches;
+
+        if (played || !isDesktopOrTablet) {
             setState("done");
         } else {
             setState("show");
         }
     }, []);
 
-    // Scale the h1 to fill full padded width
     useEffect(() => {
         if (state !== "show" || !textRef.current) return;
 
@@ -56,7 +56,6 @@ export default function PageIntro() {
         return () => window.removeEventListener("resize", fit);
     }, [state]);
 
-    // Run the GSAP intro
     useEffect(() => {
         if (state !== "show" || !overlayRef.current || !textRef.current) return;
 
@@ -123,9 +122,6 @@ export default function PageIntro() {
         };
     }, [state]);
 
-    // "pending" — render a black overlay that covers everything while we check sessionStorage.
-    // This prevents any flash of page content before we know whether to play the intro.
-    // It's invisible to the user either way since it resolves in the same microtask tick.
     if (state === "pending") {
         return (
             <div className="fixed inset-0 z-[9999] bg-black" />

@@ -4,14 +4,12 @@ import AboutTeaser from "@/components/home/AboutTeaser";
 import WorkGrid from "@/components/home/WorkGrid";
 import Services from "@/components/home/Services";
 import Footer from "@/components/layout/Footer";
-// import PageIntro from "@/components/layout/PageIntro";
-import DesktopOnly from "@/components/layout/DesktopOnly";
+import PageIntro from "@/components/layout/PageIntro";
 
 export default function Home() {
   return (
     <>
-    <DesktopOnly />
-          {/* <PageIntro /> */}
+      <PageIntro />
       <Navbar />
       <main className="relative z-10 bg-black navbar-offset page-x pb-28 lg:pb-50">
         <Hero />

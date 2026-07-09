@@ -382,7 +382,7 @@ export default function Navbar() {
                 <div ref={navRowRef} className="flex items-center justify-between will-change-[top]">
                     {/* Desktop/tablet: static tagline */}
                     <div ref={taglineRef} className="hidden md:block">
-                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(1rem, 3vw, 1.2rem)", fontWeight: 600 }}>
+                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(1rem, 3vw, 1.1rem)", fontWeight: 500 }}>
                             {taglineText}
                         </span>
                     </div>
@@ -412,7 +412,7 @@ export default function Navbar() {
 
                     {/* Mobile static tagline */}
                     <div className="block md:hidden">
-                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(1rem, 2.5vw, 1.1rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 600 }}>
+                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(1rem, 2.5vw, 0.875rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}>
                             {taglineText}
                         </span>
                     </div>
@@ -420,7 +420,7 @@ export default function Navbar() {
                     {/* Nav links */}
                     <nav
                         className="flex items-center gap-4 md:gap-7 text-white ml-auto md:ml-0"
-                        style={{ fontSize: "clamp(1rem, 3vw, 1.1rem)", fontWeight: 600 }}
+                        style={{ fontSize: "clamp(1rem, 3vw, 1.1rem)", fontWeight: 500 }}
                     >
                         {navLinks.map(({ href, label, sectionId, }) =>
 
