@@ -412,7 +412,7 @@ export default function Navbar() {
 
                     {/* Mobile static tagline */}
                     <div className="block md:hidden">
-                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(1rem, 2.35vw, 0.875rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}>
+                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(0.75rem, 2.15vw, 0.875rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}>
                             {taglineText}
                         </span>
                     </div>
@@ -420,7 +420,7 @@ export default function Navbar() {
                     {/* Nav links */}
                     <nav
                         className="flex items-center gap-4 md:gap-7 text-white ml-auto md:ml-0"
-                        style={{ fontSize: "clamp(1rem, 3vw, 1.1rem)", fontWeight: 500 }}
+                        style={{ fontSize: "clamp(0.85rem, 3vw, 1.1rem)", fontWeight: 500 }}
                     >
                         {navLinks.map(({ href, label, sectionId, }) =>
 
