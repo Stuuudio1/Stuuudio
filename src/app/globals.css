@@ -171,4 +171,15 @@ header * {
 @theme {
   --breakpoint-xs: 393px;   
   --breakpoint-xs-max: 450px; 
+
+  --animate-tagline-scroll: tagline-scroll 9s linear infinite;
+
+  @keyframes tagline-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }

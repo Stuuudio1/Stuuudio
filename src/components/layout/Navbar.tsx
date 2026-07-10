@@ -127,7 +127,6 @@ export default function Navbar() {
 
                 const compactLogoHeight = logoHeight * (COMPACT_LOGO_WIDTH / fullLogoWidth);
                 const compactLogoTop = (COMPACT_HEIGHT - compactLogoHeight) / 2;
-                // Nav row slides UP into the compact bar on desktop — it does NOT disappear
                 const compactNavTop = (COMPACT_HEIGHT - 32) / 2;
 
                 gsap.timeline({
@@ -136,24 +135,19 @@ export default function Navbar() {
                         start: "top top",
                         end: `+=${SCROLL_END}`,
                         scrub: 1.2,
-                        // Prevents stuck state on resize/reload
                         invalidateOnRefresh: true,
                         onRefresh(self) {
-                            // Force recalculate on every refresh so progress is correct
                             self.scroll(self.scroll());
                         },
                     },
                 })
                     .to(header, { height: COMPACT_HEIGHT, ease: "none" }, 0)
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
-                    // Desktop: nav row slides up into position inside compact bar
                     .to(navRow, { top: compactNavTop, ease: "none" }, 0)
-                    // Tagline fades out as nav condenses
                     .to(tagline, { opacity: 0, ease: "none" }, 0);
 
                 gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
 
-                // Refresh after setup so ScrollTrigger has correct page measurements
                 ScrollTrigger.refresh();
             });
 
@@ -244,7 +238,6 @@ export default function Navbar() {
 
             const cleanup = applyBlurOnScroll(SCROLL_END);
 
-            // Override desktop inline styles BEFORE rAF so offsetHeight is accurate
             gsap.set(logo, {
                 position: "absolute",
                 left: PADDING,
@@ -279,7 +272,6 @@ export default function Navbar() {
                 const compactLogoTop = (COMPACT_HEIGHT - compactLogoHeight) / 2;
                 const compactNavTop = (COMPACT_HEIGHT - 22) / 2;
 
-                // Mobile: nav row fades OUT (not slides up) as header compresses
                 gsap.timeline({
                     scrollTrigger: {
                         trigger: document.documentElement,
@@ -294,10 +286,8 @@ export default function Navbar() {
                 })
                     .to(header, { height: COMPACT_HEIGHT, ease: "none" }, 0)
                     .to(logo, { width: COMPACT_LOGO_WIDTH, top: compactLogoTop, ease: "none" }, 0)
-                    // Nav links fade out on mobile, replaced by hamburger
                     .to(navRow, { top: compactNavTop, opacity: 0, ease: "none" }, 0);
 
-                // Hamburger fades IN as nav links fade out — mobile only
                 if (hamburger) {
                     gsap.timeline({
                         scrollTrigger: {
@@ -316,24 +306,6 @@ export default function Navbar() {
                 gsap.to(header, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
                 ScrollTrigger.refresh();
             });
-
-            // ── Marquee ticker — mobile only
-            // const track = taglineTrackRef.current;
-            // if (track) {
-            //     const firstItem = track.querySelector("[data-ticker]") as HTMLElement;
-            //     if (firstItem) {
-            //         const width = firstItem.offsetWidth;
-            //         gsap.to(track, {
-            //             x: `-=${width}`,
-            //             duration: 12,
-            //             ease: "none",
-            //             repeat: -1,
-            //             modifiers: {
-            //                 x: gsap.utils.unitize((x: string) => parseFloat(x) % width),
-            //             },
-            //         });
-            //     }
-            // }
 
             return () => cleanup?.();
         });
@@ -387,34 +359,26 @@ export default function Navbar() {
                         </span>
                     </div>
 
-                    {/* Mobile marquee ticker */}
-                    {/* <div
-                        className="block md:hidden overflow-hidden"
-                        style={{
-                            width: "140px",
-                            maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-                            WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-                        }}
-                    >
-                        <div ref={taglineTrackRef} className="flex whitespace-nowrap gap-8">
-                            {[0, 1, 2].map((n) => (
-                                <span
-                                    key={n}
-                                    data-ticker={n === 0 ? "true" : undefined}
-                                    className="tracking-widest text-white shrink-0"
-                                    style={{ fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
-                                >
-                                    {taglineText}&nbsp;&nbsp;·&nbsp;&nbsp;
-                                </span>
-                            ))}
+                    {/* Mobile tagline — auto-scrolls under 350px, static above it */}
+                    <div className="block md:hidden max-[400px]:max-w-[28vw] max-[400px]:mr-3 max-[400px]:overflow-hidden">
+                        <div
+                            ref={taglineTrackRef}
+                            className="flex whitespace-nowrap w-max max-[400px]:animate-tagline-scroll"
+                        >
+                            <span
+                                className="tracking-widest text-white pr-10"
+                                style={{ fontSize: "clamp(0.85rem, 2.15vw, 1rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}
+                            >
+                                {taglineText}
+                            </span>
+                            <span
+                                aria-hidden="true"
+                                className="tracking-widest text-white pr-10 min-[401px]:hidden"
+                                style={{ fontSize: "clamp(0.85rem, 2.15vw, 1rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}
+                            >
+                                {taglineText}
+                            </span>
                         </div>
-                    </div> */}
-
-                    {/* Mobile static tagline */}
-                    <div className="block md:hidden">
-                        <span className="tracking-widest text-white" style={{ fontSize: "clamp(0.75rem, 2.15vw, 0.875rem)", fontFamily: "var(--font-body, sans-serif)", fontWeight: 500 }}>
-                            {taglineText}
-                        </span>
                     </div>
 
                     {/* Nav links */}
@@ -484,7 +448,6 @@ export default function Navbar() {
                     transform: "translateX(100%)",
                 }}
             >
-                {/* Close button */}
                 <button
                     onClick={() => setMenuOpen(false)}
                     aria-label="Close menu"
@@ -495,20 +458,19 @@ export default function Navbar() {
                 </button>
 
                 {navLinks.map(({ href, label, sectionId, }, i) =>
-                        <a
-                            key={label}
-                            href={href}
-                            ref={(el) => { linkRefs.current[i] = el; }}
-                            onClick={(e) => handleNavClick(e, sectionId!)}
-                            className="text-white text-lg tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
-                            style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em", fontWeight: 600 }}
-                        >
-                            {label}
-                        </a>
-                    
+                    <a
+                        key={label}
+                        href={href}
+                        ref={(el) => { linkRefs.current[i] = el; }}
+                        onClick={(e) => handleNavClick(e, sectionId!)}
+                        className="text-white text-lg tracking-widest uppercase hover:opacity-60 transition-opacity cursor-pointer"
+                        style={{ opacity: 0, visibility: "hidden", letterSpacing: "0.15em", fontWeight: 600 }}
+                    >
+                        {label}
+                    </a>
+
                 )}
 
-                {/* Bottom tagline */}
                 <div className="absolute bottom-10 left-8">
                     {/* <span className="text-white/70 tracking-widest text-xs uppercase">{taglineText}</span> */}
                 </div>
