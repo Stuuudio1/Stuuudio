@@ -63,14 +63,15 @@ export default function AboutPage() {
                     </div>
 
                     <p className="text-white text-base md:text-xl font-medium w-70 lg:w-full max-w-lg text-left">
-                        We're not a corporate agency. We're a crew of friends who were already winning in our own lanes, design, dev, film, motion, until we decided to stop doing it separately. Stuuudio is what happens when you combine sharp skills, real friendships, and an obsession with winning. We don't back down. We don't settle. We ship.
+                        We're not a traditional agency. We're a collective of designers, developers, filmmakers, and strategists who had already built strong careers in our own disciplines before coming together with a shared belief: the best work happens when great people build as one team.
+                        Stuuudio brings together complementary expertise, thoughtful collaboration, and an uncompromising commitment to craft. We don't chase trends or create work for portfolios. We build brands, products, and experiences that are designed to endure, perform, and move businesses forward.
                     </p>
                     <div></div>
                 </div>
 
                 <div className="relative w-full overflow-hidden h-90 lg:h-169.5">
 
-                <VideoStatusOverlay status={status} />
+                    <VideoStatusOverlay status={status} />
                     <video
                         ref={videoRef}
                         autoPlay
@@ -87,9 +88,9 @@ export default function AboutPage() {
                             objectFit: "cover",
                         }}
                     >
-                        <source 
-                        src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1783196330/Final-Stuuudio_1_dmjkke.mp4" 
-                        type="video/mp4" 
+                        <source
+                            src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1783196330/Final-Stuuudio_1_dmjkke.mp4"
+                            type="video/mp4"
                         />
                     </video>
 
@@ -195,7 +196,7 @@ export default function AboutPage() {
                     ))}
                 </div>
 
-                  {/* Service Category Cards */}
+                {/* Service Category Cards */}
                 <div className="mt-16 lg:py-28">
                     <ServiceCards />
                 </div>

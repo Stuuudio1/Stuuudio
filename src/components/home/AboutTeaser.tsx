@@ -86,9 +86,9 @@ export default function AboutSection() {
                             objectFit: "cover",
                         }}
                     >
-                        <source 
-                        src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1783196330/Final-Stuuudio_1_dmjkke.mp4" 
-                        type="video/mp4" 
+                        <source
+                            src="https://res.cloudinary.com/dlfh6aguk/video/upload/v1783196330/Final-Stuuudio_1_dmjkke.mp4"
+                            type="video/mp4"
                         />
                     </video>
 
@@ -158,9 +158,12 @@ export default function AboutSection() {
 
                     <div className="flex flex-col justify-between flex-1">
                         <div className="pt-4 pb-8 text-base md:text-lg font-regular" style={{ fontFamily: "var(--font-body)" }}>
-                            <p >We're a Lagos-based design and development crew obsessed with one thing: building products that punch way above their weight. We work with founders, operators, and small teams across Nigeria and beyond who are serious about growth. Not people who want a pretty website. People who want a website that works while they sleep.</p>
+                            <p >We're a design and brand consultancy obsessed with one thing: building brands that punch far above their weight. We partner with founders, operators, and ambitious organizations across Africa and beyond who are serious about growth. Not people looking for a new logo or a prettier website. People looking for a brand that earns trust, creates momentum, and works long after launch.
+                            </p>
                             <div className="pt-6"></div>
-                            <p className="mt-10">Curious about who we are and how we work?  Get to know us better the story, the process, and the people behind the work.</p>
+                            <p className="mt-10">
+                                Curious about who we are and how we work? Get to know the thinking, the process, and the people behind the work.
+                            </p>
                         </div>
 
                         <div className="pt-5 md:pt-24">
